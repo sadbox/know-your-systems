@@ -4,15 +4,11 @@
 // headless Chrome, and lays the pages out as printer spreads for a
 // half-letter, saddle-stitched booklet:
 //
-//	out/know-your-systems-cover.pdf     1 letter sheet, 2 sides (one ink, for coloured stock)
+//	out/know-your-systems-cover.pdf     1 letter sheet, 2 sides (one ink, for light coloured stock)
 //	out/know-your-systems-interior.pdf  N/4 letter sheets, 2 sides each (duplex, flip on short edge)
 //	out/know-your-systems-proof.pdf     every page in reading order, for review on screen
-//	out/know-your-systems-cover-mockup.pdf  the cover again with the stock colour printed in, to make a
-//	                                        test copy on white stock; never print this one on coloured stock
 //	out/know-your-systems-supply-list.pdf   the letter-size two-week supply list: two sheets, 4 sides
 //	                                        (duplex, flip on long edge), for laminating
-//	out/know-your-systems-booklet.pdf       cover and interior in one file on plain paper: 7 sheets,
-//	                                        duplex, flip on short edge, fold and staple
 //
 // and the home-print editions for the website, which anyone can print on a desk printer:
 //
@@ -146,10 +142,6 @@ func main() {
 		{file: *name + "-supply-list", pageSize: upright, single: true, check: true, sides: singles(supply)},
 		{file: *name + "-cover", pageSize: letter, sides: coverSides},
 		{file: *name + "-interior", pageSize: letter, sides: impose(interior)},
-		{file: *name + "-cover-mockup", pageSize: letter, tint: true, sides: coverSides},
-		// Cover and interior in one file, for a test copy or a run on plain white paper: seven
-		// sheets, cover sheet outermost with the stock colour printed in. Not for coloured stock.
-		{file: *name + "-booklet", pageSize: letter, tint: true, sides: impose(reading)},
 		// Home-print editions, for the website. The workbook is the proof's pages enlarged, so it
 		// needs no fit check of its own beyond the wording; the supply list is re-measured because
 		// its wording differs.

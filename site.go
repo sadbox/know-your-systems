@@ -92,8 +92,7 @@ func (b *builder) writeSite(dir, outDir, name, siteURL, commit string, sides map
 		return err
 	}
 	for role, file := range map[string]string{
-		"proof": "proof", "cover": "cover", "interior": "interior", "booklet": "booklet",
-		"mockup": "cover-mockup", "laminated": "supply-list",
+		"proof": "proof", "cover": "cover", "interior": "interior", "laminated": "supply-list",
 	} {
 		if data.Kit[role], err = pdf(name+"-"+file+".pdf", kitPath, ""); err != nil {
 			return err

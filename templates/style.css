@@ -170,7 +170,7 @@ ol.how li{margin:.022in 0}
 .pg.cv .tip,.pg.cv .warn,.pg.cv .tw{border:.75pt solid #000;border-left-width:3pt}
 .pg.cv .ft{color:#000;border-top-color:#000}
 .pg.cv .n,.pg.cv .hd p,.pg.cv .credit{color:#000}
-.tint .pg.cv{--paper:#f9c995;background:var(--paper)}         /* proof and mock-up only: stands in for light orange cover stock */
+.tint .pg.cv{--paper:#f9c995;background:var(--paper)}         /* proof only: stands in for the light orange cover stock we usually use */
 
 .c1{padding:.42in .45in .4in !important}
 .c1 .body{align-items:stretch}
