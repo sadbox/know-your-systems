@@ -33,7 +33,7 @@ edits. Its fit check can differ from the container's by a few hundredths of an i
     go run . -edition "March 2027"    # edition line in the back-cover credit (default: the EDITION file)
     go run . -chrome /path/to/chrome  # if Chrome is not on PATH (or set $CHROME)
     go run . -allow-overflow          # while editing: build even if a page does not fit
-    go run . -cc-by-sa                # print the CC BY-SA 4.0 notice (back cover, website footer); off until every author agrees
+    go run . -cc-by-sa                # CC BY-SA 4.0 notice and the website's link to the source; off until every author agrees
 
 | File | What it is |
 |---|---|
@@ -83,17 +83,26 @@ on every push to `main`; `site/` and `out/` are not committed. For a new edition
 named blocks shared with the booklet (`kys-intro`, `kys-how`, `kys-toc`, `vt-numbers`, `vt-alert`,
 `credit-text`); only the surrounding web wording is in
 `templates/site.html`. Styles are `templates/site.css`.
-The team's print files (the proof, cover, interior, booklet, cover mock-up and laminated list) are on an
-unlisted print-kit page, `site/kit-8db13109/` (`kitPath` in site.go), with how to print each and the commit
-they were built from. It is linked from nowhere and asks search engines not to index it; anyone with the
-link can open it, and nothing on it is private.
+Every print file (the proof, cover, interior, booklet, cover mock-up and laminated list) is on the print
+kit, https://knowyoursystems.org/print-kit/ (`kitPath` in site.go), linked from the landing page's "Make
+copies for your town". It has the paper and tools we use, how to print and bind the booklet, and the
+commit the files were built from. Its old unlisted address, `/kit-8db13109/`, forwards there.
 
 ## Print
 
-1. Cover: black ink on light orange letter stock, landscape, two-sided, **flip on short edge**, actual size (no "fit to page").
-2. Interior: plain letter paper, landscape, two-sided, **flip on short edge**, actual size.
-3. Stack the six interior sheets in the order they print (page 24 | 1 on the outside, 12 | 13 in the middle),
-   lay the cover on the outside, fold in half and staple twice on the fold.
+The print kit page (`site-kit` in `templates/site.html`) is the full how-to; keep the two in step.
+
+1. Cover: black ink on 67 lb light orange vellum bristol, landscape, two-sided, **flip on short edge**,
+   actual size (no "fit to page").
+2. Interior: full color on 28 lb bright white with a little tooth for pencil, acid-free (we use Staples
+   Premium Bright White 28 lb), landscape, two-sided, **flip on short edge**, actual size.
+3. Score the cover down the middle with a creaser and fold it on the score.
+4. Stack the six interior sheets in the order they print (page 24 | 1 on the outside, 12 | 13 in the middle),
+   fold them and nest them in the cover. Drape the folded booklet over the saddle of a saddle stapler
+   ([Bostitch B440SB](https://bostitchoffice.com/booklet-stapler-black.html)) and put two staples through the fold, about 2 in from the top and bottom.
+5. Trim the open edge square on a guillotine cutter, fold against the back fence, taking off no more than
+   1/8 in: the inside sheets creep out past the cover there. Pages keep 0.42 in of margin on that edge,
+   so the trim cuts nothing printed.
 
 All content sits at least 0.3 in from the sheet edges, so an ordinary office printer will not clip it.
 
@@ -102,10 +111,13 @@ All content sits at least 0.3 in from the sheet edges, so an ordinary office pri
 Two letter sheets travel with the booklet. The supply list is on these sheets only; the booklet does not
 repeat it. The check-up lists are in the booklet only (pages 12, 20 and 21).
 
-1. Print `know-your-systems-supply-list.pdf` on white stock, portrait, two-sided, **flip on long edge**,
+1. Print `know-your-systems-supply-list.pdf` in full color on the same 28 lb paper, portrait, two-sided, **flip on long edge**,
    actual size. Pages 1 and 2 make sheet 1; pages 3 and 4 make sheet 2.
-2. Laminate each in a letter pouch (9 x 11 1/2 in). Nothing needs trimming.
-3. Hand them out with a wet-erase marker. People tick a box and write the date they bought or replaced
+2. Laminate each in a matte letter pouch (9 x 11 1/2 in), not glossy: matte takes a wet-erase marker
+   better. Nothing needs trimming.
+3. Punch a grommet through the clear border in the top-left corner of each sheet and put the two
+   sheets on a metal ring.
+4. Hand them out with a wet-erase marker. People tick a box and write the date they bought or replaced
    the item; a damp cloth clears it.
 
 Each list side is three columns: tick boxes, words, date boxes. The rules run under the words only, so no

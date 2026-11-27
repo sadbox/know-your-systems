@@ -100,7 +100,7 @@ func main() {
 		diffOut = flag.String("diff-out", "diff", "with -diff: where the pictures of changed pages go")
 		links   = flag.Bool("links", false, "check: fetch every web address in the print instead of building")
 		facts   = flag.Bool("facts", false, "check: print the checklist of every phone number and web address in the print instead of building")
-		ccBySA  = flag.Bool("cc-by-sa", false, "print the CC BY-SA 4.0 notice on the back cover and the website (off until every author and organization agrees)")
+		ccBySA  = flag.Bool("cc-by-sa", false, "print the CC BY-SA 4.0 notice on the back cover and the website, and link the website to the source (off until every author and organization agrees)")
 		siteURL = flag.String("site-url", "https://knowyoursystems.org/", "the website's public address, e.g. https://example.org/ (for link previews on Facebook and the like)")
 	)
 	flag.Parse()
@@ -216,6 +216,8 @@ func (b *builder) load(dir string) error {
 		"dotgrid": dotgrid,
 		"kit":     kitCardOf,
 		"ccbysa":  func() bool { return b.ccBySA },
+		// commitURL: the commit can be linked on GitHub (a clean commit, not "abc1234-dirty").
+		"commitURL": func(c string) bool { return c != "" && !strings.HasSuffix(c, "-dirty") },
 		"pg": func(id string) (int, error) {
 			n, ok := b.pgnum[id]
 			if !ok {

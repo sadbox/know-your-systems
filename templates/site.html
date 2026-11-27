@@ -36,7 +36,6 @@
   <div class="wrap">
     <p><b>This is our best advice, not a rulebook.</b> You know your house, your family and your needs best.</p>
     <p class="fine">{{template "credit-text" .}}</p>
-    {{if ccbysa}}<p class="fine">{{template "cc-by-sa"}}</p>{{end}}
   </div>
   <div class="bar"><span>Know your systems</span><span>Practical advice from local emergency managers</span></div>
 </footer>
@@ -124,6 +123,14 @@
   {{template "vt-numbers"}}
   <p class="n">{{template "vt-alert"}}</p>
 </section>
+
+<section class="wrap block" id="make">
+  <h2>Make copies for your town</h2>
+  <p>Want to print a batch for your town{{if ccbysa}}, or adapt it{{end}}? The <a href="{{.KitPath}}/">print kit</a> has every file we print from, the paper we use, and how we fold and staple the booklet and laminate the supply list.</p>
+  {{if ccbysa}}<p class="n">{{template "cc-by-sa"}}</p>{{end}}
+  {{/* The source and any invitation to change the wording wait for the CC BY-SA license (-cc-by-sa). */}}
+  {{if ccbysa}}<p class="n">The workbook is built from source on GitHub: <a href="{{.Repo}}">{{.RepoName}}</a>. Clone it to change the wording for your town and build your own PDFs.</p>{{end}}
+</section>
 </main>
 {{template "site-foot" .}}
 {{end}}
@@ -152,7 +159,8 @@ html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#f9c995;
 {{end}}
 
 
-{{/* The print kit: every print file, for the team. Unlisted (site.go, kitPath). */}}
+{{/* The print kit: every print file, the paper and tools we use, and how we print and bind it.
+      Linked from the landing page ("Make copies for your town"). Written to <site>/<kitPath>/ (site.go). */}}
 {{define "kit-card"}}<article class="card">
   <h3>{{.T}}</h3>
   <p class="facts">{{.D.Pages}} {{.Unit}} · PDF, {{.D.Size}}</p>
@@ -161,55 +169,91 @@ html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#f9c995;
 </article>{{end}}
 
 {{define "site-kit"}}{{template "site-head" .}}
-<meta name="robots" content="noindex, nofollow">
 <title>Print kit · Know Your Systems</title>
+<meta name="description" content="Every file we print the Know Your Systems workbook from, the paper we use, and how we print, fold and staple it.">
+{{if .URL}}<link rel="canonical" href="{{.URL}}{{.KitPath}}/">{{end}}
 </head>
 <body>
 <header class="top">
   <div class="wrap top-grid">
     <div>
-      <p class="eyebrow"><a href="../">Know your systems · for the team</a></p>
+      <p class="eyebrow"><a href="../">Know your systems</a></p>
       <h1>Print kit</h1>
     </div>
     <img class="wc" src="../assets/groundhog-spot.png" width="1100" height="1060" alt="">
   </div>
 </header>
 <main class="wrap">
-  <p class="kitnote">Every print file, built from the same source as the website. This page isn’t linked from the site and asks search engines to skip it. Anyone with the link can open it, so share it with the team only; nothing here is private.</p>
-  <p class="build">{{.Edition}} edition{{if .Commit}} · built from <code>{{.Commit}}</code>{{end}} on {{.Built}}</p>
+  <p class="lede">Everything we print, and how we print, fold and staple it. Use it to make copies for your town.</p>
+  {{if ccbysa}}<p class="n">{{template "cc-by-sa"}}</p>{{end}}
+  {{if ccbysa}}<p class="n">The PDFs are built from source: <a href="{{.Repo}}">{{.RepoName}}</a> on GitHub. Clone it to change the wording for your town and build your own; its README explains how.</p>{{end}}
+  <p class="build">{{.Edition}} edition{{if .Commit}} · built from {{if and ccbysa (commitURL .Commit)}}<a href="{{.Repo}}/commit/{{.Commit}}"><code>{{.Commit}}</code></a>{{else}}<code>{{.Commit}}</code>{{end}}{{end}} on {{.Built}}</p>
 
   <section class="block">
-    <h2>The booklet</h2>
-    <p class="n">Print every file at actual size (no “fit to page”). All content sits at least 0.3 in from the sheet edges, so an ordinary office printer won’t clip it.</p>
-    <div class="cards">
-      {{template "kit-card" (kit "Cover" .Kit.cover "sides" "<p>Black ink on <b>light orange</b> letter stock. Landscape, two-sided, <b>flip on short edge</b>. Outside: back and front; inside: Know your town and the Home map.</p>")}}
-      {{template "kit-card" (kit "Interior" .Kit.interior "sides" "<p>Plain letter paper, full color. Landscape, two-sided, <b>flip on short edge</b>. Stack the sheets in the order they print (page 24 | 1 outside, 12 | 13 in the middle), lay the cover on the outside, fold, and staple twice on the fold.</p>")}}
-      {{template "kit-card" (kit "Booklet on plain paper" .Kit.booklet "sides" "<p>Cover and interior in one file, with the light orange printed in on the cover sheet. Plain white letter paper, landscape, two-sided, <b>flip on short edge</b>. Stack in print order, fold, staple.</p>")}}
-      {{template "kit-card" (kit "Cover mock-up" .Kit.mockup "sides" "<p>The cover with the light orange printed behind it, for a test copy on <b>white</b> stock; pair it with the interior. Never print it on orange stock.</p>")}}
-    </div>
+    <h2>Paper and tools</h2>
+    <dl class="kit-list">
+      <dt>Cover</dt>
+      <dd>67 lb vellum bristol cover stock in light orange, printed in black only. It is stiff enough to protect the pages and still folds cleanly once scored.</dd>
+      <dt>Inside pages and supply list</dt>
+      <dd>Heavy, bright white letter paper with a little texture, printed in full color. Look for 28 lb, acid-free, so it lasts in a drawer for years; heavy enough that ink doesn’t show through; and with a little tooth, so pencil writes well on it. We use Staples Premium Bright White 28 lb; any paper like it will do.</dd>
+      <dt>Supply list</dt>
+      <dd>Matte letter laminating pouches (9 × 11½ in), not glossy: matte takes a wet-erase marker better and doesn’t glare.</dd>
+      <dt>Tools</dt>
+      <dd>A creaser or scoring board for the cover, and a saddle stapler to staple through the fold (ours is the <a href="https://bostitchoffice.com/booklet-stapler-black.html">Bostitch booklet stapler, B440SB</a>, good for up to 20 sheets; a booklet is 7), and a guillotine paper cutter to trim the booklet’s open edge. For the supply list, a grommet punch and grommets, and metal rings to hold the two sheets together.</dd>
+    </dl>
   </section>
 
   <section class="block">
-    <h2>The laminated supply list</h2>
-    <div class="cards">
-      {{template "kit-card" (kit "Supply list" .Kit.laminated "pages" "<p>White stock, portrait, two-sided, <b>flip on long edge</b>. Pages 1 and 2 make sheet 1; pages 3 and 4 make sheet 2. Laminate each in a letter pouch (9 × 11½ in); nothing needs trimming. Hand them out with a wet-erase marker.</p>")}}
-    </div>
+    <h2>Make a booklet</h2>
+    <ol class="how">
+      <li>Print the <b>cover</b> on the cover stock in black: landscape, two-sided, <b>flip on short edge</b>, actual size (never “fit to page”).</li>
+      <li>Print the <b>interior</b> on the 28 lb paper in full color, the same way. That makes six sheets.</li>
+      <li><b>Score the cover</b> down its middle with the creaser, then fold it on the score. Cover stock folded without a score cracks along the fold.</li>
+      <li>Stack the six inside sheets in the order they printed (page 24 | 1 on the outside, 12 | 13 in the middle), fold them together, and nest them in the cover.</li>
+      <li><b>Staple twice</b> through the fold. Open the folded booklet a little and drape it over the stapler’s slanted saddle, outside up, with the fold under the stapling head. Put in two staples, each about 2 in from the top or bottom edge; their legs close on the middle pages.</li>
+      <li><b>Trim the open edge.</b> Once it’s folded, the inside sheets stick out a little past the cover at the open edge, the middle ones most. Lay the closed booklet in the guillotine with the fold against the back fence, clamp it, and cut the open edge square, taking off no more than ⅛ in. Every page has more than 0.4 in of margin on that edge, so the trim cuts nothing printed.</li>
+    </ol>
+    <p class="n">All content sits at least 0.3 in from the sheet edges, so an ordinary office printer won’t clip it. No cover stock? Print the booklet on plain paper from one file (below).</p>
   </section>
 
   <section class="block">
-    <h2>For review</h2>
-    <div class="cards">
-      {{template "kit-card" (kit "Proof" .Kit.proof "pages" "<p>Every booklet page in reading order at 5.5 × 8.5 in, for reading on screen. The cover pages are tinted to suggest the stock.</p>")}}
-    </div>
+    <h2>Make the laminated supply list</h2>
+    <ol class="how">
+      <li>Print the <b>supply list</b> on the 28 lb paper in full color: portrait, two-sided, <b>flip on long edge</b>, actual size. Pages 1 and 2 make sheet 1; pages 3 and 4 make sheet 2.</li>
+      <li>Laminate each sheet in a pouch. Nothing needs trimming.</li>
+      <li>Punch a grommet through the clear border in the top-left corner of each sheet, and put the two sheets on a metal ring.</li>
+      <li>Hand them out with the booklet and a wet-erase marker. People tick an item and write the date they bought it, and wipe it clean with a damp cloth when they replace it.</li>
+    </ol>
   </section>
 
   <section class="block">
-    <h2>On the public site</h2>
+    <h2>The files</h2>
     <div class="cards">
-      {{template "kit-card" (kit "Workbook, letter size" .Workbook "pages" "<p>Every page enlarged onto its own letter page, worded for loose sheets. Single- or double-sided; nothing to fold or staple.</p>")}}
+      {{template "kit-card" (kit "Cover" .Kit.cover "sides" "<p>Black only, for light orange cover stock.</p>")}}
+      {{template "kit-card" (kit "Interior" .Kit.interior "sides" "<p>Full color, six sheets.</p>")}}
+      {{template "kit-card" (kit "Supply list" .Kit.laminated "pages" "<p>Two sheets, worded for a laminated copy and a marker.</p>")}}
+      {{template "kit-card" (kit "Booklet on plain paper" .Kit.booklet "sides" "<p>Cover and interior in one file, with the light orange printed in. For plain white paper when you have no cover stock.</p>")}}
+      {{template "kit-card" (kit "Cover mock-up" .Kit.mockup "sides" "<p>The cover with the light orange printed behind it, for a test copy on white paper. Never print it on orange stock.</p>")}}
+      {{template "kit-card" (kit "Proof" .Kit.proof "pages" "<p>Every booklet page in reading order at 5.5 × 8.5 in, for reading on screen.</p>")}}
+      {{template "kit-card" (kit "Workbook, letter size" .Workbook "pages" "<p>Every page enlarged onto its own letter page, worded for loose sheets. Nothing to fold or staple.</p>")}}
       {{template "kit-card" (kit "Supply list, letter size" .Supply "pages" "<p>Worded for pencil on plain paper.</p>")}}
     </div>
   </section>
 </main>
 {{template "site-foot" .}}
+{{end}}
+
+
+{{/* The old, unlisted address of the print kit sends people to the new one. */}}
+{{define "site-kit-moved"}}<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta http-equiv="refresh" content="0; url=../{{.}}/">
+<link rel="canonical" href="../{{.}}/">
+<title>Print kit</title>
+</head>
+<body><p>The print kit has moved to <a href="../{{.}}/">a new address</a>.</p></body>
+</html>
 {{end}}
