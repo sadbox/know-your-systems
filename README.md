@@ -98,7 +98,8 @@ The print kit page (`site-kit` in `templates/site.html`) is the full how-to; kee
    pencil), landscape, two-sided, **flip on short edge**, actual size.
 3. Score the cover down the middle with a creaser and fold it on the score.
 4. Stack the six interior sheets in the order they print (page 24 | 1 on the outside, 12 | 13 in the middle),
-   fold them, nest them in the cover and staple twice through the fold with a booklet stapler (Bostitch).
+   fold them and nest them in the cover. Drape the folded booklet over the saddle of a saddle stapler
+   ([Bostitch B440SB](https://bostitchoffice.com/booklet-stapler-black.html)) and put two staples through the fold, about 2 in from the top and bottom.
 5. Trim the open edge square on a guillotine cutter, fold against the back fence, taking off no more than
    1/8 in: the inside sheets creep out past the cover there. Pages keep 0.42 in of margin on that edge,
    so the trim cuts nothing printed.
