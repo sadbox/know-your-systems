@@ -77,8 +77,12 @@
 <div class="f"><span>In case of emergency, call</span><i></i></div>
 <div class="f"><span>Out-of-state contact</span><i></i></div>
 <div class="f"><span>Where our family meets</span><i></i></div>
-<p class="n">{{template "vt-alert"}}</p>
-<div class="credit">{{template "credit-text" .}}</div>
+<p class="n"><b>VT-Alert:</b> sign up for your town’s alerts at vtalert.gov.</p>
+<div class="credit">
+  <p>{{template "credit-text" .}}</p>
+  <p><b>More copies? Ideas?</b> Email info@knowyoursystems.org. We’ll print them for your town.</p>
+  {{if ccbysa}}<p>{{template "cc-by-sa"}}</p>{{end}}
+</div>
 {{end}}
 
 
@@ -92,6 +96,9 @@
 </div>
 {{end}}
 
-{{define "credit-text"}}<b>Local woodchuck know-how from central Vermont.</b> Written by James McGuire, Emergency Management Coordinator, and Brenda Field, Emergency Management Director, Town of Tunbridge, and Ari Lattanzi, Regional Planner, Two Rivers-Ottauquechee Regional Commission (TRORC). Special thanks to Kevin Geiger of TRORC for input. Cover illustration from a photograph by James McGuire. {{.Edition}}.{{end}}
+{{define "credit-text"}}<b>Local woodchuck know-how from central Vermont.</b> A collaboration of the towns of Tunbridge and Royalton and the Two Rivers-Ottauquechee Regional Commission (TRORC). Written by James McGuire, Brenda Field, Ari Lattanzi and Brad Salzmann. Special thanks to Kevin Geiger. Cover illustration from a photograph by James McGuire. {{.Edition}}.{{end}}
+
+{{/* Printed only with -cc-by-sa: every author and organization has to agree first. */}}
+{{define "cc-by-sa"}}<b>Share it.</b> Copy and adapt it for your town under CC BY-SA 4.0: credit us and share alike. <a href="https://creativecommons.org/licenses/by-sa/4.0/">creativecommons.org/licenses/by-sa/4.0</a>{{end}}
 
 {{define "vt-alert"}}<b>VT-Alert:</b> sign up at <a href="https://vtalert.gov">vtalert.gov</a> and choose your towns and counties and the alerts you want: weather and disasters, traffic and infrastructure, health and hazmat.{{end}}

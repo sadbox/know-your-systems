@@ -5,9 +5,8 @@ Vermont. A half-letter booklet, folded and stapled, that replaces the "Be Prepar
 Twenty-four inside pages on six letter sheets, set in 11 pt type, a cover sheet printed in one ink on light
 orange stock, and a two-week supply list on two letter-size sheets to laminate.
 
-Written by James McGuire (Emergency Management Coordinator, Tunbridge), Brenda Field (Emergency
-Management Director, Tunbridge) and Ari Lattanzi (Regional Planner, Two Rivers-Ottauquechee Regional
-Commission).
+A collaboration of the towns of Tunbridge and Royalton and the Two Rivers-Ottauquechee Regional
+Commission (TRORC). Written by James McGuire, Brenda Field, Ari Lattanzi and Brad Salzmann.
 
 ## Build
 
@@ -35,6 +34,7 @@ edits. Its fit check can differ from the container's by a few hundredths of an i
     go run . -edition "March 2027"    # edition line in the back-cover credit (default: the EDITION file)
     go run . -chrome /path/to/chrome  # if Chrome is not on PATH (or set $CHROME)
     go run . -allow-overflow          # while editing: build even if a page does not fit
+    go run . -cc-by-sa                # print the CC BY-SA 4.0 notice (back cover, website footer); off until every author agrees
 
 | File | What it is |
 |---|---|

@@ -81,6 +81,7 @@ type builder struct {
 	assets  string
 	edition string
 	pgnum   map[string]int // interior page numbers by template name, for cross references
+	ccBySA  bool           // print the CC BY-SA 4.0 notice (-cc-by-sa)
 }
 
 func main() {
@@ -99,6 +100,7 @@ func main() {
 		diffOut = flag.String("diff-out", "diff", "with -diff: where the pictures of changed pages go")
 		links   = flag.Bool("links", false, "check: fetch every web address in the print instead of building")
 		facts   = flag.Bool("facts", false, "check: print the checklist of every phone number and web address in the print instead of building")
+		ccBySA  = flag.Bool("cc-by-sa", false, "print the CC BY-SA 4.0 notice on the back cover and the website (off until every author and organization agrees)")
 		siteURL = flag.String("site-url", "https://knowyoursystems.org/", "the website's public address, e.g. https://example.org/ (for link previews on Facebook and the like)")
 	)
 	flag.Parse()
@@ -115,7 +117,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	b := &builder{tplDir: *tplDir, assets: *assets, edition: *edition, pgnum: map[string]int{}}
+	b := &builder{tplDir: *tplDir, assets: *assets, edition: *edition, ccBySA: *ccBySA, pgnum: map[string]int{}}
 	if err := b.load(*tplDir); err != nil {
 		log.Fatal(err)
 	}
@@ -213,6 +215,7 @@ func (b *builder) load(dir string) error {
 		"img":     b.img,
 		"dotgrid": dotgrid,
 		"kit":     kitCardOf,
+		"ccbysa":  func() bool { return b.ccBySA },
 		"pg": func(id string) (int, error) {
 			n, ok := b.pgnum[id]
 			if !ok {
