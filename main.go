@@ -90,6 +90,7 @@ func main() {
 		keep    = flag.Bool("keep-html", false, "keep the intermediate HTML files next to the PDFs")
 		lenient = flag.Bool("allow-overflow", false, "build even if a page's content is too tall (it will be cut off); for use while editing")
 		siteDir = flag.String("site", "", "also write the static website to this directory (e.g. -site site)")
+		commit  = flag.String("commit", "", "the source's commit, shown on the print-kit page (./build passes it)")
 		siteURL = flag.String("site-url", "https://knowyoursystems.org/", "the website's public address, e.g. https://example.org/ (for link previews on Facebook and the like)")
 	)
 	flag.Parse()
@@ -142,7 +143,9 @@ func main() {
 	if err := os.MkdirAll(*outDir, 0o755); err != nil {
 		log.Fatal(err)
 	}
+	sides := map[string]int{} // PDF file name to its pages (single) or printed sides
 	for _, d := range docs {
+		sides[d.file+".pdf"] = len(d.sides)
 		html, err := b.document(d)
 		if err != nil {
 			log.Fatalf("%s: %v", d.file, err)
@@ -174,7 +177,7 @@ func main() {
 		if u != "" && !strings.HasSuffix(u, "/") {
 			u += "/"
 		}
-		if err := b.writeSite(*siteDir, *outDir, *name, u, len(reading), len(supply)); err != nil {
+		if err := b.writeSite(*siteDir, *outDir, *name, u, *commit, sides); err != nil {
 			log.Fatalf("site: %v", err)
 		}
 		if err := b.shareImage(bin, *siteDir); err != nil {
@@ -194,6 +197,7 @@ func (b *builder) load(dir string) error {
 	funcs := template.FuncMap{
 		"img":     b.img,
 		"dotgrid": dotgrid,
+		"kit":     kitCardOf,
 		"pg": func(id string) (int, error) {
 			n, ok := b.pgnum[id]
 			if !ok {

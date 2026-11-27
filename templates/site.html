@@ -10,11 +10,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#f9c995">
-<link rel="icon" href="assets/favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="assets/apple-touch.png">
-<link rel="preload" href="assets/fonts/barlow-condensed-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="{{.Root}}assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="{{.Root}}assets/apple-touch.png">
+<link rel="preload" href="{{.Root}}assets/fonts/barlow-condensed-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{.Root}}assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{.Root}}assets/site.css">
 {{end}}
 
 {{define "site-share-tags"}}
@@ -44,7 +44,7 @@
 {{end}}
 
 
-{{define "site-index"}}{{template "site-head"}}
+{{define "site-index"}}{{template "site-head" .}}
 <title>Emergency Preparedness Workbook: Surviving a Two-Week Power Outage</title>
 {{template "site-share-tags" .}}
 </head>
@@ -148,4 +148,67 @@ html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#f9c995;
   </div>
   <div class="a"><img src="{{img "groundhog-cover.png"}}" alt=""></div>
 </div>
+{{end}}
+
+
+{{/* The print kit: every print file, for the team. Unlisted (site.go, kitPath). */}}
+{{define "kit-card"}}<article class="card">
+  <h3>{{.T}}</h3>
+  <p class="facts">{{.D.Pages}} {{.Unit}} · PDF, {{.D.Size}}</p>
+  {{.Body}}
+  <a class="btn" href="{{.D.File}}">Download</a>
+</article>{{end}}
+
+{{define "site-kit"}}{{template "site-head" .}}
+<meta name="robots" content="noindex, nofollow">
+<title>Print kit · Know Your Systems</title>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-grid">
+    <div>
+      <p class="eyebrow"><a href="../">Know your systems · for the team</a></p>
+      <h1>Print kit</h1>
+    </div>
+    <img class="wc" src="../assets/groundhog-spot.png" width="1100" height="1060" alt="">
+  </div>
+</header>
+<main class="wrap">
+  <p class="kitnote">Every print file, built from the same source as the website. This page isn’t linked from the site and asks search engines to skip it. Anyone with the link can open it, so share it with the team only; nothing here is private.</p>
+  <p class="build">{{.Edition}} edition{{if .Commit}} · built from <code>{{.Commit}}</code>{{end}} on {{.Built}}</p>
+
+  <section class="block">
+    <h2>The booklet</h2>
+    <p class="n">Print every file at actual size (no “fit to page”). All content sits at least 0.3 in from the sheet edges, so an ordinary office printer won’t clip it.</p>
+    <div class="cards">
+      {{template "kit-card" (kit "Cover" .Kit.cover "sides" "<p>Black ink on <b>light orange</b> letter stock. Landscape, two-sided, <b>flip on short edge</b>. Outside: back and front; inside: Know your town and the Home map.</p>")}}
+      {{template "kit-card" (kit "Interior" .Kit.interior "sides" "<p>Plain letter paper, full color. Landscape, two-sided, <b>flip on short edge</b>. Stack the sheets in the order they print (page 24 | 1 outside, 12 | 13 in the middle), lay the cover on the outside, fold, and staple twice on the fold.</p>")}}
+      {{template "kit-card" (kit "Booklet on plain paper" .Kit.booklet "sides" "<p>Cover and interior in one file, with the light orange printed in on the cover sheet. Plain white letter paper, landscape, two-sided, <b>flip on short edge</b>. Stack in print order, fold, staple.</p>")}}
+      {{template "kit-card" (kit "Cover mock-up" .Kit.mockup "sides" "<p>The cover with the light orange printed behind it, for a test copy on <b>white</b> stock; pair it with the interior. Never print it on orange stock.</p>")}}
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>The laminated supply list</h2>
+    <div class="cards">
+      {{template "kit-card" (kit "Supply list" .Kit.laminated "pages" "<p>White stock, portrait, two-sided, <b>flip on long edge</b>. Pages 1 and 2 make sheet 1; pages 3 and 4 make sheet 2. Laminate each in a letter pouch (9 × 11½ in); nothing needs trimming. Hand them out with a wet-erase marker.</p>")}}
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>For review</h2>
+    <div class="cards">
+      {{template "kit-card" (kit "Proof" .Kit.proof "pages" "<p>Every booklet page in reading order at 5.5 × 8.5 in, for reading on screen. The cover pages are tinted to suggest the stock.</p>")}}
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>On the public site</h2>
+    <div class="cards">
+      {{template "kit-card" (kit "Workbook, letter size" .Workbook "pages" "<p>Every page enlarged onto its own letter page, worded for loose sheets. Single- or double-sided; nothing to fold or staple.</p>")}}
+      {{template "kit-card" (kit "Supply list, letter size" .Supply "pages" "<p>Worded for pencil on plain paper.</p>")}}
+    </div>
+  </section>
+</main>
+{{template "site-foot" .}}
 {{end}}
