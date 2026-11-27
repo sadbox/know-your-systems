@@ -17,10 +17,9 @@ Needs Docker. `./build` builds the `Dockerfile` (the generator) on the base imag
 with a pinned Chromium) and runs it on this checkout, exactly as CI and the website's deploy do, so a page
 that fits here fits there. Arguments pass through, e.g. `./build -edition "March 2027"`.
 
-The base image is `ghcr.io/sadbox/know-your-systems-base` (private), tagged from `base/Dockerfile` itself
+The base image is `ghcr.io/sadbox/know-your-systems-base` (public), tagged from `base/Dockerfile` itself
 (`base/tag`: the Chromium version and a hash of the file). `./kys` pulls it from GHCR, and that is the
-only way it gets it: log in once with `gh auth token | docker login ghcr.io -u <you> --password-stdin`
-(the token needs `read:packages`: `gh auth refresh -s read:packages`). CI logs in with the job's token.
+only way it gets it. No login is needed.
 
 To update Chromium: in one pull request, move `SNAPSHOT` in `base/Dockerfile` to a later
 snapshot.debian.org date and `CHROMIUM`, `POPPLER` and `CA_CERTIFICATES` to the versions on it, and build
@@ -188,3 +187,12 @@ the side**, naming the page. It also prints how much spare room each page has.
 The cover illustration is from a photograph by James McGuire. To swap it, replace
 `art/groundhog-source.png` (black ink on a transparent or white background) and run
 `uv run art/prep_art.py`, then rebuild. It also makes the website icons in `assets/site/`.
+
+## License
+
+The generator is MIT-licensed (`LICENSE`): the Go code, the scripts, the Dockerfiles, the workflows, the
+stylesheets and the template markup.
+
+The workbook and the supply list themselves are not: their wording (in `templates/`), the cover
+illustration and its source photograph (`assets/`, `art/`) and the PDFs built from them belong to their
+authors. The fonts in `assets/fonts/` carry their own SIL Open Font License.
