@@ -33,7 +33,7 @@ edits. Its fit check can differ from the container's by a few hundredths of an i
     go run . -edition "March 2027"    # edition line in the back-cover credit (default: the EDITION file)
     go run . -chrome /path/to/chrome  # if Chrome is not on PATH (or set $CHROME)
     go run . -allow-overflow          # while editing: build even if a page does not fit
-    go run . -cc-by-sa                # print the CC BY-SA 4.0 notice (back cover, website footer); off until every author agrees
+    go run . -cc-by-sa                # print the CC BY-SA 4.0 notice (back cover, website, print kit); off until every author agrees
 
 | File | What it is |
 |---|---|
@@ -83,17 +83,22 @@ on every push to `main`; `site/` and `out/` are not committed. For a new edition
 named blocks shared with the booklet (`kys-intro`, `kys-how`, `kys-toc`, `vt-numbers`, `vt-alert`,
 `credit-text`); only the surrounding web wording is in
 `templates/site.html`. Styles are `templates/site.css`.
-The team's print files (the proof, cover, interior, booklet, cover mock-up and laminated list) are on an
-unlisted print-kit page, `site/kit-8db13109/` (`kitPath` in site.go), with how to print each and the commit
-they were built from. It is linked from nowhere and asks search engines not to index it; anyone with the
-link can open it, and nothing on it is private.
+Every print file (the proof, cover, interior, booklet, cover mock-up and laminated list) is on the print
+kit, https://knowyoursystems.org/print-kit/ (`kitPath` in site.go), linked from the landing page's "Make
+copies for your town". It has the paper and tools we use, how to print and bind the booklet, and the
+commit the files were built from. Its old unlisted address, `/kit-8db13109/`, forwards there.
 
 ## Print
 
-1. Cover: black ink on light orange letter stock, landscape, two-sided, **flip on short edge**, actual size (no "fit to page").
-2. Interior: plain letter paper, landscape, two-sided, **flip on short edge**, actual size.
-3. Stack the six interior sheets in the order they print (page 24 | 1 on the outside, 12 | 13 in the middle),
-   lay the cover on the outside, fold in half and staple twice on the fold.
+The print kit page (`site-kit` in `templates/site.html`) is the full how-to; keep the two in step.
+
+1. Cover: black ink on 67 lb light orange vellum bristol, landscape, two-sided, **flip on short edge**,
+   actual size (no "fit to page").
+2. Interior: full color on 28 lb bright white (Staples 28 lb: acid-free, heavy, a little tooth for
+   pencil), landscape, two-sided, **flip on short edge**, actual size.
+3. Score the cover down the middle with a creaser and fold it on the score.
+4. Stack the six interior sheets in the order they print (page 24 | 1 on the outside, 12 | 13 in the middle),
+   fold them, nest them in the cover and staple twice through the fold with a booklet stapler (Bostitch).
 
 All content sits at least 0.3 in from the sheet edges, so an ordinary office printer will not clip it.
 
@@ -104,7 +109,8 @@ repeat it. The check-up lists are in the booklet only (pages 12, 20 and 21).
 
 1. Print `know-your-systems-supply-list.pdf` on white stock, portrait, two-sided, **flip on long edge**,
    actual size. Pages 1 and 2 make sheet 1; pages 3 and 4 make sheet 2.
-2. Laminate each in a letter pouch (9 x 11 1/2 in). Nothing needs trimming.
+2. Laminate each in a letter pouch (9 x 11 1/2 in), matte or dry-erase rather than glossy: they take a
+   marker better. Nothing needs trimming.
 3. Hand them out with a wet-erase marker. People tick a box and write the date they bought or replaced
    the item; a damp cloth clears it.
 

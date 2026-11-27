@@ -216,6 +216,8 @@ func (b *builder) load(dir string) error {
 		"dotgrid": dotgrid,
 		"kit":     kitCardOf,
 		"ccbysa":  func() bool { return b.ccBySA },
+		// commitURL: the commit can be linked on GitHub (a clean commit, not "abc1234-dirty").
+		"commitURL": func(c string) bool { return c != "" && !strings.HasSuffix(c, "-dirty") },
 		"pg": func(id string) (int, error) {
 			n, ok := b.pgnum[id]
 			if !ok {

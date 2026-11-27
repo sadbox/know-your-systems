@@ -1,14 +1,15 @@
 package main
 
-// The static website: one landing page with the home-print PDFs, and an unlisted print-kit page
-// for the team. Nothing is filled in online; the workbook has to work with the power and the
+// The static website: one landing page with the home-print PDFs, and the print kit: every print
+// file, the paper we use and how we print and bind it, for anyone making copies for their town. Nothing is filled in online; the workbook has to work with the power and the
 // internet out. Text shared with the booklet (the intro, the three questions, how to use it, the
 // contents, the Vermont numbers, VT-Alert, the credit) comes from the same templates, so the site
 // never drifts from the print.
 //
 //	<site>/index.html           landing page
 //	<site>/downloads/*.pdf      the two home-print PDFs
-//	<site>/<kitPath>/           the print kit: every print file, with how to print it
+//	<site>/<kitPath>/           the print kit: every print file, with how to print and bind it
+//	<site>/<oldKitPath>/        a page that sends the kit's old, unlisted address to the new one
 //	<site>/assets/...           stylesheet, fonts, artwork, favicon, share image
 
 import (
@@ -22,10 +23,11 @@ import (
 	"time"
 )
 
-// kitPath is the print kit's directory. It is linked from nowhere and asks search engines not to
-// index it, so only people given the link find it. That is all: anyone with the link can open it,
-// and nothing in it is private (the same content as the public PDFs, laid out for the printer).
-const kitPath = "kit-8db13109"
+const (
+	kitPath    = "print-kit"
+	oldKitPath = "kit-8db13109" // where the kit was while it was unlisted; the team has the link
+	repoURL    = "https://github.com/sadbox/know-your-systems"
+)
 
 type download struct {
 	File  string // path relative to the page that links it
@@ -38,6 +40,9 @@ type siteData struct {
 	Edition  string
 	URL      string // absolute site URL with trailing slash, for share-card tags; empty leaves them out
 	Commit   string // the source's commit, on the print-kit page
+	KitPath  string // the print kit's directory
+	Repo     string // the source's GitHub address
+	RepoName string // the same, as printed: github.com/sadbox/know-your-systems
 	Built    string // the build's date (UTC)
 	Workbook download
 	Supply   download
@@ -45,7 +50,7 @@ type siteData struct {
 }
 
 func (b *builder) writeSite(dir, outDir, name, siteURL, commit string, sides map[string]int) error {
-	for _, d := range []string{"", "assets", "assets/fonts", "downloads", kitPath} {
+	for _, d := range []string{"", "assets", "assets/fonts", "downloads", kitPath, oldKitPath} {
 		if err := os.MkdirAll(filepath.Join(dir, d), 0o755); err != nil {
 			return err
 		}
@@ -76,7 +81,10 @@ func (b *builder) writeSite(dir, outDir, name, siteURL, commit string, sides map
 		copies[src] = filepath.Join(sub, file)
 		return download{File: rel + sub + "/" + file, Size: humanSize(st.Size()), Pages: sides[file]}, nil
 	}
-	data := siteData{Edition: b.edition, URL: siteURL, Commit: commit, Built: time.Now().UTC().Format("2006-01-02"), Kit: map[string]download{}}
+	data := siteData{
+		Edition: b.edition, URL: siteURL, Commit: commit, Built: time.Now().UTC().Format("2006-01-02"),
+		KitPath: kitPath, Repo: repoURL, RepoName: strings.TrimPrefix(repoURL, "https://"), Kit: map[string]download{},
+	}
 	if data.Workbook, err = pdf(name+"-workbook-letter.pdf", "downloads", ""); err != nil {
 		return err
 	}
@@ -109,7 +117,10 @@ func (b *builder) writeSite(dir, outDir, name, siteURL, commit string, sides map
 		d.File = strings.TrimPrefix(d.File, kitPath+"/")
 		kit.Kit[role] = d
 	}
-	return b.render("site-kit", kit, filepath.Join(dir, kitPath, "index.html"))
+	if err := b.render("site-kit", kit, filepath.Join(dir, kitPath, "index.html")); err != nil {
+		return err
+	}
+	return b.render("site-kit-moved", kitPath, filepath.Join(dir, oldKitPath, "index.html"))
 }
 
 func (b *builder) render(tpl string, data any, path string) error {
