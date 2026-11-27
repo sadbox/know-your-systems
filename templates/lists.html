@@ -1,0 +1,164 @@
+{{/* The lists. Edit an item here and every place that prints it follows.
+
+      The check-up lists (li-...) print in the booklet: "seasons", "storm" and "warm" in interior.html.
+
+      The supply lists (sup-...) print on the laminated supply list (sheet.html) and nowhere else.
+      In a supply item, the <span> is the item and the optional <em> is how long it keeps. */}}
+
+{{define "li-every-fall"}}
+<li>Show everyone how to run the generator and transfer switch safely, and where the tools and the outage bucket are</li>
+<li>Check the dates on stored food, water, fuel, medicine and batteries. Eat what is close to its date, and replace it.</li>
+<li>Chimneys cleaned and inspected</li>
+<li>Generator: change the oil, then run it until it is warm</li>
+<li>Winter tires on, tread checked</li>
+<li>Pipes insulated; outside faucets shut off and drained</li>
+<li>Get sand for the driveway. Most town garages have a pile; bring a bucket and shovel.</li>
+<li>Check the winter supplies: shovel, roof rake, salt, handwarmers</li>
+<li>Walk through the workbook again</li>
+{{end}}
+
+{{define "li-all-year"}}
+<li>Keep the drainage around the house clear and in repair</li>
+<li>Deal with trees that could fall on the house, the lines or the road</li>
+<li>Refill vehicles and fuel tanks at half, not at empty. You can’t always get more.</li>
+<li>Test smoke and CO alarms</li>
+<li>Talk with neighbors about how you would help each other</li>
+{{end}}
+
+{{define "li-storm-coming"}}
+<li>Watch the forecast and your alerts</li>
+<li>Gas up the vehicles, fill the fuel cans, check the grill’s propane tank</li>
+<li>Order fuel if the tank is under half</li>
+<li>Do the dishes and laundry, bathe, fill the tub</li>
+<li>Fill a thermos with hot water</li>
+<li>Lay out headlamps, solar lights and candles</li>
+<li>Charge phones and power banks</li>
+<li>Run the generator to check it</li>
+<li>Know where the shelter is. If you need care such as dialysis, go early.</li>
+{{end}}
+
+{{define "li-power-out"}}
+<li>Tape the refrigerator and freezer shut</li>
+<li>Stay away from downed lines</li>
+<li>Report the outage to your utility</li>
+<li>Switch off electric heaters, the range and the water heater so they don’t all restart at once</li>
+<li>Move into your warm room and seal off the rest</li>
+<li>Check on your neighbors</li>
+{{end}}
+
+{{define "li-deep-winter"}}
+<li>Dress in layers. Take one off before you sweat; add one before you chill.</li>
+<li>Shovel as the snow falls. Don’t let it pile up, melt and refreeze.</li>
+<li>Sand icy steps and walks</li>
+<li>Rake heavy snow off the roof from the ground, never alone</li>
+<li>Keep furnace, heater and dryer vents clear</li>
+<li>Store food outside, below 32°F, where animals can’t get it</li>
+<li>Trickle the hot and cold taps and open sink cabinets</li>
+<li>If the cold goes on with no heat, shut off the water main and drain the pipes</li>
+{{end}}
+
+{{define "li-comes-back"}}
+<li>Throw out food that warmed up</li>
+<li>Restock batteries, fuel and supplies</li>
+<li>Note what you would do differently</li>
+{{end}}
+
+
+{{define "sup-water"}}
+<li><span>Drinking water: 1 to 2 gallons a person a day, for two weeks</span> <em>store-bought: date on the bottle; home-filled: 6 months</em></li>
+<li><span>Food-grade jugs or containers to fill</span></li>
+<li><span>Plain unscented bleach, a filter or tablets to treat water</span> <em>bleach: 1 year</em></li>
+<li><span>Buckets for hauling and flushing</span></li>
+<li><span>A thermos, to fill with hot water before a storm</span></li>
+{{end}}
+
+{{define "sup-food"}}
+<li><span>Canned meat, fish, beans, vegetables and soup</span> <em>2 to 5 years</em></li>
+<li><span>Canned fruit and tomatoes</span> <em>12 to 18 months</em></li>
+<li><span>Pasta and white rice</span> <em>about 2 years</em></li>
+<li><span>Dried beans, oatmeal, cereal</span> <em>about 1 year</em></li>
+<li><span>Peanut butter, nuts, crackers</span> <em>6 to 12 months</em></li>
+<li><span>Energy bars, dried fruit, jerky</span> <em>date on the pack</em></li>
+<li><span>Shelf-stable or powdered milk</span> <em>date on the pack</em></li>
+<li><span>Home-canned food</span> <em>1 year</em></li>
+<li><span>Freeze-dried emergency meals, if rotating food is a chore</span> <em>sold with a 25-year shelf life; they need water</em></li>
+<li><span>Baby food and formula, special diets</span> <em>use-by date</em></li>
+<li><span>Pet food</span> <em>date on the bag</em></li>
+<li><span>Coffee, tea, salt, sugar, oil, spices, treats</span></li>
+<li><span>Manual can opener, paper plates and cups</span></li>
+{{end}}
+
+{{define "sup-light"}}
+<li><span>Flashlights, headlamps, solar lights: one for each person</span></li>
+<li><span>Extra AA, AAA, D and 9-volt batteries</span> <em>up to 10 years; go by the date on the pack</em></li>
+<li><span>Battery or hand-crank radio</span></li>
+<li><span>Power bank and phone cords</span> <em>top up every few months</em></li>
+<li><span>Candles in safe holders, lighters, matches in a waterproof box</span></li>
+<li><span>Heavy outdoor extension cords, where everyone can find them</span></li>
+{{end}}
+
+{{define "sup-warm"}}
+<li><span>A wool blanket or sleeping bag for each person</span></li>
+<li><span>Long layers, hats, sturdy boots</span></li>
+<li><span>Chemical handwarmers</span> <em>date on the pack</em></li>
+<li><span>Plastic sheeting, bubble wrap, duct tape and zip ties to seal off rooms</span></li>
+<li><span>Snow shovel, roof rake, snowshoes, sand and salt</span></li>
+{{end}}
+
+{{define "sup-tools"}}
+<li><span>A 5-gallon bucket with a screw-on lid, for the outage kit</span></li>
+<li><span>Fire extinguisher</span> <em>check the gauge; date on the label</em></li>
+<li><span>Smoke alarms</span> <em>10 years from the date on the back</em></li>
+<li><span>CO alarms</span> <em>5 to 7 years</em></li>
+<li><span>Refrigerator and freezer thermometers</span></li>
+<li><span>Wrench or pliers to shut off utilities</span></li>
+<li><span>Work gloves, dust masks, tarp, rope</span></li>
+<li><span>Whistle, paper, pencils, a marker for dating supplies</span></li>
+{{end}}
+
+{{define "sup-fuel"}}
+<li><span>Gasoline in approved cans, kept outside the house</span> <em>3 to 6 months; about a year with stabilizer</em></li>
+<li><span>Fuel stabilizer</span></li>
+<li><span>Propane cylinders, full, stored outdoors and away from the house</span> <em>does not go stale</em></li>
+<li><span>Generator oil, air filter, spark plug</span></li>
+<li><span>Camp stove or grill and its fuel, for outdoors only</span></li>
+{{end}}
+
+{{define "sup-med"}}
+<li><span>Prescription medicines: an extra supply</span> <em>date on the label; use the oldest first</em></li>
+<li><span>A written list of medicines, doses and doctors, and copies of prescriptions</span></li>
+<li><span>Pain and fever reducer, allergy medicine, antacid, anti-diarrheal</span> <em>date on the label</em></li>
+<li><span>Stop the Bleed kit</span> <em>check dates each fall</em></li>
+<li><span>Nitrile gloves, gauze pads and rolls, bandages, tape</span> <em>sterile gauze: 3 to 5 years</em></li>
+<li><span>Elastic wraps, a moldable splint, a blister kit</span></li>
+<li><span>Instant cold packs, reusable heat packs</span> <em>date on the pack</em></li>
+<li><span>Tweezers, shears, thermometer, emergency blankets</span></li>
+<li><span>Spare glasses, <span class="nb">hearing-aid</span> batteries</span></li>
+{{end}}
+
+{{define "sup-hygiene"}}
+<li><span>Toilet paper, moist wipes, hand sanitizer</span> <em>check the sanitizer’s date</em></li>
+<li><span>Personal and feminine hygiene supplies</span></li>
+<li><span>Diapers and wipes, if you need them</span></li>
+<li><span>Heavy trash bags, and cat litter or sawdust for a bucket toilet</span></li>
+{{end}}
+
+{{define "sup-papers"}}
+<li><span>Cash in small bills, $200 or more</span></li>
+<li><span>IDs, Social Security cards, birth certificates, passports, insurance and bank papers and family photos, in a waterproof container you can carry</span></li>
+{{end}}
+
+{{define "sup-kids"}}
+<li><span>Games, books, puzzles, comfort items</span></li>
+{{end}}
+
+{{define "sup-pets"}}
+<li><span>Water and bowls</span></li>
+<li><span>Leash, crate and a photo of each</span></li>
+<li><span>Waste bags or litter, and something familiar</span></li>
+<li><span>Extra feed for livestock</span></li>
+{{end}}
+
+{{define "sup-vehicle"}}
+<li><span>Emergency kit in the car: jump pack, small shovel, cat litter, gloves</span></li>
+{{end}}

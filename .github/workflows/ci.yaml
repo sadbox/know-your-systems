@@ -1,0 +1,46 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  # gofmt, go vet, go test -race, golangci-lint and govulncheck, with the Go
+  # from go.mod (setup-go mode: there is no image), on amd64 and arm64.
+  go:
+    uses: sadbox/ci/.github/workflows/go.yml@689eff768c2e7660a56a7d5fd0b3036f98fed161 # v0.7.0
+    permissions:
+      contents: read
+    with:
+      go-versions: '["go.mod"]'
+
+  lint:
+    uses: sadbox/ci/.github/workflows/lint.yml@689eff768c2e7660a56a7d5fd0b3036f98fed161 # v0.7.0
+    permissions:
+      contents: read
+
+  # Builds every PDF and the website, as pages.yaml does on main. The build
+  # fails if any page's content does not fit, so this is the check that a
+  # change to the text still prints.
+  build:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v7.1.0
+        with:
+          go-version-file: go.mod
+          cache: false
+      - name: Build the PDFs and the website
+        run: go run . -site site

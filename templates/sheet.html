@@ -1,0 +1,149 @@
+{{/* The two-week supply list: two letter sheets, four sides. Laminated for the printed kit; the
+      home-print edition on the website (.Home) is worded for pencil on plain paper.
+
+      supply-a   sheet 1, front   Food, water and fuel: the things with a shelf life
+      supply-b   sheet 1, back    Medical list and Household list
+      supply-c   sheet 2, front   Hardware list
+      supply-d   sheet 2, back    the outage bucket, using it all safely, and anything else
+
+      Every item has a box for the date it was bought or replaced, sized for a wet-erase marker.
+      Every section ends with blank rows for the household's own items; the number after each
+      section is chosen so that both columns of a side run to the foot of the sheet.
+      The items come from lists.html. The check-up lists are in the booklet only. */}}
+
+{{define "sup-blank"}}<li class="own"><span>&nbsp;</span></li>{{end}}
+
+{{define "supply-top"}}
+<div class="ltop">
+  <div><div class="eyebrow">Emergency preparedness workbook</div><h1>Two-week supply list</h1></div>
+  <div class="wc"><img src="{{img "groundhog-spot.png"}}" alt=""></div>
+</div>
+{{if .Home}}<p class="how">Use a pencil. Tick the box when you have it, and write the date you bought it or last replaced it. The blank rows are for your own items. Take this sheet to the store with you.</p>
+{{else}}<p class="how">Use a wet-erase marker. Tick the box when you have it, and write the date you bought it or last replaced it. The blank rows are for your own items. A damp cloth wipes it clean. Take this sheet to the store with you.</p>
+{{end}}
+{{end}}
+
+{{define "supply-own"}}<p class="how own"><b>This is our best advice, not a rulebook.</b> You know your house, your family and your needs best. Buy what fits, a little at a time.</p>{{end}}
+
+{{define "supply-a"}}
+{{template "supply-top" .}}
+{{template "supply-own"}}
+<h2>Food, water and fuel</h2>
+<div class="lcols">
+<div>
+<section>
+<div class="lh"><span>Food</span><span>Date</span></div>
+<ul class="ck">{{template "sup-food"}}{{template "sup-blank"}}{{template "sup-blank"}}</ul>
+</section>
+</div>
+<div>
+<section>
+<div class="lh"><span>Water</span><span>Date</span></div>
+<ul class="ck">{{template "sup-water"}}{{template "sup-blank"}}{{template "sup-blank"}}</ul>
+</section>
+<section>
+<div class="lh"><span>Fuel and generator</span><span>Date</span></div>
+<ul class="ck">{{template "sup-fuel"}}{{template "sup-blank"}}{{template "sup-blank"}}</ul>
+</section>
+</div>
+</div>
+<div class="lfoot"><span>Know your systems · Local woodchuck know-how from central Vermont</span><span>Sheet 1, front</span></div>
+{{end}}
+
+
+{{define "supply-b"}}
+{{template "supply-top" .}}
+<div class="lcols">
+<div>
+<section>
+<h2>Medical list</h2>
+<div class="lh"><span>Medicine and first aid</span><span>Date</span></div>
+<ul class="ck">{{template "sup-med"}}{{template "sup-blank"}}{{template "sup-blank"}}{{template "sup-blank"}}</ul>
+</section>
+<section>
+<div class="lh"><span>Kids and comfort</span><span>Date</span></div>
+<ul class="ck">{{template "sup-kids"}}{{template "sup-blank"}}{{template "sup-blank"}}</ul>
+</section>
+</div>
+<div>
+<section>
+<h2>Household list</h2>
+<div class="lh"><span>Hygiene</span><span>Date</span></div>
+<ul class="ck">{{template "sup-hygiene"}}{{template "sup-blank"}}{{template "sup-blank"}}</ul>
+</section>
+<section>
+<div class="lh"><span>Documents and cash</span><span>Date</span></div>
+<ul class="ck">{{template "sup-papers"}}{{template "sup-blank"}}</ul>
+</section>
+<section>
+<div class="lh"><span>Pets and animals</span><span>Date</span></div>
+<ul class="ck">{{template "sup-pets"}}{{template "sup-blank"}}</ul>
+</section>
+</div>
+</div>
+<div class="lfoot"><span>Know your systems · Local woodchuck know-how from central Vermont</span><span>Sheet 1, back</span></div>
+{{end}}
+
+
+{{define "supply-c"}}
+{{template "supply-top" .}}
+{{template "supply-own"}}
+<h2>Hardware list</h2>
+<div class="lcols">
+<div>
+<section>
+<div class="lh"><span>Light and power</span><span>Date</span></div>
+<ul class="ck">{{template "sup-light"}}{{template "sup-blank"}}{{template "sup-blank"}}</ul>
+</section>
+<section>
+<div class="lh"><span>Warmth and winter</span><span>Date</span></div>
+<ul class="ck">{{template "sup-warm"}}{{template "sup-blank"}}</ul>
+</section>
+</div>
+<div>
+<section>
+<div class="lh"><span>Tools and safety</span><span>Date</span></div>
+<ul class="ck">{{template "sup-tools"}}{{template "sup-blank"}}{{template "sup-blank"}}{{template "sup-blank"}}</ul>
+</section>
+<section>
+<div class="lh"><span>Vehicle</span><span>Date</span></div>
+<ul class="ck">{{template "sup-vehicle"}}{{template "sup-blank"}}{{template "sup-blank"}}</ul>
+</section>
+</div>
+</div>
+<div class="lfoot"><span>Know your systems · Local woodchuck know-how from central Vermont</span><span>Sheet 2, front</span></div>
+{{end}}
+
+
+{{define "supply-d"}}
+{{template "supply-top" .}}
+<div class="tip"><span class="t">The outage bucket</span>
+A 5-gallon bucket with a screw-on lid keeps the first things you reach for dry and in one place: the workbook, these two sheets, headlamps, batteries, the radio, a lighter, the first aid kit. Everyone should know where it lives.
+<div class="f"><span>Our outage bucket is kept</span><i></i></div></div>
+{{template "sup-safety"}}
+<div class="tw"><b>For two weeks</b><span>Three days of supplies fits in a backpack. Two weeks is a pantry shelf and a corner of the shed. Give it a place, write the date on everything that goes there, and use the oldest first.</span></div>
+<h2>Anything else</h2>
+<div class="lcols">
+<div>
+<div class="lh"><span>&nbsp;</span><span>Date</span></div>
+<ul class="ck">{{template "sup-blank"}}{{template "sup-blank"}}{{template "sup-blank"}}{{template "sup-blank"}}{{template "sup-blank"}}{{template "sup-blank"}}</ul>
+</div>
+<div>
+<div class="lh"><span>&nbsp;</span><span>Date</span></div>
+<ul class="ck">{{template "sup-blank"}}{{template "sup-blank"}}{{template "sup-blank"}}{{template "sup-blank"}}{{template "sup-blank"}}{{template "sup-blank"}}</ul>
+</div>
+</div>
+<div class="lfoot"><span>Know your systems · Local woodchuck know-how from central Vermont</span><span>Sheet 2, back</span></div>
+{{end}}
+
+
+{{/* Shared with the website (templates/site.html). */}}
+{{define "sup-safety"}}
+<div class="warn"><span class="t">Don’t make an emergency during an emergency</span>
+<ul>
+<li><b>Roof rakes:</b> work from the ground, never from a ladder, and not alone. Find the power line to the house first and stay far from it; a metal rake carries current. Stand clear of the snow as it comes down.</li>
+<li><b>Ladders:</b> ice on the rungs, ice on your boots. Stay off them if you can. If you must climb, have someone hold it.</li>
+<li><b>Chainsaws:</b> a storm is no time to learn. Never cut a tree that is touching a wire.</li>
+<li><b>Flame:</b> never leave a candle alone. Camp stoves and grills stay outdoors.</li>
+</ul></div>
+{{end}}

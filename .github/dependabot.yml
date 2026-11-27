@@ -1,0 +1,20 @@
+# Daily, each with an explicit 3-day cooldown (sadbox/ci STANDARDS.md);
+# security updates skip it. The dep-review gate (.github/workflows/
+# dep-review.yaml, sadbox/dep-review) reviews and merges what's safe.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    cooldown:
+      default-days: 3
+
+  # No module dependencies today (standard library only); this keeps the go
+  # line current and covers any that are added.
+  - package-ecosystem: "gomod"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    cooldown:
+      default-days: 3

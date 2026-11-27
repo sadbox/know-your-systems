@@ -1,0 +1,660 @@
+{{/* Interior pages, in print order. The count must be a multiple of 4.
+      Each name below is a template defined in this file. */}}
+{{define "interior-order"}}start household power gen1 gen2 gen3 gen4 water food safe heat warm people animals firstaid touch neighbors plumbing pipes seasons storm emergency after help{{end}}
+
+
+{{define "start"}}
+<header class="hd first">
+  <div><div class="eyebrow">Emergency preparedness workbook</div><h1>Know your<br>systems</h1></div>
+  <div class="wc"><img src="{{img "groundhog-spot.png"}}" alt=""></div>
+</header>
+{{template "kys-intro"}}
+<h2>How to use this workbook</h2>
+{{template "kys-how"}}
+{{end}}
+
+
+{{define "household"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>Our household</h1><p>Who lives here, how to find us, and where we stand</p></div></header>
+<div class="f"><span>911 address</span><i></i></div>
+<div class="f"><span>How to find us, if you have never been here</span><i></i></div>
+<div class="f"><i></i></div>
+<div class="f"><span>Who lives here</span><i></i><span>cell</span><i class="l"></i></div>
+<div class="f"><i></i><span>cell</span><i class="l"></i></div>
+<div class="f"><i></i><span>cell</span><i class="l"></i></div>
+<div class="f"><i></i><span>cell</span><i class="l"></i></div>
+<div class="f"><i></i><span>cell</span><i class="l"></i></div>
+<div class="f"><span>If we can’t get home, we meet at</span><i></i></div>
+<div class="f"><span>Out-of-state contact</span><i></i><span>phone</span><i class="l"></i></div>
+<h2>Could we go two weeks?</h2>
+<p class="n" style="margin-top:0">Fill this in last. Any short line is the next thing to work on.</p>
+<div class="tb s4">
+  <div class="th"><span>What</span><span>Two weeks takes</span><span>We have</span><span class="c">Page</span></div>
+  <div class="tr"><span>Drinking water</span><span><em>gallons</em></span><span><em>gallons</em></span><span class="pgn">{{pg "water"}}</span></div>
+  <div class="tr"><span>Food</span><span><em>meals</em></span><span><em>days</em></span><span class="pgn">{{pg "food"}}</span></div>
+  <div class="tr"><span>Generator fuel</span><span><em>gallons</em></span><span><em>gallons</em></span><span class="pgn">{{pg "gen3"}}</span></div>
+  <div class="tr"><span>Heating fuel or wood</span><span class="fx">14 days</span><span><em>days</em></span><span class="pgn">{{pg "heat"}}</span></div>
+  <div class="tr"><span>Medicines</span><span class="fx">14 days</span><span><em>days</em></span><span class="pgn">{{pg "people"}}</span></div>
+  <div class="tr"><span>Feed and water for animals</span><span class="fx">14 days</span><span><em>days</em></span><span class="pgn">{{pg "animals"}}</span></div>
+</div>
+<h2>What’s inside</h2>
+{{template "kys-toc"}}
+{{end}}
+
+
+{{define "power"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>Power</h1><p>What stops when the power stops</p></div></header>
+<div class="f"><span>Electric utility</span><i></i><span>phone</span><i class="l"></i></div>
+<div class="f"><span>Account number on our bill</span><i></i></div>
+<div class="f"><span><b>Our electrician</b></span><i></i><span>phone</span><i class="l"></i></div>
+<p class="n" style="margin-top:0">Find one before you need one: for a transfer switch or a generator hookup.</p>
+<div class="f"><span>The main electric panel is</span><i></i></div>
+<div class="o"><span><b class="cb"></b>The main breaker is labeled</span><span><b class="cb"></b>Every breaker is labeled</span><span><b class="cb"></b>We each know how to shut off the main</span></div>
+<h2>Go room to room</h2>
+<div class="tb t3">
+  <div class="th"><span>What we count on</span><span class="c">Needs power?</span><span>Our backup</span></div>
+  <div class="tr"><span>Water: well pump</span><span class="c"><b class="cb"></b></span><span></span></div>
+  <div class="tr"><span>Heat: furnace, boiler, pellet stove</span><span class="c"><b class="cb"></b></span><span></span></div>
+  <div class="tr"><span>Septic pump or sump pump</span><span class="c"><b class="cb"></b></span><span></span></div>
+  <div class="tr"><span>Refrigerator and freezers</span><span class="c"><b class="cb"></b></span><span></span></div>
+  <div class="tr"><span>Cooking</span><span class="c"><b class="cb"></b></span><span></span></div>
+  <div class="tr"><span>Lights</span><span class="c"><b class="cb"></b></span><span></span></div>
+  <div class="tr"><span>Phone and internet</span><span class="c"><b class="cb"></b></span><span></span></div>
+  <div class="tr"><span>Medical equipment</span><span class="c"><b class="cb"></b></span><span></span></div>
+  <div class="tr"><span>Garage door</span><span class="c"><b class="cb"></b></span><span></span></div>
+  <div class="tr"><span>Barn: waterers, fence, milking</span><span class="c"><b class="cb"></b></span><span></span></div>
+</div>
+<div class="tw"><b>For two weeks</b><span>By day three the water, the freezer and the heat are all in trouble. Give every box you ticked an answer that lasts two weeks.</span></div>
+<div class="warn"><span class="t">Downed lines</span>
+Treat every downed wire as live. Stay well back, keep others away, and call 911 and your utility.</div>
+{{end}}
+
+
+{{define "gen1"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>Backup power</h1><p>Care for that generator and it will pay you back when you need it.</p></div></header>
+<div class="o tight"><span>We have</span><span><b class="cb"></b>a portable generator</span><span><b class="cb"></b>an automatic standby</span><span><b class="cb"></b>a battery or power station</span><span><b class="cb"></b>nothing yet</span></div>
+<p class="n" style="margin-top:0">Batteries often go by brand: Jackery, EcoFlow, Anker, Bluetti, Goal Zero, Powerwall.</p>
+<div class="f"><span>Make and model</span><i></i></div>
+<div class="f"><span>Running watts</span><i></i><span>Starting (surge) watts</span><i></i></div>
+<div class="f"><span>Fuel</span><span><b class="cb"></b>gasoline</span><span><b class="cb"></b>propane</span><span><b class="cb"></b>diesel</span><span style="margin-left:.06in">Tank holds</span><i></i></div>
+<div class="f"><span>It runs</span><i class="s"></i><span>hours on a tank.</span><span style="margin-left:.06in">It is stored</span><i></i></div>
+<div class="f"><span>Cords are kept</span><i></i></div>
+<div class="f"><span>It runs here, outdoors</span><i></i></div>
+<div class="o"><span>It connects by</span><span><b class="cb"></b>transfer switch</span><span><b class="cb"></b>interlock on the panel</span><span><b class="cb"></b>extension cords</span></div>
+<h2>To start it</h2>
+<ol class="steps"><li></li><li></li><li></li><li></li><li></li><li></li></ol>
+<h2>To shut it down</h2>
+<ol class="steps"><li></li><li></li><li></li><li></li></ol>
+{{end}}
+
+
+{{define "gen2"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>Backup power</h1><p>Running it safely</p></div></header>
+<section>
+<h2 class="dng">Never<small>generators kill with carbon monoxide</small></h2>
+<ul class="y">
+<li class="no"><b>Never run it in a garage, basement, shed or porch,</b> even with the door open.</li>
+<li class="no"><b>Never wire it in yourself or plug it into a wall outlet.</b> Power fed back into the lines can kill the crew restoring your service.</li>
+<li class="no"><b>Never refuel it hot.</b> Let it cool first.</li>
+<li class="no"><b>Never use thin household cords.</b> They overheat.</li>
+</ul>
+</section>
+<section>
+<h2>Always</h2>
+<ul class="y">
+<li><b>Run it outdoors,</b> at least 20 feet from the house, with the exhaust pointed away from doors, windows and vents.</li>
+<li><b>Store fuel outside the house.</b></li>
+<li><b>Headache, dizziness or nausea?</b> Get everyone outside, then call 911.</li>
+</ul>
+</section>
+<section>
+<h2>Extension cords</h2>
+<ul class="y">
+<li><b>Use outdoor-rated cords with thick wire.</b> The lower the gauge number, the thicker the wire.</li>
+<li><b>12-gauge</b> for runs up to 50 feet. <b>10-gauge</b> for 50 to 100 feet.</li>
+<li><b>The heavy cord from a generator’s 30-amp outlet to a transfer switch</b> is its own purchase. Buy the one made for that outlet.</li>
+</ul>
+</section>
+<section>
+<h2>Thinking of getting one?</h2>
+<ul class="y">
+<li><b>Ask your electric utility first</b> about home battery programs.</li>
+<li><b>Hire a licensed electrician;</b> your town’s emergency managers may know one.</li>
+<li><b>Have the critical circuits moved to a subpanel:</b> pumps, heat, refrigerator, medical equipment.</li>
+<li><b>Size it from the table on page {{pg "gen3"}},</b> and decide where it will sit before you buy.</li>
+</ul>
+</section>
+{{end}}
+
+
+{{define "gen3"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>Backup power</h1><p>What it will run, and the fuel for two weeks</p></div></header>
+<h2 style="margin-top:.02in">What it will run</h2>
+<p class="n" style="margin-top:0">Look up each one’s watts online by its model number, or use the figure for a similar one. A motor needs two to three times its running watts to start. Keep the total under your generator’s running watts, with room for the biggest motor to start.</p>
+<div class="tb w3">
+  <div class="th"><span>What we need to run</span><span>Running watts</span><span>Starting watts</span></div>
+  <div class="tr"><span>Well pump</span><span></span><span></span></div>
+  <div class="tr"><span>Furnace or boiler</span><span></span><span></span></div>
+  <div class="tr"><span>Refrigerator</span><span></span><span></span></div>
+  <div class="tr"><span>Freezer</span><span></span><span></span></div>
+  <div class="tr"><span>Septic or sump pump</span><span></span><span></span></div>
+  <div class="tr"><span>Medical equipment</span><span></span><span></span></div>
+  <div class="tr"><span>Lights and chargers</span><span></span><span></span></div>
+  <div class="tr"><span></span><span></span><span></span></div>
+  <div class="tr total"><span>Total running watts</span><span></span><span></span></div>
+</div>
+<h2>Fuel for two weeks</h2>
+<div class="tip" style="margin-top:.03in"><span class="t">Fuel math: an example</span>
+A mid-size portable generator, about 5,000 watts, burns roughly ½ gallon of gasoline an hour at half load.
+<div class="calc">8 hours a day × ½ gallon = 4 gallons a day × 14 days = <u>56 gallons</u></div>
+<div class="calc">Around the clock: 12 gallons a day × 14 days = <u>168 gallons</u></div>
+On propane, a 20-pound grill cylinder lasts only 7 to 10 hours.</div>
+<div class="f"><span>Ours burns</span><i class="s"></i><span>gallons an hour ×</span><i class="s"></i><span>hours a day</span></div>
+<div class="f"><span>× 14 days =</span><i class="s"></i><span>gallons for two weeks. We keep</span><i></i></div>
+{{end}}
+
+
+{{define "gen4"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>Backup power</h1><p>Making fuel last, upkeep, and a running log</p></div></header>
+<div class="tip" style="margin-top:.02in"><span class="t">Stretch your fuel</span>
+Few homes can safely store two weeks of gasoline, so make it last. Run the generator in blocks, not around the clock: a few hours to pump water, warm the house and chill the freezer, then shut it off.</div>
+<div class="f"><span><b class="cb"></b>Stored fuel is stabilized, and rotated every</span><i class="s"></i><span>months</span></div>
+<h2>Upkeep</h2>
+<div class="f"><span>Oil type</span><i></i><span>Change it every</span><i class="s"></i><span>hours</span></div>
+<p class="n" style="margin-top:0">Check the manual; many say every 100 hours. A week of steady running is 168 hours, so keep oil, an air filter and a spark plug on hand.</p>
+<div class="f"><span>Generator service</span><i></i><span>phone</span><i class="l"></i></div>
+<div class="f"><span>People here who have started it themselves</span><i></i></div>
+<p class="n" style="margin-top:0">Show everyone who might be home alone, and have each of them do it once.</p>
+<h2>Test and service log</h2>
+<div class="tb g3">
+  <div class="th"><span>Date</span><span>Hours on it</span><span>What we did: test run, oil, filter, plug</span></div>
+  <div class="tr"><span></span><span></span><span></span></div>
+  <div class="tr"><span></span><span></span><span></span></div>
+  <div class="tr"><span></span><span></span><span></span></div>
+  <div class="tr"><span></span><span></span><span></span></div>
+  <div class="tr"><span></span><span></span><span></span></div>
+  <div class="tr"><span></span><span></span><span></span></div>
+  <div class="tr"><span></span><span></span><span></span></div>
+  <div class="tr"><span></span><span></span><span></span></div>
+  <div class="tr"><span></span><span></span><span></span></div>
+  <div class="tr"><span></span><span></span><span></span></div>
+  <div class="tr"><span></span><span></span><span></span></div>
+</div>
+{{end}}
+
+
+{{define "water"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>Water</h1><p>Most Vermont wells need electricity. No power, no water.</p></div></header>
+<div class="o tight"><span>Our water comes from</span><span><b class="cb"></b>drilled well</span><span><b class="cb"></b>dug well</span><span><b class="cb"></b>spring</span><span><b class="cb"></b>town or shared system</span></div>
+<div class="o"><span>Does it need electricity?</span><span><b class="cb"></b>yes</span><span><b class="cb"></b>no, it is gravity-fed</span></div>
+<div class="o"><span>The pump is</span><span><b class="cb"></b>submersible, down the well</span><span><b class="cb"></b>a jet pump in the house</span></div>
+<div class="f"><span>Pump size</span><i class="xs"></i><span>HP</span><span style="margin-left:.06in"><b class="cb"></b>120 V</span><span><b class="cb"></b>240 V</span><span style="margin-left:.06in">Running watts</span><i></i></div>
+<div class="f"><span>Pump breaker number</span><i class="s"></i><span>Pressure tank is</span><i></i></div>
+<div class="f"><span>The main water shutoff is</span><i></i></div>
+<div class="f"><span>Well and pump service</span><i></i><span>phone</span><i class="l"></i></div>
+<h2>With the power out, our water comes from</h2>
+<div class="f"><span><b class="cb"></b>The generator runs the well pump (page {{pg "gen3"}})</span></div>
+<div class="f"><span><b class="cb"></b>Stored water:</span><i class="s"></i><span>gallons, kept</span><i></i></div>
+<div class="f"><span><b class="cb"></b>Hand pump, spring or brook (treat it first)</span><i></i></div>
+<div class="f"><span><b class="cb"></b>A neighbor</span><i></i></div>
+<h2>How much to store for two weeks</h2>
+<div class="f big"><i class="xs"></i><span>people ×</span><i class="xs"></i><span>gallons a day × 14 days =</span><i class="s"></i><span>gallons</span></div>
+<p class="n"><b>One gallon a person a day is the bare minimum,</b> for drinking and a little cooking: 14 gallons each. Plan on 2 if you can. Washing up, a sick day and hard work all take more. Flushing and animals come on top of that (pages {{pg "plumbing"}} and {{pg "animals"}}).</p>
+<div class="tip"><span class="t">The bathtub math</span>
+Say the tub holds 50 gallons and four people live here.
+<div class="calc">4 people × 1 gallon = 4 gallons a day. 50 ÷ 4 = <u>about 12 days</u></div>
+<div class="calc">4 people × 2 gallons = 8 gallons a day. 50 ÷ 8 = <u>about 6 days</u></div>
+Flush with it and it goes faster: a newer toilet uses about 1.6 gallons a flush. Keep tub water for washing and flushing, and drinking water in jugs.</div>
+{{end}}
+
+
+{{define "food"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>Food</h1><p>Two weeks of meals, with no refrigerator and not much water</p></div></header>
+<div class="f"><span>We could eat from what is in the house now for</span><i class="s"></i><span>days</span></div>
+<div class="f big"><i class="xs"></i><span>people × 3 meals a day × 14 days =</span><i class="s"></i><span>meals</span></div>
+<div class="f"><span>Our outage food is kept</span><i></i></div>
+<div class="f"><span>Special diets, allergies, baby food</span><i></i></div>
+<h2>What to stock</h2>
+<ul class="y">
+<li><b>Food you already eat.</b> Buy a little extra each trip and use the oldest first, so nothing goes to waste.</li>
+<li><b>Meals that need no cooking,</b> or only hot water: canned meat, fish, beans and fruit, peanut butter, crackers, oatmeal, cereal, shelf-stable milk.</li>
+<li><b>Go easy on salty food.</b> It makes you thirsty when water is short.</li>
+<li><b>A manual can opener,</b> and paper plates to save wash water.</li>
+<li><b>Something that feels like a treat.</b> Two weeks is a long time.</li>
+<li><b>If rotating food is more than you want to manage,</b> look at freeze-dried emergency meals sold with a 25-year shelf life. They need water, usually hot.</li>
+</ul>
+<p class="n">The full list, with how long each thing keeps, is on the {{if .Home}}two-week{{else}}laminated{{end}} supply list.</p>
+<h2>Cooking with no power</h2>
+<div class="o tight"><span>We can cook on</span><span><b class="cb"></b>a wood stove</span><span><b class="cb"></b>a gas range, lit with a match</span><span><b class="cb"></b>a camp stove or grill, outdoors</span></div>
+<div class="f"><span>Fuel for it on hand</span><i></i><span>lasts about</span><i class="s"></i><span>days</span></div>
+<p class="n" style="margin-top:0">Try lighting the range with the power off before you count on it. Some newer ranges will not light, and most ovens will not.</p>
+<h2>Refrigerator and freezers</h2>
+<div class="f"><span>We have</span><i class="xs"></i><span>freezers, about</span><i class="s"></i><span>full</span></div>
+<div class="o tight"><span>In a long outage we will</span><span><b class="cb"></b>run them on the generator</span><span><b class="cb"></b>move food outdoors</span><span><b class="cb"></b>cook and share it</span></div>
+{{end}}
+
+
+{{define "safe"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>Safe to eat, safe to drink</h1><p>What keeps, what to throw out, and how to make water safe</p></div></header>
+<h2 style="margin-top:.02in">Food when the power is out</h2>
+<div class="tb k2">
+  <div class="th"><span>With the door kept shut</span><span>It stays cold about</span></div>
+  <div class="tr"><span>Refrigerator</span><span>4 hours</span></div>
+  <div class="tr"><span>Freezer, full</span><span>48 hours</span></div>
+  <div class="tr"><span>Freezer, half full</span><span>24 hours</span></div>
+</div>
+<div class="tip" style="margin-top:.05in"><span class="t">Make it last</span>
+Eat from the refrigerator first, then the freezer, then the shelf. Keep the doors shut, and tape them so nobody forgets. In winter, use the giant freezer outdoors: pack food in a cooler or tote outside, below 32°F, where animals can’t get at it. Frozen food that still has ice crystals in it is safe to cook or refreeze.</div>
+<div class="warn" style="margin-top:.05in"><span class="t">When in doubt, throw it out</span>
+Throw out meat, eggs, dairy and leftovers that have been above 40°F for more than 2 hours. Never taste food to test it.</div>
+<div class="o"><span>Thermometers:</span><span><b class="cb"></b>refrigerator, 40°F or below</span><span><b class="cb"></b>each freezer, 0°F</span></div>
+<h2>Water you can drink</h2>
+<div class="tip" style="margin-top:.03in"><span class="t">Making water safe</span>
+Bring it to a rolling boil for 1 minute. Or add 8 drops of plain unscented bleach to a gallon, stir, and wait 30 minutes. Treat water from a brook, a spring or the bathtub before you drink it. If floodwater reached your well, don’t drink from it until it has been tested.</div>
+<div class="tip" style="margin-top:.05in"><span class="t">Storing water</span>
+Store-bought water keeps until the date on the bottle. Water you bottle yourself, in clean food-grade jugs, should be replaced every 6 months. Write the date on each jug and keep them somewhere cool and dark.</div>
+<div class="f"><span>Our jugs were last filled on</span><i></i><i></i><i></i></div>
+{{end}}
+
+
+{{define "heat"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>Heat &amp; fuel</h1><p>Most furnaces, boilers and pellet stoves quit when the power does.</p></div></header>
+<div class="o tight"><span>Main heat</span><span><b class="cb"></b>oil</span><span><b class="cb"></b>propane</span><span><b class="cb"></b>wood</span><span><b class="cb"></b>pellets</span><span><b class="cb"></b>heat pump</span><span><b class="cb"></b>electric</span><span><b class="cb"></b>kerosene</span></div>
+<div class="o"><span>Does it need electricity to run?</span><span><b class="cb"></b>yes</span><span><b class="cb"></b>no</span></div>
+<div class="f"><span>Backup heat that works with no power</span><i></i></div>
+<div class="f"><span>Chimney last cleaned</span><i></i><span>Wood on hand</span><i class="s"></i><span>cords</span></div>
+<h2>Fuel for two weeks</h2>
+<div class="f"><span>Fuel dealer</span><i></i><span>phone</span><i class="l"></i></div>
+<div class="f"><span>The tank holds</span><i class="s"></i><span>gallons. We reorder at</span><i></i></div>
+<div class="f"><span>The gauge is</span><i></i></div>
+<div class="f"><span>A full tank lasts about</span><i class="s"></i><span>days in January</span></div>
+<div class="tip"><span class="t">Don’t run it low before a storm</span>
+Deliveries can stop for days to weeks when roads close, and everyone calls at once when a storm is forecast. Order at half a tank, and keep the path to the fill pipe shoveled.</div>
+<div class="f"><span>The fuel shutoff at the tank is</span><i></i></div>
+<div class="f"><span>The furnace emergency switch (red plate) is</span><i></i></div>
+<div class="f"><span>Heating service</span><i></i><span>phone</span><i class="l"></i></div>
+<div class="warn"><span class="t">Carbon monoxide and fire</span>
+<ul>
+<li>Never heat the house with a gas range, a grill or a camp stove.</li>
+<li>Never burn in a chimney that has not been inspected.</li>
+<li>Keep furnace, heater and dryer vents clear of snow. A blocked vent sends carbon monoxide back inside.</li>
+<li>Keep 3 feet clear around stoves and heaters. Ashes go in a covered metal can.</li>
+</ul></div>
+{{end}}
+
+
+{{define "warm"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>Staying warm</h1><p>With the heat out, the cold itself is the danger.</p></div></header>
+<h2 style="margin-top:.02in">Our warm room</h2>
+<div class="f"><span>If the heat is out, we will all live in</span><i></i></div>
+<p class="n" style="margin-top:0">Seal off the other rooms with plastic sheeting, blankets and duct tape.</p>
+<div class="f"><span><b class="cb"></b>Smoke and CO alarms have battery backup.</span><span style="margin-left:.04in">Tested</span><i></i></div>
+<div class="warn"><span class="t">Too cold: know the signs</span>
+<p><b>Hypothermia:</b> shivering, exhaustion, confusion, fumbling hands, memory loss, slurred speech, drowsiness. In a baby: bright red, cold skin and very low energy. A body temperature below 95°F is an emergency: get medical help right away. It can happen above 40°F when someone is wet and chilled.</p>
+<p><b>Frostbite:</b> numbness, and white or grayish-yellow skin that feels firm or waxy. The person may not feel it. Get to a warm room and warm the skin with body heat or warm water. No heating pad, stove or rubbing: numb skin burns easily.</p>
+<p class="src">Signs and first steps from the CDC and Ready.gov.</p></div>
+<h2>In deep winter</h2>
+<ul class="ck">{{template "li-deep-winter"}}</ul>
+{{end}}
+
+
+{{define "people"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>People</h1><p>Who depends on us, where they are, and what they need</p></div></header>
+<h2 style="margin-top:.02in">Where our people are</h2>
+<div class="tb p3">
+  <div class="th"><span>Who</span><span>Where: school, daycare, work, care</span><span>Phone there</span></div>
+  <div class="tr"><span></span><span></span><span></span></div>
+  <div class="tr"><span></span><span></span><span></span></div>
+  <div class="tr"><span></span><span></span><span></span></div>
+  <div class="tr"><span></span><span></span><span></span></div>
+  <div class="tr"><span></span><span></span><span></span></div>
+</div>
+<p class="n">Ask each school and daycare about its pick-up plan.</p>
+<h2>Health and medical needs</h2>
+<div class="f"><span>Medicines we cannot miss</span><i></i></div>
+<div class="f"><i></i></div>
+<div class="f"><span><b class="cb"></b>We keep two weeks extra</span><span style="margin-left:.06in"><b class="cb"></b>Some must stay cold:</span><i></i></div>
+<p class="n" style="margin-top:0">Extra medicine is hard to get in a hurry. Ask your doctor and pharmacist ahead of time what they can do, then use the oldest first so none of it expires.</p>
+<div class="f"><span>Powered equipment (oxygen, CPAP)</span><i></i><span>Battery</span><i class="xs"></i><span>hrs</span></div>
+<ul class="ck">
+<li>Our electric utility knows someone here depends on it</li>
+<li>Signed up for CARE so local responders know our needs: <b>e911.vermont.gov/care</b></li>
+</ul>
+<div class="f"><span>Help someone would need to get out</span><i></i></div>
+<div class="f"><span>Doctor</span><i></i><span>phone</span><i class="l"></i></div>
+<div class="f"><span>Pharmacy</span><i></i><span>phone</span><i class="l"></i></div>
+<div class="f"><span>Insurance cards and our medicine list are kept</span><i></i></div>
+<div class="f"><span>If we could not stay home, we would go to</span><i></i></div>
+<p class="n" style="margin-top:0">If you depend on care such as dialysis, go early or line up a room near it.</p>
+<p class="n"><b>For two weeks:</b> count the pills, and refill a low bottle before the roads close. First aid kits and classes are on page {{pg "firstaid"}}.</p>
+{{end}}
+
+
+{{define "animals"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>Animals</h1><p>Pets and livestock need a two-week plan too.</p></div></header>
+<h2 style="margin-top:.02in">Pets</h2>
+<div class="f"><span>Our pets</span><i></i></div>
+<div class="f"><i></i></div>
+<div class="f"><span>Food on hand</span><i class="s"></i><span>days.</span><span style="margin-left:.06in">Their medicines</span><i></i></div>
+<div class="o"><span><b class="cb"></b>Leash and crate for each</span><span><b class="cb"></b>A photo of each, to prove they are ours</span></div>
+<div class="f"><span>Vet</span><i></i><span>phone</span><i class="l"></i></div>
+<h2>Livestock</h2>
+<div class="f"><span>Kind and number</span><i></i></div>
+<div class="f"><i></i></div>
+<div class="f big"><span>They drink</span><i class="s"></i><span>gallons a day × 14 days =</span><i class="s"></i><span>gallons</span></div>
+<div class="f"><span>With no power we water them by</span><i></i></div>
+<div class="f"><span>Feed and hay on hand</span><i class="s"></i><span>days.</span><span style="margin-left:.06in">Bedding</span><i></i></div>
+<div class="o tight"><span>Needs power</span><span><b class="cb"></b>heated waterers</span><span><b class="cb"></b>fence charger</span><span><b class="cb"></b>milking</span><span><b class="cb"></b>barn fans</span></div>
+<div class="f"><span>Our backup for those</span><i></i></div>
+<div class="f"><span>Who can do chores if we can’t</span><i></i></div>
+<div class="f"><span>Their phone</span><i></i><span>Large-animal vet</span><i></i></div>
+<div class="tip"><span class="t">Water is the hard part</span>
+Animals drink far more than people do, and a well with no power gives none. Work out now how you would pump it or haul it, and from where.</div>
+<div class="tw"><b>For two weeks</b><span>The feed store and the delivery truck stop when the roads do. Through the winter, keep two weeks of feed and hay ahead.</span></div>
+{{end}}
+
+
+{{define "firstaid"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>First aid</h1><p>When the roads are closed, help can be a long time coming.</p></div></header>
+<div class="f"><span>Our first aid kit is kept</span><i></i><span>restocked on</span><i class="m"></i></div>
+<h2>What to keep</h2>
+<div class="cols">
+<div>
+<h3>For everyday injuries</h3>
+<ul class="ck">
+<li>Disposable nitrile gloves, hand sanitizer</li>
+<li>Gauze pads and rolls, bandages, medical tape</li>
+<li>Elastic wraps, a moldable splint (SAM splint), a blister kit</li>
+<li>Instant cold packs, and heat packs you boil to reset</li>
+<li>Emergency blankets</li>
+<li>Tweezers, shears, thermometer</li>
+</ul>
+</div>
+<div>
+<h3>For serious bleeding</h3>
+<ul class="ck">
+<li>A Stop the Bleed kit: tourniquet, packing gauze, pressure bandage, gloves, shears</li>
+</ul>
+<p class="n">Buy it from the Stop the Bleed program itself, at <b>stopthebleed.org</b>. Cheap copies sold online can fail when it counts.</p>
+<h3>From the pharmacy shelf</h3>
+<ul class="ck">
+<li>Pain and fever reducer, allergy medicine, antacid, anti-diarrheal, rehydration salts</li>
+</ul>
+</div>
+</div>
+<div class="tip"><span class="t">Keep it simple, and keep it fresh</span>
+<ul>
+<li>Stock what someone here knows how to use. Gear nobody has trained on does not help.</li>
+<li>First aid supplies expire, even sterile gauze, in about 3 to 5 years. Check the dates each fall and replace what you use.</li>
+</ul></div>
+<h2>Classes worth taking</h2>
+<ul class="ck">
+<li><b>Stop the Bleed.</b> How to stop life-threatening bleeding. Hands-on and often free. Find a class at stopthebleed.org.</li>
+<li><b>First aid and CPR.</b> The American Red Cross (redcross.org), or ask your rescue squad or fire department.</li>
+<li><b>Wilderness first aid.</b> For when help is hours away. SOLO in Conway, NH (soloschools.com) teaches it and sells a pocket Wilderness First Aid Map for its graduates. A free online course is at openwfa.com.</li>
+</ul>
+<div class="f"><span>Who here is trained, and when</span><i></i></div>
+{{end}}
+
+
+{{define "touch"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>Staying in touch</h1><p>Phone, internet, alerts and news</p></div></header>
+<div class="tip" style="margin-top:.02in"><span class="t">Where does your town post news?</span>
+Find out now and write it <b>inside the front cover</b>. Most towns use some of these: Front Porch Forum, a town Facebook page or group, the town website, an email list, the notice board at the store or town office.</div>
+<h2>Phone and internet</h2>
+<div class="o"><span>Home phone</span><span><b class="cb"></b>copper landline</span><span><b class="cb"></b>over fiber, cable or internet</span><span><b class="cb"></b>none</span></div>
+<p class="n" style="margin-top:0">A phone that runs over fiber, cable or internet stops when the power does, unless its box has a battery. So does Wi-Fi calling.</p>
+<div class="f"><span>Battery on the modem or fiber box?</span><span><b class="cb"></b>no</span><span><b class="cb"></b>yes:</span><i class="s"></i><span>hours</span></div>
+<div class="o"><span>Cell signal at home</span><span><b class="cb"></b>good</span><span><b class="cb"></b>spotty</span><span><b class="cb"></b>none</span></div>
+<div class="f"><span>Nearest sure signal</span><i></i></div>
+<div class="o tight"><span>We can charge phones from</span><span><b class="cb"></b>a vehicle</span><span><b class="cb"></b>a power bank</span><span><b class="cb"></b>the generator</span><span><b class="cb"></b>solar</span></div>
+<h2>Alerts</h2>
+<div class="f"><span>The battery or crank radio is kept</span><i></i></div>
+<div class="f"><span>Station for local news</span><i></i></div>
+<div class="o"><span><b class="cb"></b>Signed up for VT-Alert at <b>vtalert.gov</b></span><span><b class="cb"></b>Weather warnings are turned on</span></div>
+<h2>If the phones are down</h2>
+<div class="f"><span>We get word to each other by</span><i></i></div>
+<div class="f"><span>We leave notes for each other at</span><i></i></div>
+<div class="tw"><b>For two weeks</b><span>Cell towers run on backup power that can run out in a long outage. A text often gets through when a call will not. Agree now on a plan that needs no phone at all.</span></div>
+{{end}}
+
+
+{{define "neighbors"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>Neighbors &amp; roads</h1><p>In a long outage, neighbors are the help that is already here.</p></div></header>
+<p class="n" style="margin-top:.02in">Know your neighbors and work together. Trade phone numbers now, and agree who checks on whom.</p>
+<h2>Neighbors</h2>
+<div class="f"><span>We check on</span><i></i><span>phone</span><i class="l"></i></div>
+<div class="f"><i></i><span>phone</span><i class="l"></i></div>
+<div class="f"><i></i><span>phone</span><i class="l"></i></div>
+<div class="f"><span>They check on us</span><i></i><span>phone</span><i class="l"></i></div>
+<div class="f"><i></i><span>phone</span><i class="l"></i></div>
+<div class="warn"><span class="t">Don’t become the second emergency</span>
+Don’t cross a downed line, moving water or bad ice to reach someone. Go in pairs, and tell someone where you are going. If you can’t get there safely, call 911.</div>
+<h2>Who nearby has</h2>
+<div class="f"><span>a tractor or plow</span><i></i></div>
+<div class="f"><span>a chainsaw, and knows how to use it</span><i></i></div>
+<div class="f"><span>a generator</span><i></i></div>
+<div class="f"><span>medical training</span><i></i></div>
+<h2>Roads</h2>
+<div class="o"><span>Our road is</span><span><b class="cb"></b>town-maintained</span><span><b class="cb"></b>Class 4 or private</span></div>
+<div class="f"><span>Driveway plowed by</span><i></i><span>phone</span><i class="l"></i></div>
+<div class="f"><span>If our road or bridge is out, the other way out is</span><i></i></div>
+<div class="f"><i></i></div>
+<div class="o"><span><b class="cb"></b>A fire truck or ambulance could get up our driveway in winter</span></div>
+{{end}}
+
+
+{{define "plumbing"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>Plumbing</h1><p>Where the water goes when the power is out</p></div></header>
+<div class="o"><span>Our septic system is</span><span><b class="cb"></b>gravity, no pump</span><span><b class="cb"></b>pumped (pump station or mound)</span><span><b class="cb"></b>town sewer</span><span><b class="cb"></b>not sure yet</span></div>
+<div class="f"><span>The pump and its alarm panel are</span><i></i><span>Breaker</span><i class="xs"></i></div>
+<div class="f"><span>The tank cover is (mark it on the map)</span><i></i></div>
+<div class="f"><span>Last pumped</span><i class="m"></i><span>by</span><i></i></div>
+<div class="f"><span>Sump pump?</span><span><b class="cb"></b>yes</span><span><b class="cb"></b>no</span><span style="margin-left:.06in">Its backup</span><i></i></div>
+<div class="tip" style="margin-top:.05in"><span class="t">Gravity or pumped?</span>
+A gravity system keeps working without power as long as you have water to flush with: pour a bucket quickly into the bowl. A pumped system does not. The pump chamber fills, and then it backs up into the house. Use as little water as you can, and find out how much reserve the chamber holds.</div>
+<div class="tip" style="margin-top:.05in"><span class="t">Worst case, use a bucket</span>
+Two weeks of flushing takes more water than two weeks of drinking. If you can’t spare it, line a 5-gallon bucket with a heavy trash bag, add sawdust, wood ash or cat litter after each use, and keep the tied bag outside.</div>
+<h2>Notes</h2>
+<div class="f"><i></i></div>
+<div class="f"><i></i></div>
+<div class="f"><i></i></div>
+<div class="f"><i></i></div>
+{{end}}
+
+
+{{define "pipes"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>Frozen pipes</h1><p>Keeping them from freezing, and what to do if the heat stays off</p></div></header>
+<div class="f"><span>The pipes most likely to freeze are</span><i></i></div>
+<p class="n"><b>Deep cold and no heat:</b> open the cabinet doors under sinks and let the hot and cold taps trickle. <b>If it goes on, or you have to leave:</b> shut off the water main and drain every faucet. Have a plumber show you how once, then write the steps below.</p>
+<div class="o"><span>Water heater</span><span><b class="cb"></b>electric</span><span><b class="cb"></b>propane</span><span><b class="cb"></b>oil</span><span><b class="cb"></b>heat pump</span></div>
+<div class="f"><span>Its shutoff is</span><i></i></div>
+<p class="n" style="margin-top:0">Shut the water heater off before you drain the pipes.</p>
+<h2>To drain our pipes</h2>
+<ol class="steps"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ol>
+<div class="f"><span>Our plumber</span><i></i><span>phone</span><i class="l"></i></div>
+<div class="warn" style="margin-top:.05in"><span class="t">Never thaw pipes with a torch</span>
+Use slow heat: hot water bottles, warm towels or handwarmers, starting at the faucet end. The fire department may not be able to reach a burning house.</div>
+{{end}}
+
+
+{{define "seasons"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>Through the year</h1><p>What to do, and when to do it</p></div></header>
+<div class="cols big">
+<div>
+<h3>Every fall</h3>
+<ul class="ck">{{template "li-every-fall"}}</ul>
+<div class="f own"><b class="cb"></b><i></i></div>
+<div class="f own"><b class="cb"></b><i></i></div>
+<div class="f own"><b class="cb"></b><i></i></div>
+</div>
+<div>
+<h3>All year</h3>
+<ul class="ck">{{template "li-all-year"}}</ul>
+<div class="f own"><b class="cb"></b><i></i></div>
+<div class="f own"><b class="cb"></b><i></i></div>
+<h3 class="fill"><span>Every</span><i></i></h3>
+<div class="f own"><b class="cb"></b><i></i></div>
+<div class="f own"><b class="cb"></b><i></i></div>
+<div class="f own"><b class="cb"></b><i></i></div>
+<div class="f own"><b class="cb"></b><i></i></div>
+<h3 class="fill"><span>Every</span><i></i></h3>
+<div class="f own"><b class="cb"></b><i></i></div>
+<div class="f own"><b class="cb"></b><i></i></div>
+<div class="f own"><b class="cb"></b><i></i></div>
+<div class="f own"><b class="cb"></b><i></i></div>
+</div>
+</div>
+<h2>Fall check-up done</h2>
+<div class="f"><span>Year</span><i></i><i></i><i></i><i></i><i></i><i></i></div>
+{{end}}
+
+
+{{define "storm"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>When a storm comes</h1><p>Before it, during it, and when the lights come back</p></div></header>
+<div class="cols big">
+<div>
+<h3>When a storm is coming</h3>
+<ul class="ck">{{template "li-storm-coming"}}</ul>
+</div>
+<div>
+<h3>When the power goes out</h3>
+<ul class="ck">{{template "li-power-out"}}</ul>
+<h3>When it comes back</h3>
+<ul class="ck">{{template "li-comes-back"}}</ul>
+</div>
+</div>
+<h2>Outage log</h2>
+<div class="tb g3">
+  <div class="th"><span>Went out</span><span>Came back</span><span>What we ran short of, or wished we had</span></div>
+  <div class="tr"><span></span><span></span><span></span></div>
+  <div class="tr"><span></span><span></span><span></span></div>
+  <div class="tr"><span></span><span></span><span></span></div>
+  <div class="tr"><span></span><span></span><span></span></div>
+</div>
+<div class="tw"><b>For two weeks</b><span>The first day is the easy one. Ration fuel, water and effort from the start as if it will last two weeks. You can always ease off when the lights come back.</span></div>
+{{end}}
+
+
+{{define "emergency"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>During the emergency</h1><p>It may take days. Be patient. Be nice.</p></div></header>
+<h2 style="margin-top:.02in">Do</h2>
+<ul class="y">
+<li>Stay calm and stay safe. Move slower than usual and think each job through.</li>
+<li>Drink water and eat well.</li>
+<li>Lift and shovel the right way, and rest often.</li>
+<li>Check on your neighbors. Help each other.</li>
+<li>Turn off the water, gas or electricity if you need to (map inside the back cover).</li>
+<li>If you can’t keep warm, leave early for a neighbor’s, a warming place or the shelter.</li>
+</ul>
+<div class="warn" style="margin-top:.1in"><span class="t">Do not make your own emergency</span>
+<p style="margin:0 0 .03in">Fire trucks, ambulances and police may not be able to get to you, and help may not come in time. <b>Do not:</b></p>
+<div class="cols" style="column-gap:.12in">
+<ul class="x">
+<li>Eat spoiled food</li>
+<li>Drink bad water</li>
+<li>Go near downed power lines</li>
+<li>Run a generator indoors, or wire one in yourself</li>
+<li>Heat the house with a gas stove or grill</li>
+</ul>
+<ul class="x">
+<li>Burn in a chimney that has not been inspected</li>
+<li>Thaw pipes with a torch</li>
+<li>Take chances with ladders, roof rakes or chainsaws</li>
+<li>Overexert. Shoveling can bring on a heart attack.</li>
+</ul>
+</div></div>
+<h2>Help your town</h2>
+<p class="n" style="margin-top:0">In Vermont the town usually runs the shelter, with the Red Cross lending a hand, and a small town runs on volunteers. The best time to offer is before the storm.</p>
+<ul class="ck">
+<li>Tell your Emergency Management Director, fire department or road crew what you can do: check on neighbors, staff the shelter, cook, run a chainsaw or a tractor, lend a generator</li>
+<li>Take first aid, CPR and Stop the Bleed classes (page {{pg "firstaid"}})</li>
+</ul>
+{{end}}
+
+
+{{define "after"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>After the emergency</h1><p>First steps, and what we learned</p></div></header>
+<h2 style="margin-top:.02in">First</h2>
+<ul class="ck">
+<li>Take photos of the damage and the spoiled food before you clean up. Keep receipts.</li>
+<li><b>Report damage to Vermont 211:</b> dial <span class="nb">2-1-1</span> or go to vermont211.org. Report small losses too. The state uses these reports to ask for federal disaster help.</li>
+<li>Tell your town’s Emergency Management Director (inside the front cover) and call your insurance company.</li>
+</ul>
+<div class="f"><span>Damage reported to 211 on</span><i></i></div>
+<div class="f"><span>FEMA number</span><i></i></div>
+<div class="f"><span>Insurance claim number</span><i></i></div>
+<div class="f"><span>Adjuster</span><i></i><span>phone</span><i class="l"></i></div>
+<div class="f"><span>Our nearest food shelf</span><i></i><span>open</span><i class="m"></i></div>
+<h2>What we would do differently</h2>
+<div class="f"><i></i></div>
+<div class="f"><i></i></div>
+<div class="f"><i></i></div>
+<div class="f"><i></i></div>
+<div class="f"><i></i></div>
+<h2>Next steps</h2>
+<ul class="ck">
+<li>Fill in the <b>Vermont Family Emergency Preparedness Workbook</b>. Find it at vem.vermont.gov, or call Vermont Emergency Management at <span class="nb">800-347-0488</span> for a free copy.</li>
+<li>Stock an emergency kit in your car</li>
+<li>Make an evacuation plan and pack a go bag</li>
+<li>Keep what FEMA will ask for with your papers: Social Security number, insurance policy, bank account number</li>
+</ul>
+{{end}}
+
+
+{{define "help"}}
+<header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>Who to call</h1><p>Help for those it hit harder than they expected</p></div></header>
+<div class="res" style="margin-top:.02in"><b class="nm">FEMA disaster assistance</b><span class="ph">800-621-3362</span><p>Opens only after a federal disaster is declared for your county; your Emergency Management Director will know. Apply at DisasterAssistance.gov or by phone, <span class="nb">7 a.m.</span> to <span class="nb">11 p.m.</span> every day.</p></div>
+<div class="res"><b class="nm">3SquaresVT: money for groceries</b><span class="ph">800-479-6151</span><p>Apply at dcf.vermont.gov, or call for a paper application. Already on it and lost food to a fire, a flood or an outage of 4 hours or more? Call within 10 days of losing the food to ask for replacement benefits; don’t wait for the power to come back. Return the form they send within 10 days. For help applying, call Vermont Foodbank at <span class="nb">855-855-6181</span>.</p></div>
+<div class="res"><b class="nm">Fuel Assistance</b><span class="ph">Your town clerk</span><p>Help with heating bills is often handled by the town, so start with your town clerk. The state’s Seasonal Fuel Assistance pays part of the winter bill for households under an income limit: dcf.vermont.gov/benefits/fuel.</p></div>
+<div class="res"><b class="nm">Crisis Fuel and Capstone</b><span class="ph">800-639-1053</span><p>Nearly out of fuel and can’t pay? Call your community action agency <b>before</b> the tank is empty. In central Vermont that is Capstone Community Action (Randolph office <span class="nb">802-728-9506</span>), which also helps with emergency food and applications. Elsewhere, dial <span class="nb">2-1-1</span> to find yours. Furnace quit after hours in winter: <span class="nb">877-295-7998</span>.</p></div>
+<div class="res"><b class="nm">Food shelves</b><span class="ph">800-585-2265</span><p>Vermont Foodbank lists food shelves and meal sites at vtfoodbank.org. Or dial <span class="nb">2-1-1</span>.</p></div>
+<div class="res"><b class="nm">Disaster Distress Helpline</b><span class="ph">800-985-5990</span><p>Call or text at any hour to talk with a counselor about the strain. In a crisis, <span class="nb">9-8-8</span>.</p></div>
+<h2>More help</h2>
+<p style="margin:.02in 0"><b>ready.gov</b> &nbsp;·&nbsp; <b>vem.vermont.gov</b> &nbsp;·&nbsp; <b>emergency.cdc.gov</b> &nbsp;·&nbsp; <b>vtalert.gov</b></p>
+{{end}}
+
+
+{{/* Blocks shared by the booklet and the website (templates/site.html). */}}
+{{define "kys-intro"}}
+<p class="lede">An ice storm, a flood that takes out the road, a big snow: any of them can leave a house without power, or cut off from town, for days and sometimes for two weeks. Most advice plans for three days. This workbook plans for <b>two weeks</b>: help cannot reach everyone right away, and a household ready for two weeks can ride out almost anything shorter.</p>
+<p class="lede own"><b>This is our best advice, not a rulebook.</b> You know your house, your family and your needs best. Take what fits and change what doesn’t.</p>
+<div class="q3">
+  <div class="t">Ask three things about every system in the house</div>
+  <ol><li>What does it need to run?</li><li>What happens when it stops?</li><li>What is our backup, and can everyone here use it?</li></ol>
+  <div class="say">“One is none,<br>two is one.”</div>
+</div>
+{{end}}
+
+{{define "kys-how"}}
+<ol class="how">
+  <li><b>Walk the house together.</b> Everyone who lives here, pencil in hand.</li>
+  <li><b>Take it a page at a time.</b> Getting prepared can feel like a lot, so go at your own pace. A blank line is just a question to chase down.</li>
+  <li><b>Try every backup once.</b> Start the generator. Find the shutoff and turn it.</li>
+  <li><b>Picture day ten, not just the first night.</b> What runs out first? Thinking it through now keeps you calmer then.</li>
+  <li><b>Keep this workbook where everyone can find it:</b> in your outage bucket, a kitchen drawer, or with the flashlights. Go through it again each fall.</li>
+</ol>
+{{end}}
+
+{{define "kys-toc"}}
+<div class="toc">
+  <span><b>{{pg "household"}}</b>Our household</span>
+  <span><b>{{pg "power"}}</b>Power</span>
+  <span><b>{{pg "gen1"}}</b>Backup power</span>
+  <span><b>{{pg "water"}}</b>Water</span>
+  <span><b>{{pg "food"}}</b>Food</span>
+  <span><b>{{pg "heat"}}</b>Heat and fuel</span>
+  <span><b>{{pg "warm"}}</b>Staying warm</span>
+  <span><b>{{pg "people"}}</b>People</span>
+  <span><b>{{pg "animals"}}</b>Animals</span>
+  <span><b>{{pg "firstaid"}}</b>First aid</span>
+  <span><b>{{pg "touch"}}</b>Staying in touch</span>
+  <span><b>{{pg "neighbors"}}</b>Neighbors, roads</span>
+  <span><b>{{pg "plumbing"}}</b>Plumbing</span>
+  <span><b>{{pg "seasons"}}</b>Through the year</span>
+  <span><b>{{pg "storm"}}</b>When a storm comes</span>
+  <span><b>{{pg "emergency"}}</b>During the emergency</span>
+  <span><b>{{pg "after"}}</b>After the emergency</span>
+  <span><b>{{pg "help"}}</b>Who to call</span>
+</div>
+{{end}}

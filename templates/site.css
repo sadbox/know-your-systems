@@ -1,0 +1,119 @@
+/* Know Your Systems website. The booklet's palette and type, set for screens.
+   Shared blocks (intro, three questions, contents, numbers) keep the class names they
+   have in the booklet, so the same markup is styled here. */
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:400;font-style:normal;font-display:swap;src:url(fonts/atkinson-hyperlegible-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:400;font-style:italic;font-display:swap;src:url(fonts/atkinson-hyperlegible-latin-400-italic.woff2) format("woff2")}
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:700;font-style:normal;font-display:swap;src:url(fonts/atkinson-hyperlegible-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:700;font-style:italic;font-display:swap;src:url(fonts/atkinson-hyperlegible-latin-700-italic.woff2) format("woff2")}
+@font-face{font-family:"Barlow Condensed";font-weight:600;font-style:normal;font-display:swap;src:url(fonts/barlow-condensed-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Barlow Condensed";font-weight:700;font-style:normal;font-display:swap;src:url(fonts/barlow-condensed-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Barlow Condensed";font-weight:800;font-style:normal;font-display:swap;src:url(fonts/barlow-condensed-latin-800-normal.woff2) format("woff2")}
+
+:root{
+  --ink:#1b1b1b; --muted:#444; --paper:#fff;
+  --green:#1f5a3c; --green2:#4a8457; --gtint:#e8f1e6;
+  --orange:#bf4d16; --otint:#fdeee2; --sand:#f6f1e4;
+  --blue:#1f4f7a; --btint:#e6eef6;
+  --stock:#f9c995;
+  --head:"Barlow Condensed","Arial Narrow",sans-serif;
+  --gutter:16px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.125rem/1.5 "Atkinson Hyperlegible",Arial,sans-serif}
+img{max-width:100%;height:auto}
+a{color:var(--green);text-underline-offset:.15em}
+a:hover{color:var(--orange)}
+:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.wrap{max-width:62rem;margin:0 auto;padding:0 var(--gutter)}
+@media (min-width:700px){:root{--gutter:32px}}
+
+/* ---------- headings, as in the booklet ---------- */
+h2{font:700 1.6rem/1.1 var(--head);text-transform:uppercase;letter-spacing:.045em;color:var(--green);margin:0 0 .6rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:"";flex:1;border-top:1px solid var(--green2)}
+h3{font:700 1.25rem/1.15 var(--head);text-transform:uppercase;letter-spacing:.05em;color:var(--green);margin:1rem 0 .35rem}
+.n{color:#2c2c2c;font-size:1rem}
+.block{padding-top:2.6rem}
+main{padding-bottom:3rem}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:.5rem;min-height:48px;padding:.6rem 1.1rem;border:2px solid var(--green);border-radius:3px;background:var(--green);color:#fff;
+     font:700 1.2rem/1.1 var(--head);text-transform:uppercase;letter-spacing:.08em;text-decoration:none;cursor:pointer}
+.btn:hover{background:#174630;border-color:#174630;color:#fff}
+.btn.alt{background:transparent;color:var(--green)}
+.btn.alt:hover{background:var(--gtint);color:var(--green)}
+.btn span{font-size:.8em;opacity:.8}
+.btn.small{min-height:40px;font-size:1rem;padding:.4rem .8rem}
+
+/* ---------- cover ---------- */
+.cover{background:var(--stock);color:#000}
+.cover-grid{display:grid;gap:1.25rem;padding-top:1.5rem}
+.made{margin:0;border-top:4px solid #000;padding-top:.6rem}
+.made span{display:inline-block;border:2px solid #000;padding:.3rem .6rem .25rem;font:800 .95rem/1.1 var(--head);text-transform:uppercase;letter-spacing:.13em}
+.title{font:800 clamp(2.9rem,12vw,5.4rem)/.87 var(--head);text-transform:uppercase;margin:.9rem 0 0;letter-spacing:-.005em;max-width:9ch}
+.band{background:#000;color:var(--stock);margin:1rem 0 0;padding:.55rem .75rem .65rem;font:800 clamp(1.7rem,6.6vw,2.9rem)/1 var(--head);text-transform:uppercase;letter-spacing:.035em}
+.band small{display:block;font:700 clamp(.95rem,3vw,1.25rem)/1 var(--head);letter-spacing:.2em;margin-bottom:.3rem}
+.sub{font-size:1.15rem;margin:.8rem 0 0}
+.cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.3rem}
+.cover .btn{background:#000;border-color:#000;color:var(--stock)}
+.cover .btn:hover{background:#333;border-color:#333}
+.cover .btn.alt{background:transparent;color:#000}
+.cover .btn.alt:hover{background:rgba(0,0,0,.08)}
+.free{margin:.7rem 0 0;font-size:1rem}
+.art{line-height:0;width:min(100%,30rem);justify-self:center;align-self:end}
+.bar{background:#000;color:var(--stock);font:700 1rem/1.2 var(--head);text-transform:uppercase;letter-spacing:.14em;padding:.7rem var(--gutter);display:flex;flex-wrap:wrap;justify-content:space-between;gap:.25rem 1rem}
+.bar span:last-child{font-size:.8rem;letter-spacing:.09em;font-weight:600}
+@media (min-width:860px){
+  .cover-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:end;padding-top:2.25rem;gap:2rem}
+  .art{margin-bottom:0}
+}
+
+/* ---------- shared blocks from the booklet ---------- */
+.lede{font-size:1.2rem;line-height:1.5;margin:.4rem 0 .9rem;max-width:44rem}
+.q3{background:var(--sand);border:1.5px solid var(--green);border-radius:4px;padding:1rem 1.1rem;margin:1.2rem 0 0;display:grid;gap:.6rem 1.5rem}
+.q3 .t{font:700 1.3rem/1.15 var(--head);text-transform:uppercase;letter-spacing:.05em;color:var(--green)}
+.q3 ol{margin:0;padding-left:1.6rem;font-weight:700;font-size:1.15rem}
+.q3 ol li{margin:.2rem 0}
+.q3 .say{font:italic 700 1.3rem/1.2 "Atkinson Hyperlegible",sans-serif;color:var(--orange)}
+@media (min-width:700px){
+  .q3{grid-template-columns:1fr auto;align-items:center}
+  .q3 .t{grid-column:1/-1}
+  .q3 .say{border-left:1px solid var(--green2);padding-left:1.4rem;text-align:center}
+
+}
+ol.how{margin:.2rem 0;padding-left:1.6rem;max-width:44rem}
+ol.how li{margin:.5rem 0}
+
+.toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:.35rem 1.5rem;margin-top:.6rem}
+.toc span{display:flex;gap:.6rem;align-items:baseline;border-bottom:1px solid #ddd;padding:.25rem 0}
+.toc b{font:800 1.25rem/1 var(--head);color:var(--green);min-width:1.6rem;text-align:right}
+
+.numbers .big{display:flex;align-items:flex-end;gap:1rem;border-bottom:4px solid #000;padding-bottom:.4rem;margin:.6rem 0 .6rem}
+.numbers .nine{font:800 5rem/.8 var(--head)}
+.numbers .say{font:700 1.2rem/1.1 var(--head);text-transform:uppercase;letter-spacing:.06em;padding-bottom:.3rem}
+.nums{display:grid;grid-template-columns:auto 1fr;gap:.35rem 1.1rem;align-items:baseline;margin:.6rem 0}
+.nums b{font:800 1.45rem/1.1 var(--head);letter-spacing:.02em;white-space:nowrap}
+
+/* ---------- print-at-home cards ---------- */
+.cards{display:grid;gap:1.25rem;margin-top:.8rem}
+@media (min-width:760px){.cards{grid-template-columns:1fr 1fr}}
+.card{background:var(--sand);border-left:4px solid var(--green);border-radius:0 4px 4px 0;padding:1.1rem 1.2rem 1.3rem;display:flex;flex-direction:column;align-items:flex-start}
+.card h3{margin-top:0;font-size:1.5rem}
+.card .facts{margin:0;font:700 1rem/1.2 var(--head);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.card p{margin:.6rem 0 1rem}
+.card .btn{margin-top:auto}
+
+/* ---------- footer ---------- */
+.site-foot{background:var(--sand);border-top:1px solid #e2d9c3;margin-top:2rem}
+.site-foot .wrap{padding-top:1.5rem;padding-bottom:1.5rem}
+.site-foot p{margin:.4rem 0;max-width:48rem}
+.site-foot .fine{font-size:.95rem;color:#2c2c2c}
+
+/* ---------- printing a page of the site (the PDFs are the real print versions) ---------- */
+@media print{
+  body{font-size:11pt}
+  .cta,.free,.btn,.site-foot .bar{display:none!important}
+  .cover,.bar{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  a{color:inherit;text-decoration:none}
+}

@@ -1,0 +1,253 @@
+/* Know Your Systems booklet. Finished page is 5.5 x 8.5 in (half letter).
+   Fonts are injected by the generator as @font-face rules. */
+:root{
+  --ink:#1b1b1b; --line:#3a3a3a; --paper:#fff;
+  --green:#1f5a3c; --green2:#4a8457; --gtint:#e8f1e6;
+  --orange:#bf4d16; --otint:#fdeee2; --sand:#f6f1e4;
+  --blue:#1f4f7a; --btint:#e6eef6;
+  --kk:1.1;     /* type scale for the booklet pages: 1 = 10 pt body, 1.08 = 10.8 pt */
+}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+html,body{margin:0;padding:0}
+body{font-family:"Atkinson Hyperlegible",Arial,sans-serif;font-size:10pt;line-height:1.28;color:var(--ink)}
+#fit,#wide{display:none}
+.pg{--k:var(--kk);font-size:calc(10pt*var(--k))}
+.pg.ls,.pg.c1,.pg.c4{--k:1}
+
+/* ---------- sheets and pages ---------- */
+.sheet{width:11in;height:8.5in;display:flex;overflow:hidden;break-after:page}
+.sheet:last-of-type{break-after:auto}
+.pg{width:5.5in;height:8.5in;flex:none;position:relative;overflow:hidden;display:flex;flex-direction:column;
+    padding:.4in .42in .3in .5in;break-inside:avoid}          /* right-hand page: gutter on the left */
+.pg.left{padding:.4in .5in .3in .42in}                          /* left-hand page: gutter on the right */
+.single .pg{break-after:page}
+.single .pg:last-of-type{break-after:auto}
+.body{flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between}  /* spare room is shared out between rows */
+.body>*{flex-shrink:0}
+.grow{flex:1 1 0 !important;min-height:0}
+
+.ft{display:flex;justify-content:space-between;align-items:center;margin-top:.06in;padding-top:.06in;border-top:.5pt solid #9a9a9a;
+    font:600 calc(7.2pt*var(--k))/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.13em;color:#555}
+.ft .pn{font:800 10.5pt/1 "Barlow Condensed",sans-serif;letter-spacing:0;color:var(--green)}
+.pg.left .ft{flex-direction:row-reverse}
+
+/* ---------- headings ---------- */
+.hd{display:flex;align-items:stretch;gap:.11in;border-bottom:2pt solid var(--green);padding-bottom:.07in;margin-bottom:.07in}
+.hd .no{font:800 25pt/1 "Barlow Condensed",sans-serif;color:var(--paper);background:var(--green);min-width:.46in;padding:0 .06in;
+        display:flex;align-items:center;justify-content:center;border-radius:2pt}
+.hd h1{font:800 21pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.012em;margin:.01in 0 0;color:var(--green)}
+.hd p{margin:.025in 0 0;font-size:calc(9.8pt*var(--k));font-style:italic;color:#2c2c2c}
+h2{font:700 calc(12.8pt*var(--k))/1.1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.045em;color:var(--green);
+   margin:.09in 0 .02in;display:flex;align-items:center;gap:.08in}
+h2::after{content:"";flex:1;border-top:.75pt solid var(--green2)}
+h2 small{order:2;font:italic 400 calc(9.2pt*var(--k))/1.1 "Atkinson Hyperlegible",sans-serif;text-transform:none;letter-spacing:0;color:#2c2c2c;white-space:nowrap}
+h3{font:700 calc(10.8pt*var(--k))/1.1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.05em;color:var(--green);margin:.07in 0 .015in}
+
+/* ---------- text ---------- */
+p{margin:.04in 0}
+.lede{font-size:calc(10.7pt*var(--k));line-height:1.31;margin:.02in 0 .05in}
+.n{font-size:calc(9.3pt*var(--k));line-height:1.25;color:#2c2c2c;margin:.025in 0}
+ul{margin:.02in 0;padding-left:.14in}
+li{margin:.012in 0}
+b,strong{font-weight:700}
+a{color:inherit;text-decoration:none}  /* a link (the website shares this text) looks like plain text in print */
+.nb{white-space:nowrap}
+.lede.own{margin-top:0}
+.src{font-size:.88em;font-style:italic;color:#555}
+.warn p+p,.tip p+p{margin-top:.04in}
+
+/* ---------- things to fill in ---------- */
+.f{display:flex;align-items:flex-end;gap:.05in;min-height:.262in}
+.f>span{white-space:nowrap;padding-bottom:1.2pt}
+.f>i{flex:1;border-bottom:.6pt solid var(--line);margin-bottom:2.6pt;min-width:.22in}
+.f.big>span{font-weight:700;font-size:11pt}
+.f>i.xs{flex:0 0 .34in}.f>i.s{flex:0 0 .52in}.f>i.m{flex:0 0 .95in}.f>i.l{flex:0 0 1.35in}
+.cb{display:inline-block;width:9.2pt;height:9.2pt;border:.8pt solid var(--ink);border-radius:1pt;vertical-align:-1.1pt;margin-right:2.6pt;background:#fff}
+.o{display:flex;flex-wrap:wrap;align-items:flex-end;column-gap:.12in;row-gap:.02in;min-height:.262in;padding-bottom:1.6pt}
+.o>span{white-space:nowrap}
+.o.tight{column-gap:.07in}
+.o>i{flex:1;border-bottom:.6pt solid var(--line);margin-bottom:1pt;min-width:.3in}
+ol.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+ol.steps li{counter-increment:s;display:flex;align-items:flex-end;gap:.05in;min-height:.262in;margin:0}
+ol.steps li::before{content:counter(s);font:700 calc(10pt*var(--k))/1 "Barlow Condensed",sans-serif;color:var(--green);width:.13in;padding-bottom:2pt}
+ol.steps li::after{content:"";flex:1;border-bottom:.6pt solid var(--line);margin-bottom:2.6pt}
+
+/* checklists */
+ul.ck,ul.x{list-style:none;padding-left:0;margin:.01in 0}
+ul.ck li,ul.x li{padding-left:.185in;text-indent:-.185in;margin:.024in 0;line-height:1.22}
+ul.ck li::before{content:"";display:inline-block;width:8.8pt;height:8.8pt;border:.8pt solid var(--ink);border-radius:1pt;
+                 margin-right:.05in;vertical-align:-1pt;background:#fff}
+ul.ck li em{font-style:italic;font-size:.86em;color:#555}
+ul.y{list-style:none;padding-left:0;margin:.01in 0}
+ul.y li{padding-left:.185in;text-indent:-.185in;margin:.03in 0}
+ul.y li::before{content:"";display:inline-block;width:.115in;height:.095in;margin-right:.05in;vertical-align:-.5pt;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 10'><path d='M1.2 5.6 4.4 8.6 10.8 1.4' fill='none' stroke='%234a8457' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'/></svg>") no-repeat center/contain}
+ul.x li::before{content:"";display:inline-block;width:.095in;height:.095in;margin-right:.07in;vertical-align:-.5pt;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><path d='M1.6 1.6 8.4 8.4M8.4 1.6 1.6 8.4' fill='none' stroke='%23bf4d16' stroke-width='2.1' stroke-linecap='round'/></svg>") no-repeat center/contain}
+/* a page of plain advice: each headed section keeps its list, and spare room goes between sections */
+section{display:block}
+h2.dng{color:var(--orange)}
+h2.dng::after{border-top-color:var(--orange)}
+ul.y li.no::before{width:.095in;margin-right:.07in;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><path d='M1.6 1.6 8.4 8.4M8.4 1.6 1.6 8.4' fill='none' stroke='%23bf4d16' stroke-width='2.1' stroke-linecap='round'/></svg>")}
+/* a blank tick-box row for the household's own item */
+.f.own{min-height:.27in}
+.f.own>b.cb{width:10.4pt;height:10.4pt}  /* same outside size as the boxes in the lists */
+/* a heading the household finishes: "Every ____", then its own rows underneath */
+h3.fill{display:flex;align-items:flex-end;gap:.06in}
+h3.fill>i{flex:1;border-bottom:.6pt solid var(--line);margin-bottom:1.5pt}
+.cols.big h3.fill{margin-top:.1in}
+.cols{display:grid;grid-template-columns:1fr 1fr;column-gap:.17in;align-items:start}
+.cols>div>h3:first-child{margin-top:.03in}
+.cols.mid{font-size:calc(10pt*var(--k))}
+.cols.mid ul.ck li{margin:.021in 0}
+.cols.mid h3{margin-top:.07in;font-size:calc(11pt*var(--k))}
+.cols.big{font-size:calc(10pt*var(--k))}
+.cols.big ul.ck li{margin:.021in 0;line-height:1.23}
+.cols.big h3{margin-top:.085in;font-size:calc(11pt*var(--k))}
+
+/* boxes */
+.tip,.warn{padding:.06in .1in .065in;margin:.08in 0 .02in;font-size:calc(9.4pt*var(--k));line-height:1.27;border-radius:0 2pt 2pt 0}
+.tip{background:var(--gtint);border-left:3pt solid var(--green)}
+.warn{background:var(--otint);border-left:3pt solid var(--orange)}
+.tip .t,.warn .t{display:block;font:700 calc(11pt*var(--k))/1.1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.02in}
+.tip .t{color:var(--green)}.warn .t{color:var(--orange)}
+.tip ul,.warn ul{padding-left:.13in;margin:0}
+.tip p,.warn p{margin:.02in 0 0}
+
+.calc{font:700 calc(10.4pt*var(--k))/1.3 "Barlow Condensed",sans-serif;letter-spacing:.03em;white-space:nowrap;margin:.012in 0}
+.calc u{text-decoration:none;border-bottom:1.3pt solid var(--orange)}
+/* the recurring "two weeks" note: same build as .tip and .warn, in its own colour */
+.tw{padding:.06in .1in .065in;margin:.08in 0 .02in;font-size:calc(9.4pt*var(--k));line-height:1.27;border-radius:0 2pt 2pt 0;background:var(--btint);border-left:3pt solid var(--blue)}
+.tw>b{display:block;font:700 calc(11pt*var(--k))/1.1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.05em;color:var(--blue);margin-bottom:.02in}
+/* who to call */
+.res{display:grid;grid-template-columns:1fr auto;column-gap:.1in;align-items:baseline;border-bottom:.5pt solid #9a9a9a;padding:.04in 0 .045in}
+.res .nm{font:700 calc(11.6pt*var(--k))/1.1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.04em;color:var(--green)}
+.res .ph{font:800 calc(12.4pt*var(--k))/1.1 "Barlow Condensed",sans-serif;letter-spacing:.02em;white-space:nowrap}
+.res p{grid-column:1/-1;margin:.012in 0 0;font-size:calc(9.3pt*var(--k));line-height:1.26}
+
+/* tables with write-in cells */
+.tb{border-top:1pt solid var(--green);margin-top:.03in}
+.tb .th,.tb .tr{display:grid;align-items:end;column-gap:.08in;border-bottom:.5pt solid #777}
+.tb .th{font:700 calc(9.4pt*var(--k))/1.1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.05em;color:var(--green);padding:.03in 0 .02in;align-items:center}
+.tb .tr{min-height:.245in;padding-bottom:1.6pt}
+.tb.t3 .th,.tb.t3 .tr{grid-template-columns:2.25in .82in 1fr}
+.tb.w3 .th,.tb.w3 .tr{grid-template-columns:1fr .95in .95in}
+.tb.p3 .th,.tb.p3 .tr{grid-template-columns:1.05in 1fr 1.2in}
+.tb.s4 .th,.tb.s4 .tr{grid-template-columns:1fr 1.02in 1.02in .42in}
+.tb.g3 .th,.tb.g3 .tr{grid-template-columns:.8in .85in 1fr}
+.tb.k2 .th,.tb.k2 .tr{grid-template-columns:1fr 1.5in}
+.tb.k2 .tr>span:nth-child(2){font-weight:700}
+.tb .c{text-align:center}
+.tb .tr>span:nth-child(n+2){border-left:.5pt solid #9a9a9a;align-self:stretch;display:flex;align-items:flex-end;justify-content:center;padding-bottom:1pt}
+.tb .tr{padding-bottom:0}.tb .tr>span:first-child{padding-bottom:1.6pt}
+.tb .tr.total{font-weight:700;border-bottom:1pt solid var(--green)}
+.tb .tr em{font-style:normal;font-size:calc(8.6pt*var(--k));color:#555;margin-left:auto;padding-right:3pt}
+.tb .tr .fx{color:#555}
+.tb .tr .pgn{font:800 calc(11pt*var(--k))/1 "Barlow Condensed",sans-serif;color:var(--green);padding-bottom:2.5pt}
+.f>b.cb{flex:none;margin:0 0 3pt}
+
+/* page 1: what's inside */
+.toc{display:grid;grid-template-columns:1fr 1fr 1.3fr;grid-template-rows:repeat(6,auto);grid-auto-flow:column;column-gap:.1in;row-gap:.012in;margin-top:.03in;font-size:calc(9.6pt*var(--k))}
+.toc span{white-space:nowrap}
+.toc b{display:inline-block;width:.23in;font:800 calc(11pt*var(--k))/1 "Barlow Condensed",sans-serif;color:var(--green)}
+
+/* ---------- page 1 ---------- */
+.hd.first{align-items:flex-end;justify-content:space-between;padding-bottom:0;gap:.1in}
+.hd.first h1{font-size:30pt;line-height:.92;margin-bottom:.07in}
+.hd.first .eyebrow{font:700 calc(8.6pt*var(--k))/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.16em;color:var(--orange);margin-bottom:.04in}
+.hd.first .wc{width:1.17in;flex:none;line-height:0;margin:-.12in -.02in .02in 0}
+.hd.first .wc img{display:block;width:100%;height:auto}
+.q3{background:var(--sand);border:1pt solid var(--green);border-radius:3pt;padding:.07in .1in .075in;margin:.03in 0 .02in;display:grid;grid-template-columns:1fr auto;column-gap:.12in;align-items:center}
+.q3 .t{grid-column:1/-1;font:700 calc(11.4pt*var(--k))/1.1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.05em;color:var(--green);margin-bottom:.025in}
+.q3 ol{margin:0;padding-left:.19in;font-size:calc(10.4pt*var(--k));font-weight:700}
+.q3 ol li{margin:.015in 0}
+.q3 .say{font:italic 700 calc(10.4pt*var(--k))/1.15 "Atkinson Hyperlegible",sans-serif;color:var(--orange);text-align:center;border-left:.75pt solid var(--green2);padding-left:.12in;max-width:1.35in;white-space:nowrap}
+ol.how{margin:.02in 0;padding-left:.17in}
+ol.how li{margin:.022in 0}
+
+/* ---------- cover: one ink on coloured stock ---------- */
+.pg.cv{--green:#000;--green2:#000;--orange:#000;--blue:#000;--line:#000;--ink:#000;--gtint:transparent;--otint:transparent;--btint:transparent;--sand:transparent;color:#000}
+.pg.cv .cb,.pg.cv ul.ck li::before{background:transparent}
+.pg.cv .tip,.pg.cv .warn,.pg.cv .tw{border:.75pt solid #000;border-left-width:3pt}
+.pg.cv .ft{color:#000;border-top-color:#000}
+.pg.cv .n,.pg.cv .hd p,.pg.cv .credit{color:#000}
+.tint .pg.cv{--paper:#f9c995;background:var(--paper)}         /* proof and mock-up only: stands in for light orange cover stock */
+
+.c1{padding:.42in .45in .4in !important}
+.c1 .body{align-items:stretch}
+.c1 .made{border-top:3pt solid #000;padding-top:.09in;line-height:0}
+.c1 .made span{display:inline-block;border:1.5pt solid #000;padding:.045in .09in .04in;font:800 10.4pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.13em;white-space:nowrap}
+.c1 .title{font:800 49pt/.87 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:-.005em;margin:.1in 0 0 -.03in;white-space:nowrap}
+.c1 .band{background:#000;color:var(--paper);margin:.13in -.02in 0;padding:.075in .1in .085in;font:800 27.5pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.035em;white-space:nowrap}
+.c1 .band small{display:block;font:700 12.5pt/1 "Barlow Condensed",sans-serif;letter-spacing:.2em;margin-bottom:.035in}
+.c1 .sub2{font-size:10.4pt;margin:.08in 0 0}
+.c1 .art{line-height:0;width:90%;margin:0 auto}
+.c1 .art img{display:block;width:100%;height:auto}
+.c1 .bar{background:#000;color:var(--paper);font:700 10.4pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.14em;
+         padding:.085in .1in;display:flex;justify-content:space-between;align-items:baseline;margin:0 -.02in;white-space:nowrap}
+.c1 .bar span:last-child{font-size:7.7pt;letter-spacing:.09em;font-weight:600}
+
+.c4 .big{display:flex;align-items:flex-end;gap:.16in;border-bottom:3pt solid #000;padding-bottom:.04in}
+.c4 .nine{font:800 76pt/.8 "Barlow Condensed",sans-serif;letter-spacing:-.01em}
+.c4 .big .say{font:700 13pt/1.08 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.06em;padding-bottom:.05in}
+.nums{display:grid;grid-template-columns:auto 1fr;column-gap:.12in;row-gap:.02in;align-items:baseline;margin:.03in 0}
+.nums b{font:800 13pt/1.05 "Barlow Condensed",sans-serif;letter-spacing:.02em;white-space:nowrap}
+.credit{font-size:8.2pt;line-height:1.3;border-top:.75pt solid #000;padding-top:.06in;margin-top:.06in}
+
+.map{border:1pt solid #000;margin:.05in 0 .04in;line-height:0}
+.map svg{display:block;width:100%;height:auto}
+.legend{display:grid;grid-template-columns:1fr 1fr;column-gap:.14in;row-gap:.018in;font-size:calc(9.2pt*var(--k));margin-top:.03in}
+.legend b{display:inline-block;width:.2in;font:800 calc(10pt*var(--k))/1 "Barlow Condensed",sans-serif}
+
+/* ---------- the laminated letter sheet (boxes and blanks sized for a wet-erase marker) ---------- */
+.pg.ls{width:8.5in;height:11in;padding:.38in .46in .3in;font-size:11.3pt;line-height:1.2}
+.ls .body{justify-content:flex-start}
+.ls .ltop{display:flex;justify-content:space-between;align-items:flex-end;gap:.1in;border-bottom:2.5pt solid var(--green);padding-bottom:.05in}
+.ls .eyebrow{font:700 9pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.16em;color:var(--orange);margin-bottom:.05in}
+.ls h1{font:800 30pt/.95 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.012em;color:var(--green);margin:0 0 .02in}
+.ls .wc{width:.92in;flex:none;line-height:0;margin:-.2in 0 0 0}
+.ls .wc img{display:block;width:100%;height:auto}
+.ls .how{font-size:10.2pt;font-style:italic;color:#2c2c2c;margin:.07in 0 .02in}
+.ls .lcols{display:grid;grid-template-columns:1fr 1fr;column-gap:.32in;align-items:stretch}
+/* A list side fills the sheet. Both columns run down to the footer, and every row in a column takes an
+   equal share of whatever room is left over, so there is no blank band at the foot. The section and list
+   wrappers are transparent to layout (display:contents) so that the rows share the slack directly.
+   While the build measures a page it adds the class "measure", which switches the stretching off, so the
+   spare-room figure it prints is the real one. */
+.ls .lcols>div{display:flex;flex-direction:column}
+.ls .lcols section,.ls .lcols ul.ck{display:contents}
+.pg.ls:not(.measure) .lcols{flex:1 1 auto}
+.pg.ls:not(.measure) .lcols li{flex:1 1 auto}
+.ls h2{font-size:15pt;margin:.07in 0 0}
+.ls .lfoot{display:flex;justify-content:space-between;font:600 7.6pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.13em;color:#555;border-top:.5pt solid #9a9a9a;padding-top:.06in;margin-top:.1in}
+/* The supply list: one row per item, with how long it keeps and a box for the date.
+   Three columns: tick boxes, words, date boxes. The rules run under the words only, so no rule
+   comes near a box, and the boxes in a column never sit closer than --dgap.
+   --dw, --dbox  outside width and height of a date box: sized for a wet-erase marker
+   --dgap        clear space between one date box and the next (a one-line row is --dbox + --dgap tall)
+   --tbox        outside size of a tick box
+   --tick        width kept for the tick box      --dcol  width kept for the date box */
+.supply{--dw:.98in;--dbox:.39in;--dgap:.11in;--tbox:.22in;--tick:.32in;--dcol:1.06in}
+.supply .lh{display:flex;align-items:flex-end;font:700 8.6pt/1.1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.07em;color:#555;padding:.06in 0 0 var(--tick)}
+.supply .lh span:first-child{flex:1;margin-right:calc(var(--dcol) - var(--dw));padding-bottom:.015in;border-bottom:.75pt solid var(--green2);font-size:11.6pt;letter-spacing:.05em;color:var(--green)}
+.supply .lh span:last-child{width:var(--dw);flex:none;text-align:center;padding-bottom:.015in}
+.supply ul.ck{margin:0}
+.supply ul.ck li{display:block;position:relative;margin:0 var(--dcol) 0 var(--tick);padding:.03in 0;text-indent:0;min-height:calc(var(--dbox) + var(--dgap));align-content:center;line-height:1.14;text-wrap:pretty;border-bottom:.4pt solid #c9c9c9}
+.supply ul.ck li>span{display:inline}
+.supply ul.ck li>em{font-size:9.2pt;line-height:1.1;color:#444}
+.supply ul.ck li::before,.supply ul.ck li::after{box-sizing:border-box;position:absolute;top:50%;transform:translateY(-50%);margin:0;border-radius:2pt}
+.supply ul.ck li::before{left:calc(-1 * var(--tick));width:var(--tbox);height:var(--tbox);border-width:1.1pt}
+.supply ul.ck li::after{content:"";right:calc(-1 * var(--dcol));width:var(--dw);height:var(--dbox);border:.8pt solid #777;background:#fff}
+/* notes on the last side: the booklet's box styles, set larger for a letter sheet */
+.ls .how.own{margin-top:.01in}
+.ls .tip,.ls .warn,.ls .tw{font-size:11.8pt;line-height:1.32;padding:.11in .17in .12in;margin:.16in 0 0}
+.ls .tip .t,.ls .warn .t,.ls .tw>b{font-size:14.5pt;margin-bottom:.04in}
+.ls .tip ul,.ls .warn ul{padding-left:.17in}
+.ls .tip li,.ls .warn li{margin:.035in 0}
+.ls .tip .f{min-height:.42in;margin-top:.02in}
+
+/* ---------- home-print edition: each half-letter page enlarged onto a portrait letter page ---------- */
+/* 1.28 x 8.5 in = 10.88 in tall, 7.04 in wide: centred, it keeps every page's own margins and leaves
+   at least .44 in to the sheet edge, which no desk printer clips. Type comes out at about 14 pt. */
+.lp{width:8.5in;height:11in;display:flex;align-items:center;justify-content:center;overflow:hidden;break-after:page}
+.lp:last-of-type{break-after:auto}
+.lp .pg{zoom:1.28}

@@ -1,0 +1,97 @@
+{{/* Cover: one folded letter sheet, printed in one ink on coloured stock.
+      c1 front, c2 inside front, c3 inside back, c4 back. */}}
+
+{{define "c1"}}
+<div class="made"><span>Local woodchuck know-how from central Vermont</span></div>
+<div class="title">Emergency<br>preparedness<br>workbook</div>
+<div class="band"><small>Surviving a</small>two-week power outage</div>
+<p class="sub2">Know your power, water, heat and food before the lights go out.</p>
+<div class="grow"></div>
+<div class="art"><img src="{{img "groundhog-cover.png"}}" alt="A woodchuck standing up in a meadow"></div>
+<div class="bar"><span>Know your systems</span><span>Practical advice from local emergency managers</span></div>
+{{end}}
+
+
+{{define "c2"}}
+<header class="hd"><div><h1>Know your town</h1><p>Every town does this differently. Call the town office or check its website, and write down what you learn. “We don’t have one” is worth knowing too.</p></div></header>
+<div class="f"><span>Our town</span><i></i><span>Town office phone</span><i class="l"></i></div>
+<h2>Shelter</h2>
+<div class="o"><span>Does our town have an emergency shelter?</span><span><b class="cb"></b>yes</span><span><b class="cb"></b>no</span></div>
+<div class="f"><span>Where is it?</span><i></i></div>
+<div class="f"><span>If there is none, the nearest shelter or warming place is</span><i></i></div>
+<div class="f"><span>Can we bring pets?</span><span><b class="cb"></b>yes</span><span><b class="cb"></b>no</span><span style="margin-left:.08in">How will we hear it is open?</span><i></i></div>
+<h2>Who to call when it is not a 911 emergency</h2>
+<div class="f"><span>Emergency Management Director</span><i></i><span>phone</span><i class="l"></i></div>
+<div class="f"><span>Fire department</span><i></i><span>phone</span><i class="l"></i></div>
+<div class="f"><span>Ambulance or rescue squad</span><i></i><span>phone</span><i class="l"></i></div>
+<div class="f"><span>Police:</span><span><b class="cb"></b>State Police</span><span><b class="cb"></b>sheriff</span><span><b class="cb"></b>town</span><span style="margin-left:.06in">phone</span><i></i></div>
+<div class="f"><span>Road crew: washouts, trees down</span><i></i><span>phone</span><i class="l"></i></div>
+<h2>Where the town posts news</h2>
+<div class="o"><span><b class="cb"></b>Front Porch Forum</span><span><b class="cb"></b>town website</span><span><b class="cb"></b>Facebook</span><span><b class="cb"></b>email list</span><span><b class="cb"></b>notice board</span></div>
+<div class="f"><span>Web address or page name</span><i></i></div>
+<div class="o"><span><b class="cb"></b>We are signed up for VT-Alert for our town at <b>vtalert.gov</b></span></div>
+<h2>Around town</h2>
+<div class="f"><span>Where can we get sand for the driveway?</span><i></i></div>
+<div class="f"><span>Is there a neighbor-help or check-in program?</span><i></i></div>
+<div class="f"><span>Our neighborhood or zone contact, if the town has them</span><i></i></div>
+<div class="f"><span>Roads near us that flood or wash out first</span><i></i></div>
+<div class="f"><span>Nearest hospital</span><i></i><span>phone</span><i class="l"></i></div>
+<div class="f"><span>Nearest place to warm up or charge a phone</span><i></i></div>
+{{end}}
+
+
+{{define "c3"}}
+<header class="hd"><div><h1>Home map &amp; shutoffs</h1><p>Sketch the house and yard, then mark where things are. In an emergency, anyone should be able to find them from this page.</p></div></header>
+<div class="map"><svg viewBox="0 0 464 448" xmlns="http://www.w3.org/2000/svg">{{dotgrid 29 28 16}}</svg></div>
+<h3>Mark these on the map</h3>
+<div class="legend">
+  <span><b>E</b>Electric panel and main breaker</span><span><b>W</b>Main water shutoff</span>
+  <span><b>F</b>Fuel shutoff: oil or propane</span><span><b>G</b>Generator spot, 20 feet out</span>
+  <span><b>X</b>Fire extinguishers</span><span><b>+</b>First aid kit</span>
+  <span><b>B</b>Outage bucket, flashlights</span><span><b>S</b>Septic tank cover</span>
+  <span><b>P</b>Well head or pump</span><span><b>M</b>Where we meet outside</span>
+</div>
+<h3>In words, in case the sketch is not enough</h3>
+<div class="f"><span>Electric main</span><i></i></div>
+<div class="f"><span>Water main</span><i></i></div>
+<div class="f"><span>Fuel shutoff</span><i></i></div>
+{{end}}
+
+
+{{define "c4"}}
+<div class="big"><div class="nine">911</div><div class="say">Fire · Ambulance · Police<br>Any emergency</div></div>
+<div class="f" style="margin-top:.04in"><span><b>Tell them where you are.</b> Our 911 address:</span><i></i></div>
+<div class="f"><i></i></div>
+<h2>Vermont</h2>
+{{template "vt-numbers"}}
+<h2>Our town, for non-emergencies</h2>
+<div class="f"><span>Fire department</span><i></i></div>
+<div class="f"><span>Ambulance</span><i></i></div>
+<div class="f"><span>Police</span><i></i></div>
+<div class="f"><span>Electric utility</span><i></i></div>
+<div class="f"><span>Fuel dealer</span><i></i></div>
+<div class="f"><span>Nearest emergency shelter</span><i></i></div>
+<h2>Our people</h2>
+<div class="f"><span>Neighbor</span><i></i></div>
+<div class="f"><span>Doctor</span><i></i></div>
+<div class="f"><span>In case of emergency, call</span><i></i></div>
+<div class="f"><span>Out-of-state contact</span><i></i></div>
+<div class="f"><span>Where our family meets</span><i></i></div>
+<p class="n">{{template "vt-alert"}}</p>
+<div class="credit">{{template "credit-text" .}}</div>
+{{end}}
+
+
+{{/* Blocks shared by the booklet and the website (templates/site.html). */}}
+{{define "vt-numbers"}}
+<div class="nums">
+  <b>2-1-1</b><span>Vermont 211: shelter, food and other help</span>
+  <b>5-1-1</b><span>Road and travel conditions</span>
+  <b>9-8-8</b><span>Mental health crisis line</span>
+  <b>800-222-1222</b><span>Poison Center</span>
+</div>
+{{end}}
+
+{{define "credit-text"}}<b>Local woodchuck know-how from central Vermont.</b> Written by James McGuire, Emergency Management Coordinator, and Brenda Field, Emergency Management Director, Town of Tunbridge, and Ari Lattanzi, Regional Planner, Two Rivers-Ottauquechee Regional Commission (TRORC). Special thanks to Kevin Geiger of TRORC for input. Cover illustration from a photograph by James McGuire. {{.Edition}}.{{end}}
+
+{{define "vt-alert"}}<b>VT-Alert:</b> sign up at <a href="https://vtalert.gov">vtalert.gov</a> and choose your towns and counties and the alerts you want: weather and disasters, traffic and infrastructure, health and hazmat.{{end}}

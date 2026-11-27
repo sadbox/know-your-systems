@@ -1,0 +1,137 @@
+{{/* The website. Written to <site>/ by `go run . -site site`; see site.go. It is a place to get the
+      PDFs, not a place to fill anything in: the workbook has to work with the power and internet out.
+      Text shared with the print comes from the named blocks in interior.html, cover.html,
+      sheet.html and lists.html. Only the wording around it lives here. */}}
+
+{{define "site-head"}}<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#f9c995">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch.png">
+<link rel="preload" href="assets/fonts/barlow-condensed-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+{{end}}
+
+{{define "site-share-tags"}}
+<meta name="description" content="A free workbook and supply list from central Vermont emergency managers for getting a household through a two-week power outage. Print it at home.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Emergency Preparedness Workbook: Surviving a Two-Week Power Outage">
+<meta property="og:description" content="Know your power, water, heat and food before the lights go out. Free to print at home.">
+{{if .URL}}<meta property="og:url" content="{{.URL}}">
+<meta property="og:image" content="{{.URL}}assets/share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Emergency Preparedness Workbook: Surviving a two-week power outage. A woodchuck in a meadow.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="{{.URL}}">{{end}}
+{{end}}
+
+{{define "site-foot"}}
+<footer class="site-foot">
+  <div class="wrap">
+    <p><b>This is our best advice, not a rulebook.</b> You know your house, your family and your needs best.</p>
+    <p class="fine">{{template "credit-text" .}}</p>
+  </div>
+  <div class="bar"><span>Know your systems</span><span>Practical advice from local emergency managers</span></div>
+</footer>
+</body>
+</html>
+{{end}}
+
+
+{{define "site-index"}}{{template "site-head"}}
+<title>Emergency Preparedness Workbook: Surviving a Two-Week Power Outage</title>
+{{template "site-share-tags" .}}
+</head>
+<body>
+<header class="cover">
+  <div class="wrap cover-grid">
+    <div class="cover-text">
+      <p class="made"><span>Local woodchuck know-how from central Vermont</span></p>
+      <h1 class="title">Emergency preparedness workbook</h1>
+      <p class="band"><small>Surviving a</small>Two-week power outage</p>
+      <p class="sub">Know your power, water, heat and food before the lights go out.</p>
+      <div class="cta">
+        <a class="btn" href="{{.Workbook.File}}">Get the workbook <span>PDF</span></a>
+        <a class="btn alt" href="{{.Supply.File}}">Get the supply list <span>PDF</span></a>
+      </div>
+      <p class="free">Free. Print it now, on ordinary letter paper, so you have it when the power and the internet are out.</p>
+    </div>
+    <div class="art"><img src="assets/groundhog-cover.png" width="2048" height="1918" alt="A woodchuck standing up in a meadow"></div>
+  </div>
+  <div class="bar"><span>Know your systems</span><span>Practical advice from local emergency managers</span></div>
+</header>
+
+<main>
+<section class="wrap block">
+  <h2>Why two weeks</h2>
+  {{template "kys-intro"}}
+</section>
+
+<section class="wrap block" id="print">
+  <h2>Print it at home</h2>
+  <div class="cards">
+    <article class="card">
+      <h3>The workbook</h3>
+      <p class="facts">{{.Workbook.Pages}} letter pages · PDF, {{.Workbook.Size}}</p>
+      <p>Room to write on every page: your shutoffs, your phone numbers, your generator, your plan. Print it single- or double-sided at actual size. There is nothing to fold or staple; clip it together or put it in a binder.</p>
+      <a class="btn" href="{{.Workbook.File}}">Download the workbook</a>
+    </article>
+    <article class="card">
+      <h3>The two-week supply list</h3>
+      <p class="facts">{{.Supply.Pages}} letter pages · PDF, {{.Supply.Size}}</p>
+      <p>What to keep on hand for two weeks, and how long each thing keeps. Tick each item in pencil and write the date you bought it. Take it to the store with you.</p>
+      <a class="btn" href="{{.Supply.File}}">Download the supply list</a>
+    </article>
+  </div>
+  <p class="n">Keep the printed copy where everyone can find it: in your outage bucket, a kitchen drawer, or with the flashlights. A phone or a website is no help once the battery is dead.</p>
+</section>
+
+<section class="wrap block">
+  <h2>How to use this workbook</h2>
+  {{template "kys-how"}}
+</section>
+
+<section class="wrap block">
+  <h2>What’s inside</h2>
+  <p class="n">Page numbers match the printed workbook.</p>
+  {{template "kys-toc"}}
+</section>
+
+<section class="wrap block numbers">
+  <h2>Numbers to know in Vermont</h2>
+  <div class="big"><div class="nine">911</div><div class="say">Fire · Ambulance · Police<br>Any emergency</div></div>
+  {{template "vt-numbers"}}
+  <p class="n">{{template "vt-alert"}}</p>
+</section>
+</main>
+{{template "site-foot" .}}
+{{end}}
+
+
+{{/* The picture shown when someone shares a link to the site: 1200 x 630 px. */}}
+{{define "site-share"}}
+<style>
+html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#f9c995;color:#000}
+.s{display:grid;grid-template-columns:1fr 470px;height:630px;box-sizing:border-box;padding:46px 40px 0 64px}
+.made{border-top:6px solid #000;padding-top:16px;margin:0}
+.made span{display:inline-block;border:3px solid #000;padding:7px 14px 6px;font:800 21px/1 "Barlow Condensed";text-transform:uppercase;letter-spacing:.13em}
+.t{font:800 96px/.87 "Barlow Condensed";text-transform:uppercase;margin:22px 0 0 -4px}
+.b{background:#000;color:#f9c995;font:800 54px/1 "Barlow Condensed";text-transform:uppercase;letter-spacing:.035em;padding:14px 18px 16px;margin:24px 0 0 -4px;white-space:nowrap}
+.b small{display:block;font:700 23px/1 "Barlow Condensed";letter-spacing:.2em;margin-bottom:6px}
+.a{align-self:end;line-height:0}.a img{width:100%}
+</style>
+<div class="s">
+  <div>
+    <p class="made"><span>Local woodchuck know-how from central Vermont</span></p>
+    <div class="t">Emergency<br>preparedness<br>workbook</div>
+    <div class="b"><small>Surviving a</small>Two-week power outage</div>
+  </div>
+  <div class="a"><img src="{{img "groundhog-cover.png"}}" alt=""></div>
+</div>
+{{end}}
