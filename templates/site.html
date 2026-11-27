@@ -193,7 +193,7 @@ html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#f9c995;
     <h2>Paper and tools</h2>
     <dl class="kit-list">
       <dt>Cover</dt>
-      <dd>67 lb vellum bristol cover stock in light orange, printed in black only. It is stiff enough to protect the pages and still folds cleanly once scored.</dd>
+      <dd>67 lb vellum bristol cover stock in any light color (we usually use light orange), printed in black only. It is stiff enough to protect the pages and still folds cleanly once scored.</dd>
       <dt>Inside pages and supply list</dt>
       <dd>Heavy, bright white letter paper with a little texture, printed in full color. Look for 28 lb, acid-free, so it lasts in a drawer for years; heavy enough that ink doesn’t show through; and with a little tooth, so pencil writes well on it. We use Staples Premium Bright White 28 lb; any paper like it will do.</dd>
       <dt>Supply list</dt>
@@ -213,7 +213,7 @@ html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#f9c995;
       <li><b>Staple twice</b> through the fold. Open the folded booklet a little and drape it over the stapler’s slanted saddle, outside up, with the fold under the stapling head. Put in two staples, each about 2 in from the top or bottom edge; their legs close on the middle pages.</li>
       <li><b>Trim the open edge.</b> Once it’s folded, the inside sheets stick out a little past the cover at the open edge, the middle ones most. Lay the closed booklet in the guillotine with the fold against the back fence, clamp it, and cut the open edge square, taking off no more than ⅛ in. Every page has more than 0.4 in of margin on that edge, so the trim cuts nothing printed.</li>
     </ol>
-    <p class="n">All content sits at least 0.3 in from the sheet edges, so an ordinary office printer won’t clip it. No cover stock? Print the booklet on plain paper from one file (below).</p>
+    <p class="n">All content sits at least 0.3 in from the sheet edges, so an ordinary office printer won’t clip it.</p>
   </section>
 
   <section class="block">
@@ -227,15 +227,26 @@ html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#f9c995;
   </section>
 
   <section class="block">
-    <h2>The files</h2>
+    <h2>The proof</h2>
     <div class="cards">
-      {{template "kit-card" (kit "Cover" .Kit.cover "sides" "<p>Black only, for light orange cover stock.</p>")}}
+      {{template "kit-card" (kit "Proof" .Kit.proof "pages" "<p>Every booklet page in reading order at 5.5 × 8.5 in, for reading and checking on screen. The cover pages are tinted to suggest the stock. Not for printing.</p>")}}
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Files for the booklet and laminated list</h2>
+    <div class="cards">
+      {{template "kit-card" (kit "Cover" .Kit.cover "sides" "<p>Black only, for light colored cover stock.</p>")}}
       {{template "kit-card" (kit "Interior" .Kit.interior "sides" "<p>Full color, six sheets.</p>")}}
-      {{template "kit-card" (kit "Supply list" .Kit.laminated "pages" "<p>Two sheets, worded for a laminated copy and a marker.</p>")}}
-      {{template "kit-card" (kit "Booklet on plain paper" .Kit.booklet "sides" "<p>Cover and interior in one file, with the light orange printed in. For plain white paper when you have no cover stock.</p>")}}
-      {{template "kit-card" (kit "Cover mock-up" .Kit.mockup "sides" "<p>The cover with the light orange printed behind it, for a test copy on white paper. Never print it on orange stock.</p>")}}
-      {{template "kit-card" (kit "Proof" .Kit.proof "pages" "<p>Every booklet page in reading order at 5.5 × 8.5 in, for reading on screen.</p>")}}
-      {{template "kit-card" (kit "Workbook, letter size" .Workbook "pages" "<p>Every page enlarged onto its own letter page, worded for loose sheets. Nothing to fold or staple.</p>")}}
+      {{template "kit-card" (kit "Supply list" .Kit.laminated "pages" "<p>Two sheets, worded for a laminated copy and a wet-erase marker.</p>")}}
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Letter size, for printing at home</h2>
+    <p class="n">The same files the website offers: plain letter paper on any desk printer, nothing to fold, staple or laminate.</p>
+    <div class="cards">
+      {{template "kit-card" (kit "Workbook, letter size" .Workbook "pages" "<p>Every page enlarged onto its own letter page, worded for loose sheets.</p>")}}
       {{template "kit-card" (kit "Supply list, letter size" .Supply "pages" "<p>Worded for pencil on plain paper.</p>")}}
     </div>
   </section>

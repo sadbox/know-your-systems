@@ -41,8 +41,6 @@ edits. Its fit check can differ from the container's by a few hundredths of an i
 | `out/know-your-systems-interior.pdf` | Inside pages laid out as printer spreads. Six letter sheets, twelve sides. Full color. |
 | `out/know-your-systems-supply-list.pdf` | The laminated two-week supply list: two sheets, four sides. Sheet 1: food, water and fuel, then the Medical and Household lists. Sheet 2: Hardware list, then the outage bucket, safety notes and "Anything else". A date box for each item, and blank rows at the end of every section. |
 | `out/know-your-systems-proof.pdf` | Every booklet page in reading order at 5.5 x 8.5 in, for review on screen. Cover pages are tinted light orange here to suggest the stock; the cover PDF itself has no tint. |
-| `out/know-your-systems-cover-mockup.pdf` | The cover again, with the light orange printed behind it. For a test copy on white stock only; pair it with the interior file. Do not print it on orange stock. |
-| `out/know-your-systems-booklet.pdf` | Cover and interior in one file, for printing the whole booklet on plain white paper: seven letter sheets, landscape, two-sided, **flip on short edge**, actual size. The light orange is printed in on the cover sheet. Stack in print order, fold, staple. |
 
 ## Checks
 
@@ -83,7 +81,7 @@ on every push to `main`; `site/` and `out/` are not committed. For a new edition
 named blocks shared with the booklet (`kys-intro`, `kys-how`, `kys-toc`, `vt-numbers`, `vt-alert`,
 `credit-text`); only the surrounding web wording is in
 `templates/site.html`. Styles are `templates/site.css`.
-Every print file (the proof, cover, interior, booklet, cover mock-up and laminated list) is on the print
+Every print file (the cover, interior, laminated list, proof and the two letter-size files) is on the print
 kit, https://knowyoursystems.org/print-kit/ (`kitPath` in site.go), linked from the landing page's "Make
 copies for your town". It has the paper and tools we use, how to print and bind the booklet, and the
 commit the files were built from. Its old unlisted address, `/kit-8db13109/`, forwards there.
@@ -92,7 +90,7 @@ commit the files were built from. Its old unlisted address, `/kit-8db13109/`, fo
 
 The print kit page (`site-kit` in `templates/site.html`) is the full how-to; keep the two in step.
 
-1. Cover: black ink on 67 lb light orange vellum bristol, landscape, two-sided, **flip on short edge**,
+1. Cover: black ink on 67 lb vellum bristol in any light color (we usually use light orange), landscape, two-sided, **flip on short edge**,
    actual size (no "fit to page").
 2. Interior: full color on 28 lb bright white with a little tooth for pencil, acid-free (we use Staples
    Premium Bright White 28 lb), landscape, two-sided, **flip on short edge**, actual size.
