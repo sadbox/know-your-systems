@@ -1,0 +1,9 @@
+#!/bin/sh
+# Prints the base image's tag, made from base/Dockerfile itself: the Chromium version it pins and
+# a hash of its contents, e.g. chromium-156.0.8078.108-3f2a9c1b2d4e. Any change to the file is a
+# new tag, so a tag always names one build of it. ./kys and base.yaml both use this.
+set -eu
+cd "$(dirname "$0")"
+version=$(sed -n 's/^ARG CHROMIUM=//p' Dockerfile)
+hash=$(git hash-object Dockerfile | cut -c1-12)
+echo "chromium-${version%%-*}-${hash}"

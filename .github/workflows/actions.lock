@@ -13,15 +13,18 @@ workflows:
         - 'sadbox/ci@v0.7.0'
     '.github/workflows/checks.yaml':
         - 'actions/checkout@v7.0.1'
+        - 'docker/login-action@v4.8.0'
     '.github/workflows/ci.yaml':
         - 'actions/checkout@v7.0.1'
         - 'actions/upload-artifact@v7.0.2'
+        - 'docker/login-action@v4.8.0'
     '.github/workflows/dep-review-trigger.yaml': []
     '.github/workflows/dep-review.yaml': []
     '.github/workflows/pages.yaml':
         - 'actions/checkout@v7.0.1'
         - 'actions/deploy-pages@v5.0.1'
         - 'actions/upload-pages-artifact@v5.0.0'
+        - 'docker/login-action@v4.8.0'
 dependencies:
     'actions/checkout@v7.0.1':
         ref: 'v7.0.1'

@@ -3,10 +3,11 @@ name: base
 # The build container's base image (base/Dockerfile: Debian, Chromium,
 # poppler, CA certificates), ghcr.io/sadbox/know-your-systems-base. On a PR
 # that changes it: built and smoke-tested on both platforms. On main: the
-# same, then published as :latest and sha-<7> (provenance and SBOM). The
-# generator's Dockerfile starts from it by digest; Dependabot (docker)
-# moves that digest after a publish. It is the only workflow that reaches
-# snapshot.debian.org.
+# same, then published as :latest, sha-<7> and its content tag (base/tag:
+# chromium-<version>-<hash of base/Dockerfile>), with provenance and an
+# SBOM. ./kys finds the base by that content tag, so a Chromium bump is one
+# edit to base/Dockerfile; until this publishes it, ./kys builds it. This
+# is the only workflow that reaches snapshot.debian.org.
 on:
   pull_request:
     paths:
@@ -131,14 +132,26 @@ jobs:
         with:
           image: ghcr.io/sadbox/know-your-systems-base
 
-      - name: Point :latest and sha-<7> at both platforms
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+
+      # The content tag is never moved: an existing one already names a
+      # build of this exact base/Dockerfile.
+      - name: Point :latest, sha-<7> and the content tag at both platforms
         env:
           NEWER: ${{ steps.newer.outputs.newer }}
         run: |
           ref=ghcr.io/sadbox/know-your-systems-base
+          content=$(base/tag)
           amd64=$(cat "$RUNNER_TEMP/digests/base-digest-ubuntu-26.04/digest.txt")
           arm64=$(cat "$RUNNER_TEMP/digests/base-digest-ubuntu-26.04-arm/digest.txt")
           tags=(-t "${ref}:sha-${GITHUB_SHA::7}")
           if [ "$NEWER" = true ]; then tags+=(-t "${ref}:latest"); fi
+          if docker buildx imagetools inspect "${ref}:${content}" >/dev/null 2>&1; then
+            echo "${ref}:${content} already exists; left as it is"
+          else
+            tags+=(-t "${ref}:${content}")
+          fi
           docker buildx imagetools create "${tags[@]}" "${ref}@${amd64}" "${ref}@${arm64}"
           docker buildx imagetools inspect "${ref}:sha-${GITHUB_SHA::7}" | head -3 >> "$GITHUB_STEP_SUMMARY"

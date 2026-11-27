@@ -1,8 +1,9 @@
 # The build container's base: Debian with a pinned Chromium (the PDFs), poppler (the visual diff)
 # and CA certificates (the link check), published as ghcr.io/sadbox/know-your-systems-base by
-# .github/workflows/base.yaml. The generator's Dockerfile starts from it by digest, so everyday
-# builds, deploys and checks pull it from GHCR and never touch snapshot.debian.org; only a change
-# here does.
+# .github/workflows/base.yaml under a tag made from this file (base/tag). ./kys finds it by that
+# tag, so everyday builds, deploys and checks pull it from GHCR and never touch
+# snapshot.debian.org; only a change here does (./kys builds it until base.yaml publishes it).
+# Updating Chromium is one edit here, in one pull request.
 # Chromium from Debian, pinned three ways so a rebuild gets the same browser:
 # the base image by digest, the package lists by a snapshot.debian.org date
 # (nothing comes from the live archive),
