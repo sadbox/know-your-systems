@@ -70,7 +70,7 @@ Two more PDFs are built for anyone to print on a desk printer. The website offer
 | `out/know-your-systems-workbook-letter.pdf` | Every booklet page in reading order, enlarged 1.28x onto its own portrait letter page (about 14 pt type). Print single- or double-sided; nothing to fold or staple. |
 | `out/know-your-systems-supply-list-letter.pdf` | The supply list worded for pencil on plain paper instead of a wet-erase marker on a laminated sheet. |
 
-The wording differences are `{{if .Home}}` blocks: the "how to use" line on the supply list and one line on the Food page.
+The wording differences are sheets-mode blocks, `{{if .Sheets}}…{{else}}…{{end}}`: pencil instead of a wet-erase marker on the supply list, the supply list's name on the Food page, and page names ("the Know your town page") where the booklet says "inside the front cover". Without `.Sheets` (workbook mode) the text is for the printed kit.
 The build fit-checks both home editions too.
 
 `-site` writes a static website to the directory you name: `index.html` (the landing page and downloads), `downloads/`
