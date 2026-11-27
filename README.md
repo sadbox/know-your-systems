@@ -109,9 +109,11 @@ repeat it. The check-up lists are in the booklet only (pages 12, 20 and 21).
 
 1. Print `know-your-systems-supply-list.pdf` on white stock, portrait, two-sided, **flip on long edge**,
    actual size. Pages 1 and 2 make sheet 1; pages 3 and 4 make sheet 2.
-2. Laminate each in a letter pouch (9 x 11 1/2 in), matte or dry-erase rather than glossy: they take a
-   marker better. Nothing needs trimming.
-3. Hand them out with a wet-erase marker. People tick a box and write the date they bought or replaced
+2. Laminate each in a matte letter pouch (9 x 11 1/2 in), not glossy: matte takes a wet-erase marker
+   better. Nothing needs trimming.
+3. Punch a grommet through the clear border in the top-left corner of each sheet and put the two
+   sheets on a metal ring.
+4. Hand them out with a wet-erase marker. People tick a box and write the date they bought or replaced
    the item; a damp cloth clears it.
 
 Each list side is three columns: tick boxes, words, date boxes. The rules run under the words only, so no
