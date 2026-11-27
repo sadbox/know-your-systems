@@ -227,18 +227,18 @@ html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#f9c995;
   </section>
 
   <section class="block">
+    <h2>The proof</h2>
+    <div class="cards">
+      {{template "kit-card" (kit "Proof" .Kit.proof "pages" "<p>Every booklet page in reading order at 5.5 × 8.5 in, for reading and checking on screen. The cover pages are tinted to suggest the stock. Not for printing.</p>")}}
+    </div>
+  </section>
+
+  <section class="block">
     <h2>Files for the booklet and laminated list</h2>
     <div class="cards">
       {{template "kit-card" (kit "Cover" .Kit.cover "sides" "<p>Black only, for light colored cover stock.</p>")}}
       {{template "kit-card" (kit "Interior" .Kit.interior "sides" "<p>Full color, six sheets.</p>")}}
       {{template "kit-card" (kit "Supply list" .Kit.laminated "pages" "<p>Two sheets, worded for a laminated copy and a wet-erase marker.</p>")}}
-    </div>
-  </section>
-
-  <section class="block">
-    <h2>The proof</h2>
-    <div class="cards">
-      {{template "kit-card" (kit "Proof" .Kit.proof "pages" "<p>Every booklet page in reading order at 5.5 × 8.5 in, for reading and checking on screen. The cover pages are tinted to suggest the stock. Not for printing.</p>")}}
     </div>
   </section>
 
