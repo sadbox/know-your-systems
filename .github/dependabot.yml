@@ -10,6 +10,18 @@ updates:
     cooldown:
       default-days: 3
 
+  # The build container's images (Dockerfile: Go, Debian), one PR for both.
+  # Chromium's version and the snapshot date beside it move by hand.
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    cooldown:
+      default-days: 3
+    groups:
+      docker:
+        patterns: ["*"]
+
   # No module dependencies today (standard library only); this keeps the go
   # line current and covers any that are added.
   - package-ecosystem: "gomod"

@@ -11,7 +11,15 @@ Commission).
 
 ## Build
 
-Needs Go (the version in `go.mod`) and Chrome or Chromium. No Go dependencies outside the standard library.
+    ./build                           # the PDFs to ./out and the website to ./site, in the pinned container
+
+Needs Docker. `./build` builds the `Dockerfile` (the generator, on Debian with a pinned Chromium) and runs it
+on this checkout, exactly as CI and the website's deploy do, so a page that fits here fits there. Arguments
+pass through, e.g. `./build -edition "March 2027"`.
+
+`go run .` also works, with Go (the version in `go.mod`) and your own Chrome or Chromium, for quick
+edits. Its fit check can differ from the container's by a few hundredths of an inch, so check with
+`./build` before a pull request. No Go dependencies outside the standard library.
 
     go run .                          # writes the five PDFs to ./out
     go run . -edition "March 2027"    # edition line in the back-cover credit (default: the EDITION file)

@@ -1,5 +1,5 @@
 # Publishes the website to GitHub Pages (https://knowyoursystems.org/) from
-# main: builds the PDFs and the site with Chrome on the runner, then deploys
+# main: builds the PDFs and the site in the pinned container (./build), then deploys
 # with GitHub's own Pages token. No secrets. Pages itself (source: Actions,
 # the custom domain, HTTPS) is set in homelab-configs tofu/github.
 name: pages
@@ -27,12 +27,8 @@ jobs:
       - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
-      - uses: actions/setup-go@v7.1.0
-        with:
-          go-version-file: go.mod
-          cache: false
       - name: Build the PDFs and the website
-        run: go run . -site site
+        run: ./build
       - uses: actions/upload-pages-artifact@v5.0.0
         with:
           path: site

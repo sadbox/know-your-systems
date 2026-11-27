@@ -1,0 +1,7 @@
+#!/bin/sh
+# Builds the PDFs (./out) and the website (./site) in the pinned container,
+# exactly as CI does. Arguments go to the generator, e.g. ./build -edition "March 2027".
+set -eu
+cd "$(dirname "$0")"
+docker build --quiet --tag kys:local . >/dev/null
+exec docker run --rm --user "$(id -u):$(id -g)" --volume "$PWD:/work" kys:local -site site "$@"
