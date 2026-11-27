@@ -10,8 +10,8 @@ updates:
     cooldown:
       default-days: 3
 
-  # The build container's images (Dockerfile: Go, Debian), one PR for both.
-  # Chromium's version and the snapshot date beside it move by hand.
+  # The generator's Go image (Dockerfile). Its base is base/Dockerfile's,
+  # below, found by ./kys.
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
@@ -21,6 +21,15 @@ updates:
     groups:
       docker:
         patterns: ["*"]
+
+  # The base image's Debian (base/Dockerfile). Chromium's version, poppler's
+  # and the snapshot date beside them move by hand.
+  - package-ecosystem: "docker"
+    directory: "/base"
+    schedule:
+      interval: "daily"
+    cooldown:
+      default-days: 3
 
   # No module dependencies today (standard library only); this keeps the go
   # line current and covers any that are added.

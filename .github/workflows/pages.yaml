@@ -23,10 +23,18 @@ jobs:
     timeout-minutes: 15
     permissions:
       contents: read
+      packages: read
     steps:
       - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
+      # The base image is private: read it from GHCR with the job's token.
+      # (If the pull fails anyway, ./kys builds the base itself.)
+      - uses: docker/login-action@v4.8.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
       - name: Build the PDFs and the website
         run: ./build
       - uses: actions/upload-pages-artifact@v5.0.0

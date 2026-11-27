@@ -1,7 +1,16 @@
 #!/bin/sh
 # Runs the generator in the pinned container (Dockerfile) on this checkout. Arguments go to it,
 # e.g. ./kys -links, ./kys -facts, ./kys -diff old-out. ./build is the usual way to build.
+#
+# The base image (base/Dockerfile) is found by its tag (base/tag): already here, else pulled
+# from GHCR (it's private: `docker login ghcr.io` first, as CI does), else built from
+# base/Dockerfile, which is the only step that reaches snapshot.debian.org.
 set -eu
 cd "$(dirname "$0")"
-docker build --quiet --tag kys:local . >/dev/null
+base="ghcr.io/sadbox/know-your-systems-base:$(base/tag)"
+if ! docker image inspect "$base" >/dev/null 2>&1 && ! docker pull --quiet "$base" >/dev/null 2>&1; then
+	echo "kys: $base isn't published yet (or this machine can't pull it): building it from base/Dockerfile" >&2
+	docker build --quiet --tag "$base" base >/dev/null
+fi
+docker build --quiet --build-arg "BASE=$base" --tag kys:local . >/dev/null
 exec docker run --rm --user "$(id -u):$(id -g)" --volume "$PWD:/work" kys:local "$@"
