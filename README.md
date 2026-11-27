@@ -90,10 +90,13 @@ commit the files were built from. Its old unlisted address, `/kit-8db13109/`, fo
 
 The print kit page (`site-kit` in `templates/site.html`) is the full how-to; keep the two in step.
 
-1. Cover: black ink on 67 lb vellum bristol in any light color (we usually use light orange), landscape, two-sided, **flip on short edge**,
-   actual size (no "fit to page").
+1. Cover: black ink on 67 lb vellum bristol in any light color (we usually use light orange), landscape,
+   actual size (no "fit to page"). Most printers can't duplex cover stock, so print it from the manual
+   tray one side at a time: page 1 (outside), then turn the sheet over **on its short edge** and print
+   page 2 (inside). Test one sheet: "Know your town" should back the front cover, right way up.
 2. Interior: full color on 28 lb bright white with a little tooth for pencil, acid-free (we use Staples
-   Premium Bright White 28 lb), landscape, two-sided, **flip on short edge**, actual size.
+   Premium Bright White 28 lb), landscape, two-sided, **flip on short edge**, actual size. This weight
+   normally goes through automatic duplex.
 3. Score the cover down the middle with a creaser and fold it on the score.
 4. Stack the six interior sheets in the order they print (page 24 | 1 on the outside, 12 | 13 in the middle),
    fold them and nest them in the cover. Drape the folded booklet over the saddle of a saddle stapler
