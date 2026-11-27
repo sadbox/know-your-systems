@@ -1,9 +1,8 @@
 #!/bin/sh
-# Builds the PDFs (./out) and the website (./site) in the pinned container,
-# exactly as CI does. Arguments go to the generator, e.g. ./build -edition "March 2027".
+# Builds the PDFs (./out) and the website (./site) in the pinned container, exactly as CI does.
+# Arguments go to the generator, e.g. ./build -edition "March 2027".
 set -eu
 cd "$(dirname "$0")"
-docker build --quiet --tag kys:local . >/dev/null
 # The commit the files were built from, for the print-kit page ("-dirty": uncommitted changes).
 commit=$(git describe --always --dirty 2>/dev/null || echo unknown)
-exec docker run --rm --user "$(id -u):$(id -g)" --volume "$PWD:/work" kys:local -site site -commit "$commit" "$@"
+exec ./kys -site site -commit "$commit" "$@"

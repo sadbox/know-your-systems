@@ -1,0 +1,7 @@
+#!/bin/sh
+# Runs the generator in the pinned container (Dockerfile) on this checkout. Arguments go to it,
+# e.g. ./kys -links, ./kys -facts, ./kys -diff old-out. ./build is the usual way to build.
+set -eu
+cd "$(dirname "$0")"
+docker build --quiet --tag kys:local . >/dev/null
+exec docker run --rm --user "$(id -u):$(id -g)" --volume "$PWD:/work" kys:local "$@"
