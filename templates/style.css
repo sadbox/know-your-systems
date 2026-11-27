@@ -201,7 +201,14 @@ ol.how li{margin:.022in 0}
 
 /* ---------- the laminated letter sheet (boxes and blanks sized for a wet-erase marker) ---------- */
 .pg.ls{width:8.5in;height:11in;padding:.38in .46in .3in;font-size:11.3pt;line-height:1.2}
-.ls .body{justify-content:flex-start}
+.ls .body{justify-content:flex-start;overflow:visible}   /* the woodchuck rises into the top margin; don't cut it off */
+/* The team punches a grommet through the top-left corner of each laminated sheet (seen from the
+   front). Keep that corner clear: on a front the heading starts to the right of it; on a back,
+   where the same corner is top right, the woodchuck moves to the left and the heading follows it. */
+.ls{--punch:.44in}
+.ls.supply-a .ltop>div:first-child,.ls.supply-c .ltop>div:first-child{padding-left:var(--punch)}
+.ls.supply-b .ltop,.ls.supply-d .ltop{justify-content:flex-start;gap:.16in}
+.ls.supply-b .wc,.ls.supply-d .wc{order:-1}
 .ls .ltop{display:flex;justify-content:space-between;align-items:flex-end;gap:.1in;border-bottom:2.5pt solid var(--green);padding-bottom:.05in}
 .ls .eyebrow{font:700 9pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.16em;color:var(--orange);margin-bottom:.05in}
 .ls h1{font:800 30pt/.95 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.012em;color:var(--green);margin:0 0 .02in}
