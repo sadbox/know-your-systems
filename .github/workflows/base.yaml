@@ -5,7 +5,7 @@ name: base
 # that changes it: built and smoke-tested on both platforms. On main: the
 # same, then published as :latest, sha-<7> and its content tag (base/tag:
 # chromium-<version>-<hash of base/Dockerfile>), with provenance and an
-# SBOM. ./kys finds the base by that content tag, so a Chromium bump is one
+# SBOM, and a GitHub build provenance attestation (the repository is public). ./kys finds the base by that content tag, so a Chromium bump is one
 # edit to base/Dockerfile; until this publishes it, ./kys builds it. This
 # is the only workflow that reaches snapshot.debian.org.
 on:
@@ -109,6 +109,8 @@ jobs:
     permissions:
       contents: read
       packages: write
+    outputs:
+      digest: ${{ steps.tag.outputs.digest }}
     steps:
       - uses: docker/setup-buildx-action@v4.4.1
         with:
@@ -139,6 +141,7 @@ jobs:
       # The content tag is never moved: an existing one already names a
       # build of this exact base/Dockerfile.
       - name: Point :latest, sha-<7> and the content tag at both platforms
+        id: tag
         env:
           NEWER: ${{ steps.newer.outputs.newer }}
         run: |
@@ -155,3 +158,37 @@ jobs:
           fi
           docker buildx imagetools create "${tags[@]}" "${ref}@${amd64}" "${ref}@${arm64}"
           docker buildx imagetools inspect "${ref}:sha-${GITHUB_SHA::7}" | head -3 >> "$GITHUB_STEP_SUMMARY"
+          digest=$(docker buildx imagetools inspect "${ref}:sha-${GITHUB_SHA::7}" --format '{{json .Manifest}}' | jq -r .digest)
+          echo "digest=${digest}" >> "$GITHUB_OUTPUT"
+
+  # GitHub artifact attestation (build provenance, signed through the
+  # workflow's OIDC token) for the multi-arch index publish pushed, also
+  # pushed to GHCR next to the image. Its own job, so only it holds
+  # id-token/attestations, and a failed attestation can be re-run without
+  # rebuilding or re-tagging. No storage record (that needs
+  # artifact-metadata: write). Verify with
+  #   gh attestation verify oci://ghcr.io/sadbox/know-your-systems-base:latest -R sadbox/know-your-systems
+  attest:
+    needs: [publish]
+    runs-on: ubuntu-26.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      id-token: write # sign the attestation (Sigstore, via the OIDC token)
+      attestations: write # store it in this repository's attestations
+      packages: write # push it to ghcr.io next to the image
+    steps:
+      - name: Login to GHCR
+        uses: docker/login-action@v4.8.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@v4.2.2
+        with:
+          subject-name: ghcr.io/sadbox/know-your-systems-base
+          subject-digest: ${{ needs.publish.outputs.digest }}
+          push-to-registry: true
+          create-storage-record: false
