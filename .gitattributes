@@ -1,0 +1,7 @@
+# The binary files this repository means to keep: sadbox/ci's lint
+# (binaries) fails on any other, and on one of these over 5 MiB. Declare a
+# new one here, by the narrowest pattern, in the change that adds it.
+art/groundhog-source.png binary
+assets/*.png binary
+assets/site/*.png binary
+assets/fonts/*.woff2 binary

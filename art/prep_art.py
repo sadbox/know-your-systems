@@ -11,8 +11,10 @@ Output: assets/groundhog-cover.png  ink only, as black with transparency, croppe
         assets/site/favicon.png, apple-touch.png   the spot on the cover colour, for the website
 Run   : uv run art/prep_art.py
 """
+import os
+
+import numpy as np
 from PIL import Image
-import numpy as np, os
 
 here = os.path.dirname(os.path.abspath(__file__))
 src = Image.open(os.path.join(here, 'groundhog-source.png')).convert('RGBA')
