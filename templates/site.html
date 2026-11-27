@@ -18,10 +18,10 @@
 {{end}}
 
 {{define "site-share-tags"}}
-<meta name="description" content="A free workbook and supply list from central Vermont emergency managers for getting a household through a two-week power outage. Print it at home.">
+<meta name="description" content="A free workbook and supply list from central Vermont emergency managers for getting a household through a two-week power outage. Ask us for a printed copy, or print it at home.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Emergency Preparedness Workbook: Surviving a Two-Week Power Outage">
-<meta property="og:description" content="Know your power, water, heat and food before the lights go out. Free to print at home.">
+<meta property="og:description" content="Know your power, water, heat and food before the lights go out. Ask us for a printed copy, or print it at home.">
 {{if .URL}}<meta property="og:url" content="{{.URL}}">
 <meta property="og:image" content="{{.URL}}assets/share.png">
 <meta property="og:image:width" content="1200">
@@ -57,10 +57,10 @@
       <p class="band"><small>Surviving a</small>Two-week power outage</p>
       <p class="sub">Know your power, water, heat and food before the lights go out.</p>
       <div class="cta">
-        <a class="btn" href="{{.Workbook.File}}">Get the workbook <span>PDF</span></a>
-        <a class="btn alt" href="{{.Supply.File}}">Get the supply list <span>PDF</span></a>
+        <a class="btn" href="#copy">Get a printed copy</a>
+        <a class="btn alt" href="#print">Print it yourself</a>
       </div>
-      <p class="free">Free. Print it now, on ordinary letter paper, so you have it when the power and the internet are out.</p>
+      <p class="free">Free. A website is no help with the power and the internet out, so get it on paper now.</p>
     </div>
     <div class="art"><img src="assets/groundhog-cover.png" width="2048" height="1918" alt="A woodchuck standing up in a meadow"></div>
   </div>
@@ -73,8 +73,22 @@
   {{template "kys-intro"}}
 </section>
 
+<section class="wrap block" id="copy">
+  <h2>Get in touch first</h2>
+  <div class="contact">
+    <p class="lede">We’d rather hand you a copy. Email us and we’ll print the workbook and a laminated supply list for you, and help you work through it.</p>
+    <a class="btn mail" href="mailto:info@knowyoursystems.org?subject=A%20printed%20workbook">info@knowyoursystems.org</a>
+    <p class="n">Tell us your name, your town and how many copies you need.</p>
+  </div>
+  <div class="contact towns">
+    <h3>Bring it to your town</h3>
+    <p>We’d love to work with your town to set up a workbook event or a day to hand out copies: at the town office, the library, the fire station. We especially like working with hardware and grocery stores, where people are already buying what’s on the supply list.</p>
+    <a class="btn alt mail" href="mailto:info@knowyoursystems.org?subject=An%20event%20in%20our%20town">Plan one with us</a>
+  </div>
+</section>
+
 <section class="wrap block" id="print">
-  <h2>Print it at home</h2>
+  <h2>Or print it at home</h2>
   <div class="cards">
     <article class="card">
       <h3>The workbook</h3>
@@ -89,7 +103,7 @@
       <a class="btn" href="{{.Supply.File}}">Download the supply list</a>
     </article>
   </div>
-  <p class="n">Keep the printed copy where everyone can find it: in your outage bucket, a kitchen drawer, or with the flashlights. A phone or a website is no help once the battery is dead.</p>
+  <p class="n">Keep the printed copy where everyone can find it: in your outage bucket, a kitchen drawer, or with the flashlights.</p>
 </section>
 
 <section class="wrap block">
