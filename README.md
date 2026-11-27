@@ -18,11 +18,14 @@ with a pinned Chromium) and runs it on this checkout, exactly as CI and the webs
 that fits here fits there. Arguments pass through, e.g. `./build -edition "March 2027"`.
 
 The base image is `ghcr.io/sadbox/know-your-systems-base` (private), tagged from `base/Dockerfile` itself
-(`base/tag`: the Chromium version and a hash of the file). `./kys` uses it if it's already here, pulls it
-from GHCR (after `docker login ghcr.io`; CI logs in with the job's token), or else builds it from
-`base/Dockerfile`. To update Chromium: in one pull request, move `SNAPSHOT` in `base/Dockerfile` to a
-later snapshot.debian.org date and `CHROMIUM`, `POPPLER` and `CA_CERTIFICATES` to the versions on it.
-CI builds that base, the visual diff shows what it changed, and on merge `base.yaml` publishes it.
+(`base/tag`: the Chromium version and a hash of the file). `./kys` pulls it from GHCR, and that is the
+only way it gets it: log in once with `gh auth token | docker login ghcr.io -u <you> --password-stdin`
+(the token needs `read:packages`: `gh auth refresh -s read:packages`). CI logs in with the job's token.
+
+To update Chromium: in one pull request, move `SNAPSHOT` in `base/Dockerfile` to a later
+snapshot.debian.org date and `CHROMIUM`, `POPPLER` and `CA_CERTIFICATES` to the versions on it, and build
+with `KYS_BUILD_BASE=1 ./build` (the new base isn't published until the merge). CI builds it the same way
+for a change to `base/`, the visual diff shows what it changed, and on merge `base.yaml` publishes it.
 
 `go run .` also works, with Go (the version in `go.mod`) and your own Chrome or Chromium, for quick
 edits. Its fit check can differ from the container's by a few hundredths of an inch, so check with
