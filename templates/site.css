@@ -95,6 +95,12 @@ ol.how li{margin:.5rem 0}
 .nums{display:grid;grid-template-columns:auto 1fr;gap:.35rem 1.1rem;align-items:baseline;margin:.6rem 0}
 .nums b{font:800 1.45rem/1.1 var(--head);letter-spacing:.02em;white-space:nowrap}
 
+/* ---------- get in touch ---------- */
+.contact{background:var(--sand);border-left:4px solid var(--orange);border-radius:0 4px 4px 0;padding:1.1rem 1.2rem 1.2rem;margin-top:.8rem;max-width:44rem}
+.contact .lede{margin-top:0}
+.btn.mail{text-transform:none;letter-spacing:.01em;font:700 1.15rem/1.2 "Atkinson Hyperlegible",Arial,sans-serif;overflow-wrap:anywhere}
+.contact .n{margin:.8rem 0 0}
+
 /* ---------- print-at-home cards ---------- */
 .cards{display:grid;gap:1.25rem;margin-top:.8rem}
 @media (min-width:760px){.cards{grid-template-columns:1fr 1fr}}
