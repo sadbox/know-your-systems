@@ -3,11 +3,10 @@
 # e.g. ./kys -links, ./kys -facts, ./kys -diff old-out. ./build is the usual way to build.
 #
 # The base image (base/Dockerfile: Debian, Chromium) is pulled from GHCR by its tag (base/tag).
-# It's private: log in first (gh auth token | docker login ghcr.io -u <you> --password-stdin,
-# with a token that has read:packages); CI logs in with the job's token. Pulling is the only way
-# to get it, with one exception: a change to base/Dockerfile isn't published until it's merged,
-# so for that change alone build it with KYS_BUILD_BASE=1 (the only step that reaches
-# snapshot.debian.org). CI sets that only when a change touches base/.
+# It's public, so no login is needed. Pulling is the only way to get it, with one exception: a
+# change to base/Dockerfile isn't published until it's merged, so for that change alone build it
+# with KYS_BUILD_BASE=1 (the only step that reaches snapshot.debian.org). CI sets that only when a
+# change touches base/.
 set -eu
 cd "$(dirname "$0")"
 base="ghcr.io/sadbox/know-your-systems-base:$(base/tag)"
@@ -17,8 +16,7 @@ if [ "${KYS_BUILD_BASE:-}" = 1 ]; then
 elif ! docker image inspect "$base" >/dev/null 2>&1 && ! docker pull --quiet "$base" >/dev/null; then
 	cat >&2 <<MSG
 kys: can't pull $base.
-  - Not logged in to GHCR? gh auth token | docker login ghcr.io -u <you> --password-stdin
-    (the token needs read:packages: gh auth refresh -s read:packages)
+  - Offline, or GHCR down? Try again later; nothing here builds it for you.
   - Changing base/Dockerfile? It isn't published until merged: KYS_BUILD_BASE=1 ./build
 MSG
 	exit 1
