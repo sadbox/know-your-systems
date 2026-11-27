@@ -1,40 +1,51 @@
 package main
 
-// The static website: one landing page with the home-print PDFs. Nothing is filled in online;
-// the workbook has to work with the power and the internet out. Text shared with the booklet
-// (the intro, the three questions, how to use it, the contents, the Vermont numbers, VT-Alert,
-// the credit) comes from the same templates, so the site never drifts from the print.
+// The static website: one landing page with the home-print PDFs, and an unlisted print-kit page
+// for the team. Nothing is filled in online; the workbook has to work with the power and the
+// internet out. Text shared with the booklet (the intro, the three questions, how to use it, the
+// contents, the Vermont numbers, VT-Alert, the credit) comes from the same templates, so the site
+// never drifts from the print.
 //
 //	<site>/index.html           landing page
 //	<site>/downloads/*.pdf      the two home-print PDFs
+//	<site>/<kitPath>/           the print kit: every print file, with how to print it
 //	<site>/assets/...           stylesheet, fonts, artwork, favicon, share image
-//
-// The team's print files (booklet spreads, cover, laminated list) are not published.
 
 import (
 	"bytes"
 	"fmt"
+	"html/template"
 	"io"
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 )
 
+// kitPath is the print kit's directory. It is linked from nowhere and asks search engines not to
+// index it, so only people given the link find it. That is all: anyone with the link can open it,
+// and nothing in it is private (the same content as the public PDFs, laid out for the printer).
+const kitPath = "kit-8db13109"
+
 type download struct {
-	File  string // path relative to the site root
+	File  string // path relative to the page that links it
 	Size  string // "1.2 MB"
-	Pages int
+	Pages int    // pages, or printed sides for a sheet laid out as spreads
 }
 
 type siteData struct {
+	Root     string // path from the page to the site root: "" or "../"
 	Edition  string
 	URL      string // absolute site URL with trailing slash, for share-card tags; empty leaves them out
+	Commit   string // the source's commit, on the print-kit page
+	Built    string // the build's date (UTC)
 	Workbook download
 	Supply   download
+	Kit      map[string]download // the print kit's files, by role
 }
 
-func (b *builder) writeSite(dir, outDir, name, siteURL string, workbookPages, supplyPages int) error {
-	for _, d := range []string{"", "assets", "assets/fonts", "downloads"} {
+func (b *builder) writeSite(dir, outDir, name, siteURL, commit string, sides map[string]int) error {
+	for _, d := range []string{"", "assets", "assets/fonts", "downloads", kitPath} {
 		if err := os.MkdirAll(filepath.Join(dir, d), 0o755); err != nil {
 			return err
 		}
@@ -54,38 +65,59 @@ func (b *builder) writeSite(dir, outDir, name, siteURL string, workbookPages, su
 	for _, f := range fonts {
 		copies[f] = filepath.Join("assets/fonts", filepath.Base(f))
 	}
-	data := siteData{Edition: b.edition, URL: siteURL}
-	for _, p := range []struct {
-		dst   *download
-		file  string
-		pages int
-	}{
-		{&data.Workbook, name + "-workbook-letter.pdf", workbookPages},
-		{&data.Supply, name + "-supply-list-letter.pdf", supplyPages},
-	} {
-		src := filepath.Join(outDir, p.file)
+	// pdf copies one PDF from outDir into the site under sub, and describes it for a page in dir
+	// (rel is that page's path back to the site root).
+	pdf := func(file, sub, rel string) (download, error) {
+		src := filepath.Join(outDir, file)
 		st, err := os.Stat(src)
 		if err != nil {
+			return download{}, err
+		}
+		copies[src] = filepath.Join(sub, file)
+		return download{File: rel + sub + "/" + file, Size: humanSize(st.Size()), Pages: sides[file]}, nil
+	}
+	data := siteData{Edition: b.edition, URL: siteURL, Commit: commit, Built: time.Now().UTC().Format("2006-01-02"), Kit: map[string]download{}}
+	if data.Workbook, err = pdf(name+"-workbook-letter.pdf", "downloads", ""); err != nil {
+		return err
+	}
+	if data.Supply, err = pdf(name+"-supply-list-letter.pdf", "downloads", ""); err != nil {
+		return err
+	}
+	for role, file := range map[string]string{
+		"proof": "proof", "cover": "cover", "interior": "interior", "booklet": "booklet",
+		"mockup": "cover-mockup", "laminated": "supply-list",
+	} {
+		if data.Kit[role], err = pdf(name+"-"+file+".pdf", kitPath, ""); err != nil {
 			return err
 		}
-		*p.dst = download{File: "downloads/" + p.file, Size: humanSize(st.Size()), Pages: p.pages}
-		copies[src] = p.dst.File
 	}
 	for src, dst := range copies {
 		if err := copyFile(src, filepath.Join(dir, dst)); err != nil {
 			return err
 		}
 	}
-	for tpl, file := range map[string]string{"site-index": "index.html"} {
-		var buf bytes.Buffer
-		if err := b.tpl.ExecuteTemplate(&buf, tpl, data); err != nil {
-			return fmt.Errorf("%s: %w", tpl, err)
-		}
-		if err := os.WriteFile(filepath.Join(dir, file), buf.Bytes(), 0o644); err != nil {
-			return err
-		}
+	if err := b.render("site-index", data, filepath.Join(dir, "index.html")); err != nil {
+		return err
 	}
-	return nil
+	// The kit page sits one level down: its links to the site and to every file go through "../".
+	kit := data
+	kit.Root = "../"
+	kit.Workbook.File = "../" + data.Workbook.File
+	kit.Supply.File = "../" + data.Supply.File
+	kit.Kit = map[string]download{}
+	for role, d := range data.Kit {
+		d.File = strings.TrimPrefix(d.File, kitPath+"/")
+		kit.Kit[role] = d
+	}
+	return b.render("site-kit", kit, filepath.Join(dir, kitPath, "index.html"))
+}
+
+func (b *builder) render(tpl string, data any, path string) error {
+	var buf bytes.Buffer
+	if err := b.tpl.ExecuteTemplate(&buf, tpl, data); err != nil {
+		return fmt.Errorf("%s: %w", tpl, err)
+	}
+	return os.WriteFile(path, buf.Bytes(), 0o644)
 }
 
 func humanSize(n int64) string {
@@ -137,4 +169,16 @@ func (b *builder) shareImage(chrome, dir string) error {
 	png, _ := filepath.Abs(filepath.Join(dir, "assets", "share.png"))
 	_, err = runChrome(chrome, "--screenshot="+png, "--window-size=1200,630", "--default-background-color=00000000", "file://"+tmp.Name())
 	return err
+}
+
+// kitCard is one file on the print-kit page (templates/site.html, "kit-card").
+type kitCard struct {
+	T    string        // title
+	D    download      // the file
+	Unit string        // "pages" or "sides"
+	Body template.HTML // how to print it: a literal written in the template
+}
+
+func kitCardOf(title string, d download, unit, body string) kitCard {
+	return kitCard{T: title, D: d, Unit: unit, Body: template.HTML(body)} //nolint:gosec // body is a literal in templates/site.html, never outside input
 }
