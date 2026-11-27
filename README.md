@@ -94,8 +94,8 @@ The print kit page (`site-kit` in `templates/site.html`) is the full how-to; kee
 
 1. Cover: black ink on 67 lb light orange vellum bristol, landscape, two-sided, **flip on short edge**,
    actual size (no "fit to page").
-2. Interior: full color on 28 lb bright white (Staples 28 lb: acid-free, heavy, a little tooth for
-   pencil), landscape, two-sided, **flip on short edge**, actual size.
+2. Interior: full color on 28 lb bright white with a little tooth for pencil, acid-free (we use Staples
+   Premium Bright White 28 lb), landscape, two-sided, **flip on short edge**, actual size.
 3. Score the cover down the middle with a creaser and fold it on the score.
 4. Stack the six interior sheets in the order they print (page 24 | 1 on the outside, 12 | 13 in the middle),
    fold them and nest them in the cover. Drape the folded booklet over the saddle of a saddle stapler
@@ -111,7 +111,7 @@ All content sits at least 0.3 in from the sheet edges, so an ordinary office pri
 Two letter sheets travel with the booklet. The supply list is on these sheets only; the booklet does not
 repeat it. The check-up lists are in the booklet only (pages 12, 20 and 21).
 
-1. Print `know-your-systems-supply-list.pdf` on white stock, portrait, two-sided, **flip on long edge**,
+1. Print `know-your-systems-supply-list.pdf` in full color on the same 28 lb paper, portrait, two-sided, **flip on long edge**,
    actual size. Pages 1 and 2 make sheet 1; pages 3 and 4 make sheet 2.
 2. Laminate each in a matte letter pouch (9 x 11 1/2 in), not glossy: matte takes a wet-erase marker
    better. Nothing needs trimming.
