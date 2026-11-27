@@ -100,6 +100,10 @@ ol.how li{margin:.5rem 0}
 .contact .lede{margin-top:0}
 .btn.mail{text-transform:none;letter-spacing:.01em;font:700 1.15rem/1.2 "Atkinson Hyperlegible",Arial,sans-serif;overflow-wrap:anywhere}
 .contact .n{margin:.8rem 0 0}
+.contact.towns{border-left-color:var(--green)}
+.contact h3{margin-top:0}
+.contact.towns p{margin:.3rem 0 1rem}
+.btn.alt.mail{font-family:var(--head);text-transform:uppercase;letter-spacing:.08em;font-size:1.2rem}
 
 /* ---------- print-at-home cards ---------- */
 .cards{display:grid;gap:1.25rem;margin-top:.8rem}
