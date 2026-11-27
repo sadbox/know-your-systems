@@ -58,7 +58,10 @@ on every push to `main`; `site/` and `out/` are not committed. For a new edition
 named blocks shared with the booklet (`kys-intro`, `kys-how`, `kys-toc`, `vt-numbers`, `vt-alert`,
 `credit-text`); only the surrounding web wording is in
 `templates/site.html`. Styles are `templates/site.css`.
-The booklet, cover and laminated list are not published on the site.
+The team's print files (the proof, cover, interior, booklet, cover mock-up and laminated list) are on an
+unlisted print-kit page, `site/kit-8db13109/` (`kitPath` in site.go), with how to print each and the commit
+they were built from. It is linked from nowhere and asks search engines not to index it; anyone with the
+link can open it, and nothing on it is private.
 
 ## Print
 
