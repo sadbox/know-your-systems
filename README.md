@@ -33,7 +33,7 @@ edits. Its fit check can differ from the container's by a few hundredths of an i
     go run . -edition "March 2027"    # edition line in the back-cover credit (default: the EDITION file)
     go run . -chrome /path/to/chrome  # if Chrome is not on PATH (or set $CHROME)
     go run . -allow-overflow          # while editing: build even if a page does not fit
-    go run . -cc-by-sa                # print the CC BY-SA 4.0 notice (back cover, website, print kit); off until every author agrees
+    go run . -cc-by-sa                # CC BY-SA 4.0 notice and the website's link to the source; off until every author agrees
 
 | File | What it is |
 |---|---|

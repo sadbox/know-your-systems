@@ -128,7 +128,8 @@
   <h2>Make copies for your town</h2>
   <p>Want to print a batch for your town{{if ccbysa}}, or adapt it{{end}}? The <a href="{{.KitPath}}/">print kit</a> has every file we print from, the paper we use, and how we fold and staple the booklet and laminate the supply list.</p>
   {{if ccbysa}}<p class="n">{{template "cc-by-sa"}}</p>{{end}}
-  <p class="n">The workbook is built from source on GitHub: <a href="{{.Repo}}">{{.RepoName}}</a>. Clone it to change the wording for your town and build your own PDFs.</p>
+  {{/* The source and any invitation to change the wording wait for the CC BY-SA license (-cc-by-sa). */}}
+  {{if ccbysa}}<p class="n">The workbook is built from source on GitHub: <a href="{{.Repo}}">{{.RepoName}}</a>. Clone it to change the wording for your town and build your own PDFs.</p>{{end}}
 </section>
 </main>
 {{template "site-foot" .}}
@@ -185,8 +186,8 @@ html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#f9c995;
 <main class="wrap">
   <p class="lede">Everything we print, and how we print, fold and staple it. Use it to make copies for your town.</p>
   {{if ccbysa}}<p class="n">{{template "cc-by-sa"}}</p>{{end}}
-  <p class="n">The PDFs are built from source: <a href="{{.Repo}}">{{.RepoName}}</a> on GitHub. Clone it to change the wording for your town and build your own; its README explains how.</p>
-  <p class="build">{{.Edition}} edition{{if .Commit}} · built from {{if commitURL .Commit}}<a href="{{.Repo}}/commit/{{.Commit}}"><code>{{.Commit}}</code></a>{{else}}<code>{{.Commit}}</code>{{end}}{{end}} on {{.Built}}</p>
+  {{if ccbysa}}<p class="n">The PDFs are built from source: <a href="{{.Repo}}">{{.RepoName}}</a> on GitHub. Clone it to change the wording for your town and build your own; its README explains how.</p>{{end}}
+  <p class="build">{{.Edition}} edition{{if .Commit}} · built from {{if and ccbysa (commitURL .Commit)}}<a href="{{.Repo}}/commit/{{.Commit}}"><code>{{.Commit}}</code></a>{{else}}<code>{{.Commit}}</code>{{end}}{{end}} on {{.Built}}</p>
 
   <section class="block">
     <h2>Paper and tools</h2>
