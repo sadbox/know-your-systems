@@ -443,8 +443,10 @@ func printPDF(chrome, htmlPath, pdfPath string) error {
 
 func runChrome(chrome string, args ...string) ([]byte, error) {
 	base := []string{"--headless=new", "--disable-gpu", "--hide-scrollbars", "--virtual-time-budget=4000"}
-	if os.Geteuid() == 0 {
-		base = append(base, "--no-sandbox") // Chrome refuses to run sandboxed as root (containers, CI)
+	// Chrome refuses to run sandboxed as root, and in the build container (Dockerfile) the
+	// container is the sandbox.
+	if os.Geteuid() == 0 || os.Getenv("KYS_CONTAINER") != "" {
+		base = append(base, "--no-sandbox")
 	}
 	cmd := exec.Command(chrome, append(base, args...)...)
 	var stdout, stderr bytes.Buffer

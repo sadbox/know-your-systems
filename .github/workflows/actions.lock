@@ -5,13 +5,11 @@ version: 'v0.0.3'
 workflows:
     '.github/workflows/ci.yaml':
         - 'actions/checkout@v7.0.1'
-        - 'actions/setup-go@v7.1.0'
     '.github/workflows/dep-review-trigger.yaml': []
     '.github/workflows/dep-review.yaml': []
     '.github/workflows/pages.yaml':
         - 'actions/checkout@v7.0.1'
         - 'actions/deploy-pages@v5.0.1'
-        - 'actions/setup-go@v7.1.0'
         - 'actions/upload-pages-artifact@v5.0.0'
 dependencies:
     'actions/checkout@v7.0.1':
@@ -24,11 +22,6 @@ dependencies:
         commit: 'sha1-368f82528645a54fb793d4d04e342629a3f51346'
         owner_id: 44036562
         repo_id: 438112499
-    'actions/setup-go@v7.1.0':
-        ref: 'v7.1.0'
-        commit: 'sha1-d8cbb8045d7f43706b9177cceb36c1f91a6644d5'
-        owner_id: 44036562
-        repo_id: 192624594
     'actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f':
         ref: 'v7.0.0'
         commit: 'sha1-bbbca2ddaa5d8feaa63e36b76fdaad77386f024f'
