@@ -22,6 +22,15 @@ updates:
       docker:
         patterns: ["*"]
 
+  # The base image's Debian (base/Dockerfile). Chromium's version, poppler's
+  # and the snapshot date beside them move by hand.
+  - package-ecosystem: "docker"
+    directory: "/base"
+    schedule:
+      interval: "daily"
+    cooldown:
+      default-days: 3
+
   # No module dependencies today (standard library only); this keeps the go
   # line current and covers any that are added.
   - package-ecosystem: "gomod"
