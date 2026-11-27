@@ -59,15 +59,19 @@ type doc struct {
 	single         bool     // one page per PDF page; otherwise two side by side on a letter sheet
 	tint           bool     // print the cover stock colour behind the cover pages
 	check          bool     // measure this one: fail the build if any page's content does not fit
-	zoom           bool     // home edition: each half-letter page enlarged onto its own portrait letter page
-	home           bool     // worded for printing at home on plain paper, not for the laminated or bound copy
+	zoom           bool     // each half-letter page enlarged onto its own portrait letter page
+	sheets         bool     // sheets mode (see pageData.Sheets)
 	sides          [][]page // one entry per printed side (or per page, when single)
 }
 
 type pageData struct {
 	Page    page
 	Edition string
-	Home    bool // the home-print edition: pencil, plain paper, no lamination
+	// Sheets is the mode of the home-print editions on the website: loose letter pages from a desk
+	// printer, written on in pencil. Without it (workbook mode) the text is for the printed kit: a
+	// folded, stapled booklet with a cover, and a laminated supply list for a wet-erase marker.
+	// Templates choose wording with {{if .Sheets}}...{{else}}...{{end}}.
+	Sheets bool
 }
 
 type builder struct {
@@ -147,8 +151,8 @@ func main() {
 		// Home-print editions, for the website. The workbook is the proof's pages enlarged, so it
 		// needs no fit check of its own beyond the wording; the supply list is re-measured because
 		// its wording differs.
-		{file: *name + "-workbook-letter", pageSize: upright, single: true, zoom: true, home: true, check: true, sides: singles(reading)},
-		{file: *name + "-supply-list-letter", pageSize: upright, single: true, home: true, check: true, sides: singles(supply)},
+		{file: *name + "-workbook-letter", pageSize: upright, single: true, zoom: true, sheets: true, check: true, sides: singles(reading)},
+		{file: *name + "-supply-list-letter", pageSize: upright, single: true, sheets: true, check: true, sides: singles(supply)},
 	}
 
 	if err := os.MkdirAll(*outDir, 0o755); err != nil {
@@ -292,7 +296,7 @@ func (b *builder) document(d doc) ([]byte, error) {
 			fmt.Fprintf(&out, "<div class=\"%s\">\n", wrap)
 		}
 		for _, p := range side {
-			if err := b.page(&out, p, d.home); err != nil {
+			if err := b.page(&out, p, d.sheets); err != nil {
 				return nil, fmt.Errorf("page %s: %w", p.ID, err)
 			}
 		}
@@ -307,7 +311,7 @@ func (b *builder) document(d doc) ([]byte, error) {
 	return out.Bytes(), nil
 }
 
-func (b *builder) page(out *bytes.Buffer, p page, home bool) error {
+func (b *builder) page(out *bytes.Buffer, p page, sheets bool) error {
 	class := "pg"
 	if p.Left {
 		class += " left"
@@ -319,7 +323,7 @@ func (b *builder) page(out *bytes.Buffer, p page, home bool) error {
 		class += " ls " + strings.SplitN(p.ID, "-", 2)[0] + " " + p.ID
 	}
 	fmt.Fprintf(out, "<section class=\"%s\" data-id=\"%s\"><div class=\"body\">", class, p.ID)
-	if err := b.tpl.ExecuteTemplate(out, p.ID, pageData{Page: p, Edition: b.edition, Home: home}); err != nil {
+	if err := b.tpl.ExecuteTemplate(out, p.ID, pageData{Page: p, Edition: b.edition, Sheets: sheets}); err != nil {
 		return err
 	}
 	out.WriteString("</div>")

@@ -223,7 +223,7 @@ Flush with it and it goes faster: a newer toilet uses about 1.6 gallons a flush.
 <li><b>Something that feels like a treat.</b> Two weeks is a long time.</li>
 <li><b>If rotating food is more than you want to manage,</b> look at freeze-dried emergency meals sold with a 25-year shelf life. They need water, usually hot.</li>
 </ul>
-<p class="n">The full list, with how long each thing keeps, is on the {{if .Home}}two-week{{else}}laminated{{end}} supply list.</p>
+<p class="n">The full list, with how long each thing keeps, is on the {{if .Sheets}}two-week{{else}}laminated{{end}} supply list.</p>
 <h2>Cooking with no power</h2>
 <div class="o tight"><span>We can cook on</span><span><b class="cb"></b>a wood stove</span><span><b class="cb"></b>a gas range, lit with a match</span><span><b class="cb"></b>a camp stove or grill, outdoors</span></div>
 <div class="f"><span>Fuel for it on hand</span><i></i><span>lasts about</span><i class="s"></i><span>days</span></div>
@@ -391,7 +391,7 @@ Animals drink far more than people do, and a well with no power gives none. Work
 <ul class="ck">
 <li><b>Stop the Bleed.</b> How to stop life-threatening bleeding. Hands-on and often free. Find a class at stopthebleed.org.</li>
 <li><b>First aid and CPR.</b> The American Red Cross (redcross.org), or ask your rescue squad or fire department.</li>
-<li><b>Wilderness first aid.</b> For when help is hours away. SOLO in Conway, NH (soloschools.com) teaches it and sells a pocket Wilderness First Aid Map for its graduates. A free online course is at openwfa.com.</li>
+<li><b>Wilderness first aid.</b> For when help is hours away. SOLO in Conway, NH (www.soloschools.com) teaches it and sells a pocket Wilderness First Aid Map for its graduates. A free online course is at openwfa.com.</li>
 </ul>
 <div class="f"><span>Who here is trained, and when</span><i></i></div>
 {{end}}
@@ -400,7 +400,7 @@ Animals drink far more than people do, and a well with no power gives none. Work
 {{define "touch"}}
 <header class="hd"><div class="no">{{.Page.Num}}</div><div><h1>Staying in touch</h1><p>Phone, internet, alerts and news</p></div></header>
 <div class="tip" style="margin-top:.02in"><span class="t">Where does your town post news?</span>
-Find out now and write it <b>inside the front cover</b>. Most towns use some of these: Front Porch Forum, a town Facebook page or group, the town website, an email list, the notice board at the store or town office.</div>
+Find out now and write it {{if .Sheets}}on the <b>Know your town</b> page{{else}}<b>inside the front cover</b>{{end}}. Most towns use some of these: Front Porch Forum, a town Facebook page or group, the town website, an email list, the notice board at the store or town office.</div>
 <h2>Phone and internet</h2>
 <div class="o"><span>Home phone</span><span><b class="cb"></b>copper landline</span><span><b class="cb"></b>over fiber, cable or internet</span><span><b class="cb"></b>none</span></div>
 <p class="n" style="margin-top:0">A phone that runs over fiber, cable or internet stops when the power does, unless its box has a battery. So does Wi-Fi calling.</p>
@@ -544,7 +544,7 @@ Use slow heat: hot water bottles, warm towels or handwarmers, starting at the fa
 <li>Drink water and eat well.</li>
 <li>Lift and shovel the right way, and rest often.</li>
 <li>Check on your neighbors. Help each other.</li>
-<li>Turn off the water, gas or electricity if you need to (map inside the back cover).</li>
+<li>Turn off the water, gas or electricity if you need to ({{if .Sheets}}see the Home map page{{else}}map inside the back cover{{end}}).</li>
 <li>If you can’t keep warm, leave early for a neighbor’s, a warming place or the shelter.</li>
 </ul>
 <div class="warn" style="margin-top:.1in"><span class="t">Do not make your own emergency</span>
@@ -579,7 +579,7 @@ Use slow heat: hot water bottles, warm towels or handwarmers, starting at the fa
 <ul class="ck">
 <li>Take photos of the damage and the spoiled food before you clean up. Keep receipts.</li>
 <li><b>Report damage to Vermont 211:</b> dial <span class="nb">2-1-1</span> or go to vermont211.org. Report small losses too. The state uses these reports to ask for federal disaster help.</li>
-<li>Tell your town’s Emergency Management Director (inside the front cover) and call your insurance company.</li>
+<li>Tell your town’s Emergency Management Director ({{if .Sheets}}on the Know your town page{{else}}inside the front cover{{end}}) and call your insurance company.</li>
 </ul>
 <div class="f"><span>Damage reported to 211 on</span><i></i></div>
 <div class="f"><span>FEMA number</span><i></i></div>
@@ -610,6 +610,7 @@ Use slow heat: hot water bottles, warm towels or handwarmers, starting at the fa
 <div class="res"><b class="nm">Crisis Fuel and Capstone</b><span class="ph">800-639-1053</span><p>Nearly out of fuel and can’t pay? Call your community action agency <b>before</b> the tank is empty. In central Vermont that is Capstone Community Action (Randolph office <span class="nb">802-728-9506</span>), which also helps with emergency food and applications. Elsewhere, dial <span class="nb">2-1-1</span> to find yours. Furnace quit after hours in winter: <span class="nb">877-295-7998</span>.</p></div>
 <div class="res"><b class="nm">Food shelves</b><span class="ph">800-585-2265</span><p>Vermont Foodbank lists food shelves and meal sites at vtfoodbank.org. Or dial <span class="nb">2-1-1</span>.</p></div>
 <div class="res"><b class="nm">Disaster Distress Helpline</b><span class="ph">800-985-5990</span><p>Call or text at any hour to talk with a counselor about the strain. In a crisis, <span class="nb">9-8-8</span>.</p></div>
+<div class="res"><b class="nm">Want more copies? Ideas?</b><span class="ph">knowyoursystems.org</span><p>Email info@knowyoursystems.org. We’ll print copies for your town.</p></div>
 <h2>More help</h2>
 <p style="margin:.02in 0"><b>ready.gov</b> &nbsp;·&nbsp; <b>vem.vermont.gov</b> &nbsp;·&nbsp; <b>emergency.cdc.gov</b> &nbsp;·&nbsp; <b>vtalert.gov</b></p>
 {{end}}

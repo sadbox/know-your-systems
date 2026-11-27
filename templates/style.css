@@ -184,6 +184,7 @@ ol.how li{margin:.022in 0}
 .c1 .art img{display:block;width:100%;height:auto}
 .c1 .bar{background:#000;color:var(--paper);font:700 10.4pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.14em;
          padding:.085in .1in;display:flex;justify-content:space-between;align-items:baseline;margin:0 -.02in;white-space:nowrap}
+.c1 .bar .web{text-transform:none;letter-spacing:.05em;font-size:12pt}
 .c1 .bar span:last-child{font-size:7.7pt;letter-spacing:.09em;font-weight:600}
 
 .c4 .big{display:flex;align-items:flex-end;gap:.16in;border-bottom:3pt solid #000;padding-bottom:.04in}
@@ -218,6 +219,7 @@ ol.how li{margin:.022in 0}
 .pg.ls:not(.measure) .lcols{flex:1 1 auto}
 .pg.ls:not(.measure) .lcols li{flex:1 1 auto}
 .ls h2{font-size:15pt;margin:.07in 0 0}
+.ls .lfoot .web{text-transform:none;letter-spacing:.04em;font-size:8.2pt}
 .ls .lfoot{display:flex;justify-content:space-between;font:600 7.6pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.13em;color:#555;border-top:.5pt solid #9a9a9a;padding-top:.06in;margin-top:.1in}
 /* The supply list: one row per item, with how long it keeps and a box for the date.
    Three columns: tick boxes, words, date boxes. The rules run under the words only, so no rule
