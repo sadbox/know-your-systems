@@ -39,3 +39,35 @@ jobs:
           persist-credentials: false
       - name: Build the PDFs and the website
         run: ./build
+
+  # What this change does to the printed pages: builds the base branch and
+  # this PR, each in its own container, compares every PDF page by page, and
+  # lists the changed pages in the job summary (pictures in the run's
+  # page-diff artifact). For a person to look at; it never fails a PR for a
+  # change, only if it can't compare.
+  visual-diff:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-26.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Build this PR
+        run: ./build
+      - name: Build the base branch
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          git worktree add .base "$BASE_SHA"
+          if [ -x .base/build ]; then (cd .base && ./build); else echo "::notice::the base branch has no ./build; nothing to compare"; fi
+      - name: Compare the printed pages
+        run: |
+          if [ -d .base/out ]; then ./kys -diff .base/out -diff-out diff >> "$GITHUB_STEP_SUMMARY"; fi
+      - uses: actions/upload-artifact@v7.0.2
+        with:
+          name: page-diff
+          path: diff/
+          if-no-files-found: ignore
+          retention-days: 30

@@ -1,0 +1,60 @@
+# Checks over time, beside the per-PR ones in ci.yaml:
+#
+# - links (the 1st of every month): every web address printed in the
+#   workbook and the supply list still answers (./kys -links). A failed run
+#   is GitHub's email to whoever last changed this schedule.
+# - facts (September 1st): opens an issue with every printed phone number
+#   and web address as a checklist, for a person to re-verify before the
+#   fall reprint (./kys -facts).
+#
+# Either runs by hand from Actions, checks, Run workflow.
+name: checks
+
+on:
+  schedule:
+    - cron: "17 13 1 * *"
+    - cron: "23 13 1 9 *"
+  workflow_dispatch:
+    inputs:
+      check:
+        description: Which check
+        type: choice
+        options: [links, facts]
+        default: links
+
+permissions: {}
+
+jobs:
+  links:
+    if: github.event.schedule == '17 13 1 * *' || inputs.check == 'links'
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - name: Fetch every printed web address
+        run: ./kys -links
+
+  facts:
+    if: github.event.schedule == '23 13 1 9 *' || inputs.check == 'facts'
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - name: The checklist
+        run: ./kys -facts > facts.md
+      - name: Open the review issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh issue create --repo "$REPO" --body-file facts.md \
+            --title "Fall review: check the workbook's phone numbers and web addresses ($(date +%Y))"

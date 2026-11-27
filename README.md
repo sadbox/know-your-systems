@@ -35,6 +35,22 @@ edits. Its fit check can differ from the container's by a few hundredths of an i
 | `out/know-your-systems-cover-mockup.pdf` | The cover again, with the light orange printed behind it. For a test copy on white stock only; pair it with the interior file. Do not print it on orange stock. |
 | `out/know-your-systems-booklet.pdf` | Cover and interior in one file, for printing the whole booklet on plain white paper: seven letter sheets, landscape, two-sided, **flip on short edge**, actual size. The light orange is printed in on the cover sheet. Stack in print order, fold, staple. |
 
+## Checks
+
+- **Every page fits:** every build fails if a page's content is too tall or a row runs off the side.
+- **What a change does to the pages:** on every pull request, ci.yaml's `visual-diff` job builds the base
+  branch and the PR, compares every PDF page by page, and lists the changed pages in the job summary,
+  with pictures (old, new, changes in red) in the run's `page-diff` artifact. Locally:
+  `./kys -diff <other checkout>/out` after `./build`.
+- **The printed web addresses:** `.github/workflows/checks.yaml` fetches every one on the 1st of the month
+  (`./kys -links`); a site that turns automated checks away, or answers only over http, is a warning.
+- **The facts, yearly:** on September 1st the same workflow opens an issue listing every printed phone
+  number and web address as a checklist for a person to re-verify before the fall reprint (`./kys -facts`).
+- **The site:** knowyoursystems.org is a Synthetic Monitoring website check in homelab-configs
+  (`tofu/monitoring/synthetics.tf`), with the other sites' "website down" alert.
+
+`./kys` runs any of the generator's commands in the same container as `./build`.
+
 ## Home-print editions and the website
 
     go run . -site site                                   # also writes the website to ./site, for https://knowyoursystems.org/

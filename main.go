@@ -91,10 +91,21 @@ func main() {
 		lenient = flag.Bool("allow-overflow", false, "build even if a page's content is too tall (it will be cut off); for use while editing")
 		siteDir = flag.String("site", "", "also write the static website to this directory (e.g. -site site)")
 		commit  = flag.String("commit", "", "the source's commit, shown on the print-kit page (./build passes it)")
+		diffOld = flag.String("diff", "", "check: compare every PDF in this directory with the same one in -out, page by page, instead of building")
+		diffOut = flag.String("diff-out", "diff", "with -diff: where the pictures of changed pages go")
+		links   = flag.Bool("links", false, "check: fetch every web address in the print instead of building")
+		facts   = flag.Bool("facts", false, "check: print the checklist of every phone number and web address in the print instead of building")
 		siteURL = flag.String("site-url", "https://knowyoursystems.org/", "the website's public address, e.g. https://example.org/ (for link previews on Facebook and the like)")
 	)
 	flag.Parse()
 	log.SetFlags(0)
+
+	if ran, err := runCheck(*diffOld, *diffOut, *outDir, *tplDir, *edition, *links, *facts); ran {
+		if err != nil {
+			log.Fatal(err)
+		}
+		return
+	}
 
 	bin, err := findChrome(*chrome)
 	if err != nil {
