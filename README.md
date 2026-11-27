@@ -99,6 +99,9 @@ The print kit page (`site-kit` in `templates/site.html`) is the full how-to; kee
 3. Score the cover down the middle with a creaser and fold it on the score.
 4. Stack the six interior sheets in the order they print (page 24 | 1 on the outside, 12 | 13 in the middle),
    fold them, nest them in the cover and staple twice through the fold with a booklet stapler (Bostitch).
+5. Trim the open edge square on a guillotine cutter, fold against the back fence, taking off no more than
+   1/8 in: the inside sheets creep out past the cover there. Pages keep 0.42 in of margin on that edge,
+   so the trim cuts nothing printed.
 
 All content sits at least 0.3 in from the sheet edges, so an ordinary office printer will not clip it.
 
