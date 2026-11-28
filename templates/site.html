@@ -9,7 +9,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
-<meta name="theme-color" content="#f9c995">
 <link rel="icon" href="{{.Root}}assets/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="{{.Root}}assets/apple-touch.png">
 <link rel="preload" href="{{.Root}}assets/fonts/barlow-condensed-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -47,8 +46,9 @@
 {{define "site-index"}}{{template "site-head" .}}
 <title>Emergency Preparedness Workbook: Surviving a Two-Week Power Outage</title>
 {{template "site-share-tags" .}}
+<meta name="theme-color" content="#f9c995">
 </head>
-<body>
+<body class="home">
 <header class="cover">
   <div class="wrap cover-grid">
     <div class="cover-text">
@@ -172,6 +172,7 @@ html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#f9c995;
 <title>Print kit · Know Your Systems</title>
 <meta name="description" content="Every file we print the Know Your Systems workbook from, the paper we use, and how we print, fold and staple it.">
 {{if .URL}}<link rel="canonical" href="{{.URL}}{{.KitPath}}/">{{end}}
+<meta name="theme-color" content="#fff">
 </head>
 <body>
 <header class="top">

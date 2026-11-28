@@ -35,7 +35,7 @@ h2::after{content:"";flex:1;border-top:1px solid var(--green2)}
 h3{font:700 1.25rem/1.15 var(--head);text-transform:uppercase;letter-spacing:.05em;color:var(--green);margin:1rem 0 .35rem}
 .n{color:#2c2c2c;font-size:1rem}
 .block{padding-top:2.6rem}
-main{padding-bottom:3rem}
+main{padding-bottom:5rem}
 
 /* ---------- buttons ---------- */
 .btn{display:inline-flex;align-items:center;gap:.5rem;min-height:48px;padding:.6rem 1.1rem;border:2px solid var(--green);border-radius:3px;background:var(--green);color:#fff;
@@ -47,6 +47,10 @@ main{padding-bottom:3rem}
 .btn.small{min-height:40px;font-size:1rem;padding:.4rem .8rem}
 
 /* ---------- cover ---------- */
+/* Safari 26 ignores theme-color and tints its bars from the body background, so the home
+   page's body is cover stock and its main is paper. */
+.home{background:var(--stock)}
+.home main{background:var(--paper)}
 .cover{background:var(--stock);color:#000}
 .cover-grid{display:grid;gap:1.25rem;padding-top:1.5rem}
 .made{margin:0;border-top:4px solid #000;padding-top:.6rem}
@@ -115,7 +119,7 @@ ol.how li{margin:.5rem 0}
 .card .btn{margin-top:auto}
 
 /* ---------- footer ---------- */
-.site-foot{background:var(--sand);border-top:1px solid #e2d9c3;margin-top:2rem}
+.site-foot{background:var(--sand);border-top:1px solid #e2d9c3}
 .site-foot .wrap{padding-top:1.5rem;padding-bottom:1.5rem}
 .site-foot p{margin:.4rem 0;max-width:48rem}
 .site-foot .fine{font-size:.95rem;color:#2c2c2c}
